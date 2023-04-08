@@ -42,3 +42,11 @@ Project Process
 6. Edit site name, for easier authentication later with social media apps.
 7. Create email backend and sign in/up settings in settings.py.
 8. Create requirements.txt with pip freeze.
+9. Open email address in admin models and select verify and primary for admin email.
+10. Make templates, and allauth, directories.
+11. Copy template directories from allauth to folders made in last step.
+12. Create base.html under templates directory. Copy boilerplate from bootstrap.
+13. Add meta lines, move script up, add load static.
+14. Wrap sections in {% %} blocks.
+15. Create home app. Create templates, views, urls for index page and test.
+16. 
