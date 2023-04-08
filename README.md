@@ -27,6 +27,8 @@ Features
 
 Testing
     Error Log
+    1. In connecting static files, specifically base.css into the base.html file the line {5 static 'css/base.css' %} throws back an error requesting missing endblock.
+    2. Stackoverflow suggests moving the static directory under the app, opposed to the example project boutique_ado. And additionally directing to the new file location in settings. However this has not solved issue.
     Validation and Accessibility
 
 Deployment
