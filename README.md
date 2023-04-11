@@ -31,6 +31,11 @@ Testing
     2. Stackoverflow suggests moving the static directory under the app, opposed to the example project boutique_ado. And additionally directing to the new file location in settings. However this has not solved issue.
     3. Solution: Base.html was missing {% load static %}, whether this should have been performed by the existing same line in index.html after extending base or otherwise, the mock server is now functioning as desired.
 
+    1. Styling was incomplete when viewing site with runserver.
+    Base.css was clearly attached correctly, as background image evident, however text is blue, and background div for delivery message unaffected.
+    2. I was not using the important override for specificity correctly, and had omitted the exclamation mark prefix from the code.
+    3. Corrected styling/targeting error and page is working correctly.
+
     Validation and Accessibility
 
 Deployment
