@@ -11,6 +11,9 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
+    class Meta:
+        verbose_name_plural = 'categories'
+
 
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True,
@@ -26,3 +29,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
