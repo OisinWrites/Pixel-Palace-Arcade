@@ -5,12 +5,10 @@ from .models import Category, Product
 def all_products(request):
     """ A view to show all products and then handle sort and search queries"""
     products = Product.objects.all()
-    categories = Category.objects.filter(parent_category__isnull=True)
     # filter top-level categories
 
     context = {
         'products': products,
-        'categories': categories
         }
 
     return render(request, 'products/products.html', context)
