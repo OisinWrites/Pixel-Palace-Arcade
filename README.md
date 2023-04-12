@@ -34,7 +34,7 @@ Testing
     1. Styling was incomplete when viewing site with runserver.
     Base.css was clearly attached correctly, as background image evident, however text is blue, and background div for delivery message unaffected.
     2. I was not using the important override for specificity correctly, and had omitted the exclamation mark prefix from the code.
-    3. Corrected styling/targeting error and page is working correctly.
+    3. Corrected styling/targeting error and page is working correctly. 
 
     Validation and Accessibility
 
@@ -58,4 +58,11 @@ Project Process
 13. Add meta lines, move script up, add load static.
 14. Wrap sections in {% %} blocks.
 15. Create home app. Create templates, views, urls for index page and test.
-16. 
+16. Created seperate files for the navbar, and for mobile navbar and included into base.html.
+17. Created categories and subcategories for products with anchors to be filled in.
+18. Added product images to media
+19. Created app Products, copied json fixtures- categories and products.
+20. Created models for Categories and Products and made migrations.
+21. Registered new models in admin.py file.
+22. Installed Pillow and updatedd requirements.txt
+23. Ran command python3 manage.py loaddata categories. Had to run migrate cmnd prior. Installed 9 objects successfully.
