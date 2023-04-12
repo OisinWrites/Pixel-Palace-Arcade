@@ -2,12 +2,18 @@ from django.shortcuts import render
 from .models import Category, Product
 
 
-def product_list(request):
+def all_products(request):
+    """ A view to show all products and then handle sort and search queries"""
     products = Product.objects.all()
     categories = Category.objects.filter(parent_category__isnull=True)
     # filter top-level categories
-    return render(request, 'product_list.html', {'products': products,
-                                                 'categories': categories})
+
+    context = {
+        'products': products,
+        'categories': categories
+        }
+
+    return render(request, 'products/products.html', context)
 
 
 def filter_products(request, category_id):
@@ -15,5 +21,11 @@ def filter_products(request, category_id):
     products = Product.objects.filter(category=category)
     subcategories = category.category_set.all()
     # get subcategories
-    return render(request, 'product_list.html', {'products': products,
-                  'categories': subcategories, 'selected_category': category})
+
+    context = {
+        'products': products,
+        'categories': subcategories,
+        'selected_category': category
+        }
+
+    return render(request, 'product_list.html', context)

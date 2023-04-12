@@ -36,6 +36,8 @@ Testing
     2. I was not using the important override for specificity correctly, and had omitted the exclamation mark prefix from the code.
     3. Corrected styling/targeting error and page is working correctly. 
 
+    1. Need to find correct way to target my image miles in media from a django admin panel for products models. Currently the image file is clicked and dropped.
+
     Validation and Accessibility
 
 Deployment
@@ -66,3 +68,7 @@ Project Process
 21. Registered new models in admin.py file.
 22. Installed Pillow and updatedd requirements.txt
 23. Ran command python3 manage.py loaddata categories. Had to run migrate cmnd prior. Installed 9 objects successfully.
+24. Removed fixtures as that is prior gathered data for boutique ado project. Instead, build product list from scratch in admin panel.
+25. Add views for products
+26. Customise admin via admin.py for abiltiy to sort and search.
+27. Urls
