@@ -29,6 +29,12 @@ body {
 .shop-now-button {
     background: black;
     color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
 }
 
 .show-now-button:hover,
@@ -70,6 +76,9 @@ body {
     .container {
         max-width: 80%;
     }
+    body {
+        height: calc(100vh - 116px)
+    }
 }
 
 /* fixed top navbar only on medium and above */
@@ -84,5 +93,16 @@ body {
 
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* pad top when nav is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px)
     }
 }
