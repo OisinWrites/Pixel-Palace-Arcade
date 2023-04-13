@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 
 
@@ -14,16 +14,13 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-def filter_products(request, category_id):
-    category = Category.objects.get(id=category_id)
-    products = Product.objects.filter(category=category)
-    subcategories = category.category_set.all()
-    # get subcategories
+def product_detail(request, product_id):
+    """ A view to show product details"""
+    product = get_object_or_404(Product, pk=product_id)
+    # filter top-level categories
 
     context = {
-        'products': products,
-        'categories': subcategories,
-        'selected_category': category
+        'product': product,
         }
 
-    return render(request, 'product_list.html', context)
+    return render(request, 'products/products.html', context)
