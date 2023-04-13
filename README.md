@@ -71,4 +71,5 @@ Project Process
 24. Removed fixtures as that is prior gathered data for boutique ado project. Instead, build product list from scratch in admin panel.
 25. Add views for products
 26. Customise admin via admin.py for abiltiy to sort and search.
-27. Urls
+27. Create a view function for products details, url, and template.
+28. Add functionality to search bar using django database model: Q

@@ -17,10 +17,10 @@
                 Classics
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="classics-link">
-                <a href="" class="dropdown-item">Shoot 'em Ups</a>
-                <a href="" class="dropdown-item">Platformer</a>
-                <a href="" class="dropdown-item">Puzzle</a>
-                <a href="" class="dropdown-item">All Classics</a>
+                <a href="{% url 'products' %}?category=shooters" class="dropdown-item">Shoot 'em Ups</a>
+                <a href="{% url 'products' %}?category=platform_style" class="dropdown-item">Platformer</a>
+                <a href="{% url 'products' %}?category=puzzle" class="dropdown-item">Puzzle</a>
+                <a href="{% url 'products' %}?category=shooters,platformer,puzzle,classics" class="dropdown-item">All Classics</a>
             </div>
         </li>
 
@@ -29,10 +29,10 @@
                 Modern Hits
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="modern-hits-link">
-                <a href="" class="dropdown-item">Star Wars Collection</a>
-                <a href="" class="dropdown-item">Racing</a>
-                <a href="" class="dropdown-item">Japanese Releases</a>
-                <a href="" class="dropdown-item">All Modern Hits</a>
+                <a href="{% url 'products' %}?category=star_wars_franchise" class="dropdown-item">Star Wars Collection</a>
+                <a href="{% url 'products' %}?category=racing_style" class="dropdown-item">Racing</a>
+                <a href="{% url 'products' %}?category=japan_made_games" class="dropdown-item">Japanese Releases</a>
+                <a href="{% url 'products' %}?category=japan_made_games,racing_style,star_wars_franchise" class="dropdown-item">All Modern Hits</a>
             </div>
         </li>
 
