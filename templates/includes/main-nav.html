@@ -41,10 +41,10 @@
                 Merchandise
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="merchandise-link">
-                <a href="" class="dropdown-item">Collectors Corner</a>
-                <a href="" class="dropdown-item">Plushies</a>
-                <a href="" class="dropdown-item">Controllers & Joysticks</a>
-                <a href="" class="dropdown-item">All Merch</a>
+                <a href="{% url 'products' %}?category=collectible" class="dropdown-item">Collectors Corner</a>
+                <a href="{% url 'products' %}?category=soft_toys" class="dropdown-item">Plushies</a>
+                <a href="{% url 'products' %}?category=equip" class="dropdown-item">Controllers & Joysticks</a>
+                <a href="{% url 'products' %}?category=collectible,soft_toys,equip" class="dropdown-item">All Merch</a>
             </div>
         </li>
 
@@ -53,10 +53,10 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Bundles</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?category=new" class="dropdown-item">New Arrivals</a>
+                <a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a>
+                <a href="{% url 'products' %}?category=grouped_products" class="dropdown-item">Bundles</a>
+                <a href="{% url 'products' %}?category=new,deals,grouped_products" class="dropdown-item">All Specials</a>
             </div>
         </li>
     </ul>
