@@ -37,6 +37,9 @@ Testing
     3. Corrected styling/targeting error and page is working correctly. 
 
     1. Need to find correct way to target my image miles in media from a django admin panel for products models. Currently the image file is clicked and dropped.
+    2. Admin panel sought to add chosen file from coomputer folders, but saved chosen file in media directory. Allowed admin system to drop them there for it to find, rather than force it to pick up from there, where they were already. Likely though, that I was entering the url wrong, which the panel kept insisting was an invalid format.
+
+    1. The badge span to indicate selected categories for shown products list is not inverting colour on hover.
 
     Validation and Accessibility
 
@@ -73,3 +76,4 @@ Project Process
 26. Customise admin via admin.py for abiltiy to sort and search.
 27. Create a view function for products details, url, and template.
 28. Add functionality to search bar using django database model: Q
+29. Add functionality to sort items by category, price, rating.
