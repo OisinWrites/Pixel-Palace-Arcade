@@ -40,6 +40,12 @@ Testing
     2. Admin panel sought to add chosen file from coomputer folders, but saved chosen file in media directory. Allowed admin system to drop them there for it to find, rather than force it to pick up from there, where they were already. Likely though, that I was entering the url wrong, which the panel kept insisting was an invalid format.
 
     1. The badge span to indicate selected categories for shown products list is not inverting colour on hover.
+    2. This resolved after pushing, exiting, and reentry.
+
+    1. The sorting text is not updating with the current search from the nav bar.
+    2. The code in the html was fine, but the view, on line 46, had the words sort and direction in regular brackets instead of the necessary curlies.
+
+    1. Added script, styling, and html div for a button to bring viewer to the top of a products page. However, thoguh the button should float at the bottom right of the screen, it is static at the bottom of the page, after all products.
 
     Validation and Accessibility
 
