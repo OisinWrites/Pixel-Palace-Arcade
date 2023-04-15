@@ -46,6 +46,7 @@ Testing
     2. The code in the html was fine, but the view, on line 46, had the words sort and direction in regular brackets instead of the necessary curlies.
 
     1. Added script, styling, and html div for a button to bring viewer to the top of a products page. However, thoguh the button should float at the bottom right of the screen, it is static at the bottom of the page, after all products.
+    2. After running server and using inspect tool, it is evident the the div is not picking up it the styling from css
 
     Validation and Accessibility
 
