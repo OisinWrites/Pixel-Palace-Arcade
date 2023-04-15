@@ -46,7 +46,9 @@ Testing
     2. The code in the html was fine, but the view, on line 46, had the words sort and direction in regular brackets instead of the necessary curlies.
 
     1. Added script, styling, and html div for a button to bring viewer to the top of a products page. However, thoguh the button should float at the bottom right of the screen, it is static at the bottom of the page, after all products.
-    2. After running server and using inspect tool, it is evident the the div is not picking up it the styling from css
+    2. After running server and using inspect tool, it is evident the the div is not picking up it the styling from css.
+    3. Like the previous issue, this one resolved itself on shutting down gitpod and rebooting. Must be missing a command to refresh or update environmental server manually.
+    4. Note to self: Turn it off and on again before staring at code for an hour.
 
     Validation and Accessibility
 
