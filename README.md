@@ -86,3 +86,5 @@ Project Process
 27. Create a view function for products details, url, and template.
 28. Add functionality to search bar using django database model: Q
 29. Add functionality to sort items by category, price, rating.
+30. Create bag app to handle the shopping bag function.
+31. Create a contxt.py file to handle the bag across any other template. Update settings for tempaltes, and add delivery threshold and percentage.
