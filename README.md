@@ -50,8 +50,6 @@ Testing
     3. Like the previous issue, this one resolved itself on shutting down gitpod and rebooting. Must be missing a command to refresh or update environmental server manually.
     4. Note to self: Turn it off and on again before staring at code for an hour.
 
-    1. Remove function not working
-
     Validation and Accessibility
 
 Deployment
@@ -95,3 +93,5 @@ Project Process
 34. In product details add content to select console for games.
 35. Have label for variant render in shopping bag or else N/A.
 36. Refine quantity selection in details and bag templates.
+37. Have remove from bag capability.
+38. Create blog app, with review model.
