@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review
-from django import Forms
+from django import forms
 from .forms import ReviewForm
+from products.models import Product
+
 
 def create_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -17,6 +19,7 @@ def create_review(request, product_id):
         form = ReviewForm()
     return render(request, 'reviews/create_review.html', {'form': form})
 
+
 def update_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.method == 'POST':
@@ -27,6 +30,7 @@ def update_review(request, review_id):
     else:
         form = ReviewForm(instance=review)
     return render(request, 'reviews/update_review.html', {'form': form})
+
 
 def delete_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
