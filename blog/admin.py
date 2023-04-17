@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Review
-from .forms import ReviewForm
 
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -14,12 +13,4 @@ class ReviewAdmin(admin.ModelAdmin):
     )
 
 
-class ReviewFormAdmin(admin.ModelAdmin):
-    list_display = (
-        'model',
-        'fields',
-    )
-
-
 admin.site.register(Review, ReviewAdmin)
-admin.site.register(ReviewForm, ReviewFormAdmin)
