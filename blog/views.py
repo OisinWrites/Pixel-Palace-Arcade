@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Review
-from .forms import ReviewForm
+from django import forms
 
 
 def create_review(request, product_id):
@@ -15,4 +15,4 @@ def create_review(request, product_id):
             return redirect('product_detail', id=product_id)
     else:
         form = ReviewForm()
-    return render(request, 'reviews/create_review.html', {'form': form})
+    return render(request, 'blog/blog.html', {'form': form})

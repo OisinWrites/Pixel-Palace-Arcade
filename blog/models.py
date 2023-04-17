@@ -13,3 +13,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ReviewForm(models.Model):
+    class Meta:
+        model = Review
+        fields = ['title', 'body', 'rating']
