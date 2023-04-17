@@ -37,6 +37,12 @@ body {
     color: white;
 }
 
+.btn-outline-black {
+    background: white;
+    color: black !important; /*overriding anchor styling*/
+    border: 1px solid black;
+}
+
 .show-now-button:hover,
 .show-now-button:active,
 .show-now-button:focus,
