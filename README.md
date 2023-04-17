@@ -50,6 +50,8 @@ Testing
     3. Like the previous issue, this one resolved itself on shutting down gitpod and rebooting. Must be missing a command to refresh or update environmental server manually.
     4. Note to self: Turn it off and on again before staring at code for an hour.
 
+    1. Remove function not working
+
     Validation and Accessibility
 
 Deployment
