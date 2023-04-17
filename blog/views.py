@@ -17,7 +17,7 @@ def create_review(request, product_id):
             return redirect('product_detail', id=product_id)
     else:
         form = ReviewForm()
-    return render(request, 'reviews/create_review.html', {'form': form})
+    return render(request, 'blog/review.html', {'form': form})
 
 
 def update_review(request, review_id):
