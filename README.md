@@ -91,4 +91,5 @@ Project Process
 32. Give content to bag view.
 33. Using shell command update models to include boolean toggle for variants on selected categories.
 34. In product details add content to select console for games.
-35. Have label render in shopping bag or else N/A.
+35. Have label for variant render in shopping bag or else N/A.
+36. Refine quantity selection in details and bag templates.
