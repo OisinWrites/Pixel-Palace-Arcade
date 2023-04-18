@@ -66,11 +66,11 @@
                                                     <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }} 
                                                         {% if item.variant %}variant_{{ item.item_id }}_{{ item.variant }}{% endif %}" type="number"
                                                         name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                        data-item_id="{{ item.item_id }}" data-size="{{ item.variant }}">
+                                                        data-item_id="{{ item.item_id }}" data-variant="{{ item.variant }}">
                                                     <div class="input-group-append">
                                                         <button class="increment-qty btn btn-sm btn-black rounded-0 increment-qty_{{ item.item_id }} 
                                                             {% if item.variant %}increment-variant_{{ item.item_id }}_{{ item.variant }}{% endif %}"
-                                                            data-item_id="{{ item.item_id }}" data-size="{{ item.variant }}">
+                                                            data-item_id="{{ item.item_id }}" data-variant="{{ item.variant }}">
                                                             <span>
                                                                 <i class="fas fa-plus fa-sm"></i>
                                                             </span>
