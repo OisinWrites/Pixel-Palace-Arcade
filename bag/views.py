@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect
+from django.shortcuts import reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 
 from products.models import Product
@@ -27,7 +28,7 @@ def add_to_bag(request, item_id):
         if item_id in list(bag.keys()):
             if variant in bag[item_id]['items_by_variant'].keys():
                 message_e = (f'Updated  {product.name} for {variant.upper()} '
-                             f'quantity to'
+                             f'quantity to '
                              f'{bag[item_id]["items_by_variant"][variant]}')
                 bag[item_id]['items_by_variant'][variant] += quantity
                 messages.success(request, message_e)
@@ -70,7 +71,7 @@ def adjust_bag(request, item_id):
         if quantity > 0:
             bag[item_id]['items_by_variant'][variant] = quantity
             messages.success(request, f'Updated {product.name} for '
-                             f'{variant.upper()} quantity to'
+                             f'{variant.upper()} quantity to '
                              f'{bag[item_id]["items_by_variant"][variant]}')
         else:
             del bag[item_id]['items_by_variant'][variant]
