@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'bag',
     'blog',
     'checkout',
+
+    # Other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +65,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pixel_palace_arcade.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
