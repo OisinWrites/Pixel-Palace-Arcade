@@ -59,6 +59,7 @@ def adjust_bag(request, item_id):
     """ Add or remove a quantity of the specified product
     to the shopping bag """
 
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     variant = None
     if 'product_variant' in request.POST:
@@ -68,15 +69,23 @@ def adjust_bag(request, item_id):
     if variant:
         if quantity > 0:
             bag[item_id]['items_by_variant'][variant] = quantity
+            messages.success(request, f'Updated {product.name} for '
+                             f'{variant.upper()} quantity to'
+                             f'{bag[item_id]["items_by_variant"][variant]}')
         else:
             del bag[item_id]['items_by_variant'][variant]
             if not bag[item_id]['items_by_variant']:
                 bag.pop[item_id]
+            messages.success(request, f'Removed {product.name} for '
+                                      f'{variant.upper()} from your bag')
     else:
         if quantity > 0:
             bag[item_id] = quantity
+            messages.success(request, f'Updated {product.name} '
+                             f'quantity to {bag[item_id]}')
         else:
             bag.pop(item_id)
+            messages.success(request, f'Removed {product.name} from your bag')
 
     request.session['bag'] = bag
     return redirect(reverse("view_bag"))
@@ -87,6 +96,7 @@ def remove_from_bag(request, item_id):
     from the shopping bag """
 
     try:
+        product = get_object_or_404(Product, pk=item_id)
         variant = None
         if 'product_variant' in request.POST:
             variant = request.POST['product_variant']
@@ -96,10 +106,15 @@ def remove_from_bag(request, item_id):
             del bag[item_id]['items_by_variant'][variant]
             if not bag[item_id]['items_by_variant']:
                 bag.pop(item_id)
+            message_a = (f'Removed variant {variant.upper()} '
+                         f'{product.name} from your bag')
+            messages.success(request, message_a)
         else:
             bag.pop(item_id)
+            messages.success(request, f'Removed {product.name} from your bag')
 
         request.session['bag'] = bag
         return HttpResponse(status=200)
     except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
