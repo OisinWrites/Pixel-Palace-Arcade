@@ -50,6 +50,10 @@ Testing
     3. Like the previous issue, this one resolved itself on shutting down gitpod and rebooting. Must be missing a command to refresh or update environmental server manually.
     4. Note to self: Turn it off and on again before staring at code for an hour.
 
+    1. In checkout, the payment field in the form is not working. This may be because we 're not activated on Stripe in our account.
+
+    1. The error messages for the stripe form float on top of the nav banner.
+
 
     Validation and Accessibility
 
