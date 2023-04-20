@@ -12,6 +12,7 @@ from bag.contexts import bag_contents
 import stripe
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -56,7 +57,8 @@ def checkout(request):
             order.save()
             for item_id, item_data in bag.items():
                 try:
-                    product = Product.objects.get(id=item_id)
+                    product = Product.objects\
+                        .get(has_variants=True)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
@@ -65,13 +67,13 @@ def checkout(request):
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity\
-                             in item_data['items_by_size'].items():
+                        for variant, quantity\
+                             in item_data['items_by_variant'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
                                 quantity=quantity,
-                                product_size=size,
+                                product_variant=variant,
                             )
                             order_line_item.save()
                 except Product.DoesNotExist:
