@@ -36,7 +36,7 @@ Testing
     2. I was not using the important override for specificity correctly, and had omitted the exclamation mark prefix from the code.
     3. Corrected styling/targeting error and page is working correctly. 
 
-    1. Need to find correct way to target my image miles in media from a django admin panel for products models. Currently the image file is clicked and dropped.
+    1. Need to find correct way to target my image files in media from a django admin panel for products models. Currently the image file is clicked and dropped.
     2. Admin panel sought to add chosen file from coomputer folders, but saved chosen file in media directory. Allowed admin system to drop them there for it to find, rather than force it to pick up from there, where they were already. Likely though, that I was entering the url wrong, which the panel kept insisting was an invalid format.
 
     1. The badge span to indicate selected categories for shown products list is not inverting colour on hover.
@@ -53,6 +53,8 @@ Testing
     1. In checkout, the payment field in the form is not working. This may be because we 're not activated on Stripe in our account.
 
     1. The error messages for the stripe form float on top of the nav banner.
+
+    1. The images for products are called on from the database, not the cloud file storage. In the project example, boutique ado, these images are used as fixtures. Is there a way I can have the product models find their relevant picture from the cloud instead?
 
 
     Validation and Accessibility
