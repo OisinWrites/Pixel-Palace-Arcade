@@ -58,6 +58,8 @@ Testing
     2. The heroku app was not displaying any model instances. I used the command "python manage.py dumpdata > data.json" to create the fixtures file that the example project used, and then loaded this to the external database.
     3. The sqlite database is now replicated in Elephantsql.
 
+    1. The Heroku app isn't picking up the custom allauth templates.
+
 
     Validation and Accessibility
 
