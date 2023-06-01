@@ -55,6 +55,8 @@ Testing
     1. The error messages for the stripe form float on top of the nav banner.
 
     1. The images for products are called on from the database, not the cloud file storage. In the project example, boutique ado, these images are used as fixtures. Is there a way I can have the product models find their relevant picture from the cloud instead?
+    2. The heroku app was not displaying any model instances. I used the command "python manage.py dumpdata > data.json" to create the fixtures file that the example project used, and then loaded this to the external database.
+    3. The sqlite database is now replicated in Elephantsql.
 
 
     Validation and Accessibility
