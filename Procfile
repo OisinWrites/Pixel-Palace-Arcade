@@ -1,0 +1,1 @@
+web: gunicorn pixel_palace_arcade.wsgi:application
