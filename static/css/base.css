@@ -10,6 +10,12 @@ body {
     font-family: 'Lato';
 }
 
+.allauth {
+    margin-top: 30vh;
+    background-color: rgb(232, 232, 232, 0.8);
+    padding: 1rem;
+}
+
 .icon {
     align-items: center;
     display: inline-flex;
