@@ -72,6 +72,9 @@ Deployment
 
 Credits
 
+Favicon: http://onlinefavicon.com/
+Stripe implementation: CI Boutique Ado project
+
 Project Process
 1. Install Django, create app and superuser. Created .gitignore file for app.
 2. Begin ReadMe with section headings.

@@ -17,6 +17,8 @@ import dj_database_url
 if os.path.isfile("env.py"):
     import env
 
+import logging
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,6 +76,28 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'pixel_palace_arcade.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 TEMPLATES = [
     {
