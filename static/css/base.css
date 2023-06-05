@@ -1,5 +1,17 @@
 .gameover {
     background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1685982724/static/media/gameover404_j7a4ie.jpg') no-repeat center center fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+.error-page-text {
+    margin-top: 30vh;
+    background-color: rgb(232, 232, 232, 0.8);
+    padding: 1rem;
 }
 
 html {
