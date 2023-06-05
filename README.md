@@ -64,6 +64,8 @@ Testing
     1. Crispy forms won't let users sign in or sign up. The form's submission button has no effect. Verified by logging into the django admin screen.
     2. Changed all insstances to {{ form|crispy }} instead of {% crispy form %}, which was changing the styling without bringing the functionality.
 
+    1. Stylings outside of base.css were not present on deployed heroku app, but were present on server from development environment.
+    2. Included the cloudinary links to specific css folders beneath local static links in templates for both checkout and profile apps.
 
 
     Validation and Accessibility
