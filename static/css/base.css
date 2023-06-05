@@ -1,3 +1,7 @@
+.gameover {
+    background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1685982724/static/media/gameover404_j7a4ie.jpg') no-repeat center center fixed;
+}
+
 html {
     height: 100%;
 }

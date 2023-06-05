@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
-from .webhook_handler import StripeWH_Handler
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
