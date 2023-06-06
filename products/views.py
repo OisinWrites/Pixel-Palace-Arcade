@@ -70,7 +70,7 @@ def product_detail(request, product_id):
     if request.method == 'POST':
         if 'delete_rating' in request.POST:
             rating.delete()
-            messages.success(request, 'Rating deleted successfully.')
+            messages.info(request, 'Rating deleted successfully.')
             return redirect('product_detail', product_id=product_id)
         else:
             form = RatingForm(request.POST)
@@ -79,7 +79,7 @@ def product_detail(request, product_id):
                 rating.user = request.user
                 rating.product = product
                 rating.save()
-                messages.success(request, 'Rating added successfully.')
+                messages.info(request, 'Rating added successfully.')
                 return redirect('product_detail', product_id=product_id)
     else:
         form = RatingForm()
