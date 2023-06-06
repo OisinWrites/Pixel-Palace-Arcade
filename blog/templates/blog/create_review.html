@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -14,7 +15,31 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+                <div class="product-details-container mb-5 mt-md-5">
+                    <h4><small>You are reviewing <br> <strong>{{ product.name }}</strong></small></h4>
+                    {% if user.is_authenticated %}
+                        {% if rating %}
+                        <div>
+                            <small class="text-muted">                                
+                                You rated this product a : 
+                                <i class="fas fa-star mr-1"></i>
+                                {{ rating.rating }} / 5
+                            </small>
+                        </div>                                                             
+                        {% endif %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                        
+                            <button type="submit">Post Review</button>
+                          </form>
+                    {% endif %}                    
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="image-container my-5">
+                    <h2 class="mb-0">{{ product.name }}</h2>
+                    <hr>
                     {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank">
                         <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -25,27 +50,16 @@
                     </a>
                     {% endif %}
                 </div>
+                <div class="product-details-container mb-5 mt-md-5">                                      
+                    {% if product.aggregaterating %}
+                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.aggregaterating }} / 5</small>
+                    {% else %}
+                        <small class="text-muted">No Rating</small>
+                    {% endif %}                    
+                </div>
                 <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{ product.name }}</p>
-                    {% if product.category %}
-                    <p class="small mt-1 mb-0">
-                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                        </a>
-                    </p>
-                    {% endif %}
-                    {% if product.rating %}
-                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                    {% endif %}
                     <p class="mt-3">{{ product.description }}</p>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
             </div>
         </div>
     </div>

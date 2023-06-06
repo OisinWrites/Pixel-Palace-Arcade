@@ -25,7 +25,7 @@ class Product(models.Model):
     has_variants = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     aggregaterating = models.DecimalField(max_digits=6, decimal_places=2,
-                                           null=True, blank=True)
+                                          null=True, blank=True)
     reviewed = models.BooleanField(default=False, null=True, blank=True)
     image_url = models.URLField(max_length=1824, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)

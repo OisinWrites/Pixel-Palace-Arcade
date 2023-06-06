@@ -26,6 +26,27 @@
                     </a>
                     {% endif %}
                 </div>
+                <div>
+                    {% if reviews %}
+                        {% for review in reviews %}
+                        <p>
+                            <strong>{{ review.title }}</strong>
+                            <br>{{ review.body }}<br>
+                            {% if review.user == request.user %}
+                                <a class="text-danger" href="{% url 'delete_review' product.id %}">
+                                    Delete your review
+                                </a>
+                            {% else %}
+                                <small class="text-right">by {{ review.user }}</small>
+                            {% endif %}
+                        </p>
+                        {% endfor %}
+                    {% else %}
+                        <p>No reviews yet, would you like to 
+                            <a href="{% url 'create_review' product.id %}">leave one?</a>
+                        </p>
+                    {% endif %}
+                </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="product-details-container mb-5 mt-md-5">
@@ -73,8 +94,17 @@
                                 <input type="radio" name="rating" value="{{ rating }}" id="star{{ rating }}" style="display: none;">
                                 <label for="star{{ rating }}"><i class="fas fa-star"></i></label>
                             {% endfor %}
-                        </form>                                             
+                        </form>                                                                  
                         {% endif %}
+                        {% if reviews %}
+                            {% for review in reviews %}
+                                {% if review.user == request.user %}
+                                    <p>You've reviewed this product</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <a href="{% url 'create_review' product.id %}">Leave a Review</a>
+                        {% endif %} 
                     {% endif %}
                     {% if product.reviewed %}
                     <p class="small mt-1 mb-0">

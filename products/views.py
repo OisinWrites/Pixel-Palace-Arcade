@@ -7,7 +7,7 @@ from django.db.models.functions import Lower
 from .models import Product, Category
 from .forms import ProductForm
 from blog.forms import RatingForm
-from blog.models import Rating
+from blog.models import Rating, Review
 
 
 def all_products(request):
@@ -22,8 +22,6 @@ def all_products(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            if sortkey == 'aggregaterating':
-                sortkey = 'aggregaterating'
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
@@ -68,6 +66,7 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     rating = Rating.objects.filter(product=product, user=request.user).first()
+    reviews = Review.objects.filter(product=product)
 
     if request.method == 'POST':
         if 'delete_rating' in request.POST:
@@ -90,6 +89,7 @@ def product_detail(request, product_id):
         'form': form,
         'rating': rating,
         'product': product,
+        'reviews': reviews,
     }
 
     return render(request, 'products/product_detail.html', context)

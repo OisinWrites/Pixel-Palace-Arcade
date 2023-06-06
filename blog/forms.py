@@ -5,17 +5,27 @@ from crispy_forms.layout import Layout, Field, Submit
 
 
 class ReviewForm(forms.ModelForm):
-    # title = forms.CharField(max_length=255)
-    # body = forms.Textarea()
-    # rating = forms.IntegerField()
-
     class Meta:
         model = Review
-        fields = [
-            'title',
-            'body',
-            'aggregaterating',
-        ]
+        fields = ['title', 'body']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['title'].widget.attrs['placeholder\
+            '] = 'Give you review a title'
+        self.fields['title'].widget.attrs['value\
+            '] = self.instance.title if self.instance else ''
+        self.fields['body'].widget.attrs['placeholder\
+            '] = "Write your review here"
+        self.fields['body'].widget.attrs['value\
+            '] = self.instance.body if self.instance else ''
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Field('title', css_class='border-black rounded-0'),
+            Field('body', css_class='border-black rounded-0'),
+            Submit('submit', 'Submit', css_class='btn btn-primary')
+        )
 
 
 class StarRatingWidget(forms.widgets.Widget):
