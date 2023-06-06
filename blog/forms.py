@@ -12,5 +12,5 @@ class ReviewForm(forms.ModelForm):
         fields = [
             'title',
             'body',
-            'rating',
+            'aggregate_rating',
         ]
