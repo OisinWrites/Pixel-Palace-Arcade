@@ -7,7 +7,7 @@ class ReviewAdmin(admin.ModelAdmin):
         'product',
         'user',
         'title',
-        'aggregate_rating',
+        'aggregaterating',
         'created_at',
         'updated_at',
     )

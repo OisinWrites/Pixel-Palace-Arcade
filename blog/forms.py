@@ -14,7 +14,7 @@ class ReviewForm(forms.ModelForm):
         fields = [
             'title',
             'body',
-            'aggregate_rating',
+            'aggregaterating',
         ]
 
 
@@ -52,4 +52,3 @@ class RatingForm(forms.ModelForm):
             Field('rating', css_class='star-rating'),
             Submit('submit', 'Submit')
         )
-

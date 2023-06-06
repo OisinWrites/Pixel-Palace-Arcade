@@ -24,7 +24,7 @@ class Product(models.Model):
     description = models.TextField()
     has_variants = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    aggregate_rating = models.DecimalField(max_digits=6, decimal_places=2,
+    aggregaterating = models.DecimalField(max_digits=6, decimal_places=2,
                                            null=True, blank=True)
     reviewed = models.BooleanField(default=False, null=True, blank=True)
     image_url = models.URLField(max_length=1824, null=True, blank=True)
@@ -33,10 +33,12 @@ class Product(models.Model):
     def calculate_average_rating(self):
         average_rating = self.rating_set.aggregate(
             average_rating=Avg('rating'))['average_rating']
-        return Decimal(average_rating).quantize(Decimal('0.00'))
+        if average_rating is not None:
+            return Decimal(average_rating).quantize(Decimal('0.00'))
+        return None
 
     @property
-    def aggregate_rating(self):
+    def aggregaterating(self):
         return self.calculate_average_rating()
 
     def __str__(self):
