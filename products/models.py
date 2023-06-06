@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Avg
+from decimal import Decimal
 
 
 class Category(models.Model):
@@ -30,8 +31,9 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     def calculate_average_rating(self):
-        return self.rating_set.aggregate(average_rating=Avg('rating')
-                                         )['average_rating']
+        average_rating = self.rating_set.aggregate(
+            average_rating=Avg('rating'))['average_rating']
+        return Decimal(average_rating).quantize(Decimal('0.00'))
 
     @property
     def aggregate_rating(self):
