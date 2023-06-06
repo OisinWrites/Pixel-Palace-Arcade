@@ -8,6 +8,22 @@
     z-index: -1;
 }
 
+.star-rating input[type="radio"] {
+    display: none;
+  }
+
+.star-rating label {
+display: inline-block;
+font-size: 20px;
+color: #ccc;
+cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked + label {
+color: #ffd700; /* Change to your desired color for filled stars */
+}
+
+
 .magic-button {
     background-color: transparent; 
     border: none; 
@@ -15,29 +31,6 @@
     cursor: pointer;
     color: #555;
 }
-
-.rating-widget {
-    display: inline-block;
-  }
-  
-  .rating-widget input[type="radio"] {
-    display: none;
-  }
-  
-  .rating-widget label {
-    font-size: 30px;
-    color: #ccc;
-    cursor: pointer;
-  }
-  
-  .rating-widget label:before {
-    content: "\2606";
-  }
-  
-  .rating-widget input[type="radio"]:checked ~ label:before {
-    content: "\2605";
-    color: gold;
-  }
 
 .error-page-text {
     margin-top: 30vh;
