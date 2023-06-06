@@ -6,6 +6,7 @@ from django.db.models.functions import Lower
 
 from .models import Product, Category
 from .forms import ProductForm
+from blog.forms import RatingForm
 
 
 def all_products(request):
@@ -64,7 +65,19 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            rating.product = product
+            rating.user = request.user
+            rating.save()
+            # Handle successful rating submission
+    else:
+        form = RatingForm()
+
     context = {
+        'form': form,
         'product': product,
         }
 
