@@ -1,8 +1,0 @@
-{% load widget_tweaks %}
-<span class="rating-widget">
-    {% for i in "12345" %}
-        <input type="radio" name="{{ widget.name }}" id="{{ widget.attrs.id }}_{{ i }}" value="{{ i }}"
-               {% if value|stringformat:"s" == i %}checked{% endif %}>
-        <label for="{{ widget.attrs.id }}_{{ i }}"><i class="fas fa-star"></i></label>
-    {% endfor %}
-</span>

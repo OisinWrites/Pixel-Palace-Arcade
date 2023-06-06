@@ -8,6 +8,37 @@
     z-index: -1;
 }
 
+.magic-button {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer;
+    color: #555;
+}
+
+.rating-widget {
+    display: inline-block;
+  }
+  
+  .rating-widget input[type="radio"] {
+    display: none;
+  }
+  
+  .rating-widget label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .rating-widget label:before {
+    content: "\2606";
+  }
+  
+  .rating-widget input[type="radio"]:checked ~ label:before {
+    content: "\2605";
+    color: gold;
+  }
+
 .error-page-text {
     margin-top: 30vh;
     background-color: rgb(232, 232, 232, 0.8);

@@ -1,6 +1,5 @@
 from django import forms
 from .models import Review, Rating
-from .widgets import RatingWidget
 
 
 class ReviewForm(forms.ModelForm):
@@ -20,5 +19,4 @@ class ReviewForm(forms.ModelForm):
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ('user_rating',)
-        user_rating = forms.IntegerField(widget=RatingWidget)
+        fields = ['rating']

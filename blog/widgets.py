@@ -6,12 +6,11 @@ class RatingWidget(forms.TextInput):
 
     class Media:
         css = {
-            'all': ('rating_widget.css',)  # Add CSS styles for the widget
+            'all': ('blog/static/blog/css/blog.css',),
         }
-        js = ('rating_widget.js',)  # Add JavaScript for the widget
+        js = ('blog/js/star_rating.js',)
 
     def format_value(self, value):
         if value is None:
             return ''
         return str(value)
-

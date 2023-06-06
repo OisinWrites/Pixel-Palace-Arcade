@@ -7,6 +7,7 @@ from django.db.models.functions import Lower
 from .models import Product, Category
 from .forms import ProductForm
 from blog.forms import RatingForm
+from blog.models import Rating
 
 
 def all_products(request):
@@ -61,25 +62,33 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show product details"""
+    """A view to show product details"""
 
     product = get_object_or_404(Product, pk=product_id)
+    rating = Rating.objects.filter(product=product, user=request.user).first()
 
     if request.method == 'POST':
-        form = RatingForm(request.POST)
-        if form.is_valid():
-            rating = form.save(commit=False)
-            rating.product = product
-            rating.user = request.user
-            rating.save()
-            # Handle successful rating submission
+        if 'delete_rating' in request.POST:
+            rating.delete()
+            messages.success(request, 'Rating deleted successfully.')
+            return redirect('product_detail', product_id=product_id)
+        else:
+            form = RatingForm(request.POST)
+            if form.is_valid():
+                rating = form.save(commit=False)
+                rating.user = request.user
+                rating.product = product
+                rating.save()
+                messages.success(request, 'Rating added successfully.')
+                return redirect('product_detail', product_id=product_id)
     else:
         form = RatingForm()
 
     context = {
         'form': form,
+        'rating': rating,
         'product': product,
-        }
+    }
 
     return render(request, 'products/product_detail.html', context)
 

@@ -19,8 +19,9 @@ class Review(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user_rating = models.IntegerField()
+    rating = models.PositiveIntegerField(
+        choices=[(i, i) for i in range(1, 6)], default=0)
 
     def __str__(self):
-        return f'{self.user.username} - {self.product.name} - \
-             {self.user_rating}'
+        return f'{self.user.username} rated {self.product.name} \
+            with {self.rating} stars'
