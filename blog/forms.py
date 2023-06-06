@@ -34,7 +34,6 @@ class StarRatingWidget(forms.widgets.Widget):
         return html
 
 
-
 class RatingForm(forms.ModelForm):
     rating = forms.ChoiceField(
         choices=[(str(i), str(i)) for i in range(1, 6)],
