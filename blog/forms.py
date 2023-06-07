@@ -5,6 +5,7 @@ from crispy_forms.layout import Layout, Field, Submit
 
 
 class ReviewForm(forms.ModelForm):
+
     class Meta:
         model = Review
         fields = ['title', 'body']
@@ -20,12 +21,13 @@ class ReviewForm(forms.ModelForm):
             '] = "Write your review here"
         self.fields['body'].widget.attrs['value\
             '] = self.instance.body if self.instance else ''
+
+        for field_name, field in self.fields.items():
+            field.label = ''
+
         self.helper = FormHelper()
-        self.helper.layout = Layout(
-            Field('title', css_class='border-black rounded-0'),
-            Field('body', css_class='border-black rounded-0'),
-            Submit('submit', 'Submit', css_class='btn btn-primary')
-        )
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
 
 
 class StarRatingWidget(forms.widgets.Widget):

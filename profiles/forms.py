@@ -51,6 +51,9 @@ class AvatarForm(forms.ModelForm):
         self.request = kwargs.pop('request', None)
         super(AvatarForm, self).__init__(*args, **kwargs)
 
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
+
     def save(self, commit=True):
         instance = super(AvatarForm, self).save(commit=False)
 
