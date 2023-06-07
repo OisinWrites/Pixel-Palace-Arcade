@@ -38,9 +38,11 @@
                     </div>
                 </a>                 
                 <div class="text-center">
-                    <div>
-                        {{ avatar.player_name }}
-                    </div>
+                    <a class="d-flex justify-content-center" href="{% url 'edit_avatar' %}">
+                        <div>
+                            {{ avatar.player_name }}
+                        </div>
+                    </a>
                 </div>
                 <hr>                    
                     {% endif %}
@@ -51,13 +53,15 @@
                                 {% csrf_token %}
                                 {{ avatar_form|crispy }}
                                 <div class="text-right">
-                                    <button class="btn btn-black rounded-0" type="submit">Begin!</button>
+                                    <button class="btn btn-black rounded-0" type="submit">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                         Begin!
+                                    </button>
                                 </div>
                             </form>
                         </div>
                     {% endif %}
-                        <div class="text-center">
-                            <i class="fa-solid fa-user-shield"></i>
+                        <div class="text-center">                            
                             <hr>
                         </div>
                 {% endif %}                

@@ -75,6 +75,14 @@ def edit_avatar(request):
     return render(request, template, context)
 
 
+def delete_avatar(request):
+    """Delete a user's avatar"""
+    avatar = get_object_or_404(Avatar, user=request.user)
+    avatar.delete()
+    messages.success(request, 'Avatar deleted successfully')
+    return redirect('profile')
+
+
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 

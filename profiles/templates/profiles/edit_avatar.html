@@ -20,14 +20,22 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">My Avatar</h2>
+                <h2 class="logo-font mb-4 d-flex justify-content-center">My Avatar</h2>
                 <hr>
             </div>
         </div>
         <div class="row d-flex">
-            <div class="col-12 col-lg-6">
-            {% if request.user.is_authenticated and avatar.user == request.user %}                
-                <a class="d-flex justify-content-center" href="">
+            <div class="col-12">
+            {% if request.user.is_authenticated and avatar.user == request.user %}  
+                <div class="d-flex justify-content-center" >
+                    <a href="{% url 'profile' %}">
+                        <p>
+                            Continue with this hero? 
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </p>                  
+                    </a>
+                </div>              
+                <a class="d-flex justify-content-center" href="{{ avatar.image.url }}" target="_blank">                    
                     <div class="image-container col-3">
                         {% if avatar.image %}
                             <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.player_name }}'s Avatar">
@@ -38,11 +46,19 @@
                 </a>                 
                 <div class="text-center">
                     <div>
-                        {{ avatar.player_name }}
+                        <h3>{{ avatar.player_name }}</h3>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center" >
+                    <a class="text-danger" href="{% url 'delete_avatar' %}">
+                        <p>
+                           Forfeit this hero? 
+                           <i class="fa-solid fa-skull"></i>
+                        </p>                  
+                    </a>
+                </div> 
                 <hr>                                  
-                <div>
+                <div class="col-12 d-flex justify-content-center">
                     <form method="POST" class="form mb-2" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ avatar_form|crispy }}

@@ -41,7 +41,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 
 class Avatar(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     image_url = models.URLField(max_length=1824, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     player_name = models.CharField(max_length=50)
