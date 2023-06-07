@@ -1,5 +1,7 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, Avatar
+from products.widgets import CustomClearableFileInput
+from allauth.account.models import EmailAddress
 
 
 class UserProfileForm(forms.ModelForm):
@@ -33,3 +35,38 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs[
                 'class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
+
+
+class AvatarForm(forms.ModelForm):
+    player_name = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter player name'}),
+        label=''
+    )
+
+    image = forms.ImageField(label='Choose your hero', required=False,
+                             widget=CustomClearableFileInput)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(AvatarForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        instance = super(AvatarForm, self).save(commit=False)
+
+        # Check if the user is already assigned
+        if not instance.user_id:
+            # Retrieve the logged-in user
+            user = self.request.user
+
+            # Assign the user to the instance
+            instance.user = user
+
+        if commit:
+            instance.save()
+
+        return instance
+
+    class Meta:
+        model = Avatar
+        fields = ['image', 'player_name']

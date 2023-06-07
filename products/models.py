@@ -34,7 +34,7 @@ class Product(models.Model):
         average_rating = self.rating_set.aggregate(
             average_rating=Avg('rating'))['average_rating']
         if average_rating is not None:
-            return Decimal(average_rating).quantize(Decimal('0.00'))
+            return Decimal(average_rating).quantize(Decimal('0.0'))
         return None
 
     @property

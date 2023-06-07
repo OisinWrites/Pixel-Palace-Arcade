@@ -24,6 +24,45 @@
                 <hr>
             </div>
         </div>
+        <div class="row d-flex">
+            <div class="col-12 col-lg-6">
+                {% if avatar %}
+                    {% if request.user.is_authenticated and avatar.user == request.user %}                
+                <a class="d-flex justify-content-center" href="">
+                    <div class="image-container col-3">
+                        {% if avatar.image %}
+                            <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.player_name }}'s Avatar">
+                        {% else %}
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.player_name }}'s Avatar">
+                        {% endif %}
+                    </div>
+                </a>                 
+                <div class="text-center">
+                    <div>
+                        {{ avatar.player_name }}
+                    </div>
+                </div>
+                <hr>                    
+                    {% endif %}
+                {% else %}                        
+                    {% if request.user.is_authenticated %}
+                        <div>
+                            <form method="POST" class="form mb-2" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ avatar_form|crispy }}
+                                <div class="text-right">
+                                    <button class="btn btn-black rounded-0" type="submit">Begin!</button>
+                                </div>
+                            </form>
+                        </div>
+                    {% endif %}
+                        <div class="text-center">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <hr>
+                        </div>
+                {% endif %}                
+            </div>            
+        </div>     
         <div class="row">
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Default Delivery Information</p>
@@ -74,10 +113,18 @@
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
+    <script type="text/javascript">
+        $('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
+
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
     <script type="text/javascript" src="https://res.cloudinary.com/dwhennrjl/raw/upload/v1685971818/static/profiles/js/countryfield.242381779a53.js"></script>
 {% endblock %}

@@ -1,37 +1,48 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import UserProfile
-from .forms import UserProfileForm
+from .models import UserProfile, Avatar
+from .forms import UserProfileForm, AvatarForm
 
 from checkout.models import Order
 
 
 @login_required
 def profile(request):
-    """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
+    avatar = Avatar.objects.filter(user=profile.user).first()
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
+        avatar_form = AvatarForm(request.POST, request.FILES, instance=avatar)
+        avatar_form.request = request
+
+        if form.is_valid() and avatar_form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully')
+            avatar = avatar_form.save(commit=False)
+            avatar.user = request.user
+            avatar.save()
+
+            messages.success(request, 'Profile and avatar \
+                updated successfully')
+            return redirect('profile')
         else:
             messages.error(request, 'Update failed. \
-                Please ensure the form is valid.')
+                Please ensure the forms are valid.')
     else:
         form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
+        avatar_form = AvatarForm(instance=avatar)
 
+    orders = profile.orders.all()
     template = 'profiles/profile.html'
     context = {
         'form': form,
+        'avatar_form': avatar_form,
         'orders': orders,
-        'on_profile_page': True
+        'on_profile_page': True,
+        'avatar': avatar,
     }
-
     return render(request, template, context)
 
 

@@ -66,7 +66,11 @@
               <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
                   <div><i class="fas fa-user fa-lg"></i></div>
+                  {% if user.is_authenticated %}
+                  <p>{{ user.username }}</p>
+                  {% else %}  
                   <p class="my-0">My Account</p>
+                  {% endif %}
                 </div>
               </a>
               <div class ="dropdown-menu border-0" aria-labelledby="user-options">

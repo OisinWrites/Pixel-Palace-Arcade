@@ -34,7 +34,7 @@
                             <br>{{ review.body }}<br>
                             {% if review.user == request.user %}
                                 <a class="text-danger" href="{% url 'delete_review' product.id %}">
-                                    Delete your review
+                                    <small>delete</small>
                                 </a>
                             {% else %}
                                 <small class="text-right">by {{ review.user }}</small>
@@ -53,7 +53,7 @@
                     <p class="mb-0">{{ product.name }}</p>
                     {% if request.user.is_superuser %}
                         <small class="ml-3">
-                            <a href="{% url 'edit_product' product.id %}">Edit </a>
+                            <a href="{% url 'edit_product' product.id %}">Edit </a>                                                       
                             <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                         </small>
                     {% endif %}
