@@ -4,6 +4,11 @@ from .models import Product, Category
 
 
 class ProductForm(forms.ModelForm):
+    """
+    Form for creating products in a crispy form.
+    Styled to fit app, custom labels.
+    Uses custom widget to tidy image upload field.
+    """
 
     class Meta:
         model = Product

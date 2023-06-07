@@ -5,6 +5,9 @@ from allauth.account.models import EmailAddress
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    Form to set default shipping/billing info
+    """
     class Meta:
         model = UserProfile
         exclude = ('user',)
@@ -38,6 +41,10 @@ class UserProfileForm(forms.ModelForm):
 
 
 class AvatarForm(forms.ModelForm):
+    """
+    Form to create alternate personal details for
+    social engagement within site.
+    """
     player_name = forms.CharField(
         max_length=50,
         widget=forms.TextInput(attrs={'placeholder': 'Enter player name'}),

@@ -41,6 +41,10 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 
 class Avatar(models.Model):
+    """
+    Model that enhances the user's profile for
+    interaction on site, such as reviews.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image_url = models.URLField(max_length=1824, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)

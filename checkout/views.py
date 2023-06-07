@@ -20,6 +20,13 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    '''
+    This function modifies the metadata of a Stripe PaymentIntent
+    based on the provided request. It extracts necessary data from the request,
+    sets the Stripe API key, modifies the PaymentIntent's metadata,
+    and returns an appropriate HTTP response depending on
+    the success or failure of the operation.
+    '''
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -36,9 +43,50 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    The checkout view is responsible for processing a
+    checkout request.
+    It handles both GET and POST requests.
+
+    Description of function:
+        Retrieve the Stripe public and secret keys from
+        the application settings.
+
+        If the request method is POST:
+            Retrieve the bag items from the user's session.
+            Validate the form data submitted by the user.
+            If the form is valid:
+            Create an order object with the submitted data.
+            Associate the Stripe PaymentIntent ID with the order.
+            Save the order and its line items to the database.
+            Optionally, save the user's information for future orders.
+            Redirect the user to the checkout success page.
+            If the form is not valid:
+            Display an error message indicating a form validation error.
+
+        If the request method is GET:
+            Retrieve the bag items from the user's session.
+            If the bag is empty, display an error message and
+                redirect the user to the products page.
+            Calculate the total amount of the bag items.
+            Create a PaymentIntent object with the total amount
+                using the Stripe API.
+            If the user is authenticated, prefill the order form
+                with their profile information.
+            If the user is not authenticated or has no profile,
+                create an empty order form.
+            Check if the Stripe public key is missing and
+                display a warning message if so.
+
+        Prepare the template, create the context dictionary with
+        the order form, Stripe public key, and the client secret
+        from the PaymentIntent.
+
+        Render the checkout template with the provided context.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    
+
     if request.method == 'POST':
         bag = request.session.get('bag', {})
 
@@ -150,7 +198,8 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handle successful checkouts
+    Handle successful checkouts. This function is called
+    after a user has successfully placed an order.
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)

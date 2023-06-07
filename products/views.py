@@ -64,7 +64,11 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """A view to show product details"""
+    """
+    A view to show product details.
+    This view has been enhanced to show info from the
+    rating, review, and avatar profile models.
+    """
 
     product = get_object_or_404(Product, pk=product_id)
     rating = None

@@ -11,6 +11,15 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """
+    Represents an order made by the user.
+
+    Attributes:
+        The order model takes in new attributes needed for shipping and
+        for billing. Some need to be submitted by the user and others
+        such as grand total are calculated by our app.
+    """
+
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
@@ -37,13 +46,13 @@ class Order(models.Model):
 
     def _generate_order_number(self):
         """
-        Generates a random unique order number using UUID
+        Generates a random unique order number using UUID.
         """
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
         """
-        Update grand total each time a line item is added,
+        Updates the grand total each time a line item is added,
         accounting for delivery costs.
         """
         self.order_total = (
@@ -52,8 +61,9 @@ class Order(models.Model):
             ['lineitem_total__sum']
          ) or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.\
-                STANDARD_DELIVERY_PERCENTAGE / 100
+            self.delivery_cost = (
+                self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+                )
         else:
             self.delivery_cost = 0
         self.grand_total = self.order_total + self.delivery_cost
@@ -61,18 +71,27 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the order number
-        if it hasn't been set already.
+        Overrides the original save method to set
+        the order number if it hasn't been set already.
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Returns a string representation of the order.
+        """
         return self.order_number
 
 
 class OrderLineItem(models.Model):
+    """
+    The class divides the users bag of products into
+    separate instances for each product and its variant,
+    so that the user's bag is more coherent as to what they
+    are purchasing and each OrderLine can be edited individually.
+    """
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='lineitems')

@@ -18,6 +18,13 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Model for product. Products are created with
+    a defined category, price, name, image, and description.
+    The aggregate rating is filled and updated everytime the model is
+    called upon, using all existing rating models' values at the given
+    time.
+    """
     category = models.ForeignKey('Category', null=True,
                                  blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)

@@ -11,6 +11,10 @@ from checkout.models import Order
 
 @login_required
 def profile(request):
+    """
+    Profile view shows the users avatar, saved default data,
+    completed orders and review history.
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
     avatar = Avatar.objects.filter(user=profile.user).first()
 
@@ -52,6 +56,10 @@ def profile(request):
 
 
 def edit_avatar(request):
+    """
+    This view allows users to edit their existing avatar
+    similarly to how existing products are edited.
+    """
     avatar = get_object_or_404(Avatar, user=request.user)
 
     if request.method == 'POST':
@@ -88,6 +96,9 @@ def delete_avatar(request):
 
 
 def order_history(request, order_number):
+    """
+    This view stores the info from successful purchases for each user.
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (

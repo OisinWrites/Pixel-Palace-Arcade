@@ -9,11 +9,19 @@ from django.urls import reverse
 
 
 def create_review(request, product_id):
+    """
+    View function for creating a new review for a product,
+    and passes in the rating model to show in the template also.
+    """
+
     product = get_object_or_404(Product, pk=product_id)
     rating = Rating.objects.filter(product=product, user=request.user).first()
+
     if request.method == 'POST':
+        # If the request method is POST, process the submitted form data
         form = ReviewForm(request.POST)
         if form.is_valid():
+            # If the form is valid, save the review to the database
             review = form.save(commit=False)
             review.product = product
             review.user = request.user
@@ -21,6 +29,7 @@ def create_review(request, product_id):
             messages.info(request, 'New review added')
             return redirect('product_detail', product_id=product_id)
     else:
+        # If the request method is GET, display an empty form
         form = ReviewForm()
 
     context = {
@@ -33,19 +42,33 @@ def create_review(request, product_id):
 
 
 def update_review(request, review_id):
+    """
+    View function for updating an existing review.
+    Unused as of yet
+    """
+
     review = get_object_or_404(Review, id=review_id)
+
     if request.method == 'POST':
+        # If the request method is POST, process the submitted form data
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
+            # If the form is valid, update the review
+            # and save it to the database
             form.save()
             return redirect('product_detail', id=review.product.id)
     else:
+        # If the request method is GET, display the
+        # form with the existing review data
         form = ReviewForm(instance=review)
+
     return render(request, 'reviews/update_review.html', {'form': form})
 
 
 def delete_review(request, review_id):
     """Delete a review"""
+
+    # Handles interference from a malicious actor
     if not request.user.is_authenticated:
         messages.error(request, "Sorry, \
             you can't access other user's profiles.")
