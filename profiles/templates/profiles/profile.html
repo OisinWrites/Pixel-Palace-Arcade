@@ -66,7 +66,33 @@
                         </div>
                 {% endif %}                
             </div>            
-        </div>     
+        </div>
+        <div class="col-12">
+            <p class="text-muted">Your Product Reviews</p>
+            <div class="order-history table-responsive">
+                <table class="table table-sn table-borderless">
+                    <thread>
+                        <tr>
+                            <th>Product</th>
+                            <th>Title</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        {% for review in reviews %}
+                        <tr>
+                            <td><a href="{% url 'product_detail' review.product.id %}">{{ review.product }}</a></td>
+                            <td>{{ review.title }}</td>
+                            <td>{{ review.body }}</td>
+                            <td>{{ review.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>     
         <div class="row">
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Default Delivery Information</p>

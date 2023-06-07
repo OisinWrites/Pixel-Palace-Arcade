@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.urls import reverse
 
 from .models import Product, Category
 from .forms import ProductForm
 from blog.forms import RatingForm
 from blog.models import Rating, Review
+from profiles.models import Avatar
 
 
 def all_products(request):
@@ -65,8 +67,15 @@ def product_detail(request, product_id):
     """A view to show product details"""
 
     product = get_object_or_404(Product, pk=product_id)
-    rating = Rating.objects.filter(product=product, user=request.user).first()
-    reviews = Review.objects.filter(product=product)
+    rating = None
+    avatars = None
+
+    if request.user.is_authenticated:
+        rating = Rating.objects.filter(
+            product=product, user=request.user).first()
+        reviews = Review.objects.filter(product=product)
+        avatars = Avatar.objects.filter(
+            user__in=[review.user for review in reviews if review.user])
 
     if request.method == 'POST':
         if 'delete_rating' in request.POST:
@@ -89,7 +98,8 @@ def product_detail(request, product_id):
         'form': form,
         'rating': rating,
         'product': product,
-        'reviews': reviews,
+        'reviews': reviews if request.user.is_authenticated else [],
+        'avatars': avatars if request.user.is_authenticated else [],
     }
 
     return render(request, 'products/product_detail.html', context)

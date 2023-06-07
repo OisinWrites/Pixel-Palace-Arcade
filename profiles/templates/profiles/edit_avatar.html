@@ -58,7 +58,8 @@
                     </a>
                 </div> 
                 <hr>                                  
-                <div class="col-12 d-flex justify-content-center">
+                <h4 class="d-flex justify-content-center">Edit your Avatar</h4>
+                <div class="col-12 d-flex justify-content-center">                    
                     <form method="POST" class="form mb-2" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ avatar_form|crispy }}

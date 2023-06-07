@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import ReviewForm
 from products.models import Product
 from .models import Rating
+from django.urls import reverse
 
 
 def create_review(request, product_id):
@@ -63,6 +64,8 @@ def delete_review(request, review_id):
         return redirect('product_detail', id=product_id)
 
     review = get_object_or_404(Review, id=review_id)
+    product_id = review.product.id 
     review.delete()
-    messages.info(request, 'Product deleted!')
-    return redirect(reverse('products'))
+    messages.info(request, 'Review deleted!')
+    return redirect(
+        reverse('product_detail', kwargs={'product_id': product_id}))

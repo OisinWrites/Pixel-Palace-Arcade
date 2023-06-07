@@ -28,23 +28,43 @@
                 </div>
                 <div>
                     {% if reviews %}
+                        <h4>{{ product.category.get_friendly_name }}</h4>
+                        <h3> Reviews</h3>
+                        <hr>
                         {% for review in reviews %}
                         <p>
-                            <strong>{{ review.title }}</strong>
+                            <div class="d-flex">
+                                {% for avatar in avatars %}
+                                  {% if avatar.user == review.user %}
+                                  <div class="col-2">
+                                    <img class="img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.user.username }} Avatar">
+                                  </div>
+                                  <div class="col-10">
+                                    <p>{{ avatar.player_name }}</p>
+                                  </div>
+                                  {% endif %}
+                                {% endfor %}
+                            </div>
+                            <strong>{{ review.title }}</strong>                          
                             <br>{{ review.body }}<br>
                             {% if review.user == request.user %}
-                                <a class="text-danger" href="{% url 'delete_review' product.id %}">
+                                <a class="text-danger" href="{% url 'delete_review' review.id %}">
                                     <small>delete</small>
                                 </a>
                             {% else %}
                                 <small class="text-right">by {{ review.user }}</small>
                             {% endif %}
+                            <hr>
                         </p>
                         {% endfor %}
                     {% else %}
+                        {% if user.is_authenticated %}
                         <p>No reviews yet, would you like to 
                             <a href="{% url 'create_review' product.id %}">leave one?</a>
                         </p>
+                        {% else %}
+                        <a  href="{% url 'account_signup' %}">Sign up to leave a review</a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -96,23 +116,25 @@
                             {% endfor %}
                         </form>                                                                  
                         {% endif %}
-                        {% if reviews %}
-                            {% for review in reviews %}
-                                {% if review.user == request.user %}
-                                    <p>You've reviewed this product</p>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        {% if not reviews %}
                             <a href="{% url 'create_review' product.id %}">Leave a Review</a>
+                        {% else %}
+                            {% with has_review=false %}
+                                {% for review in reviews %}
+                                    {% if review.user == request.user %}
+                                        {% with has_review=true %}
+                                            <p>You've reviewed this product</p>
+                                        {% endwith %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if not has_review %}
+                                    <a href="{% url 'create_review' product.id %}">Leave a Review</a>
+                                {% endif %}
+                            {% endwith %}
                         {% endif %} 
-                    {% endif %}
-                    {% if product.reviewed %}
-                    <p class="small mt-1 mb-0">
-                        <a class="text-muted btt-link" href="{% url 'view_reviews' product.id %}">
-                            Reviews
-                        </a>
-                    </p>
-                    {% endif %}
+                    {% endif %}               
                 </div>
                 <div class="product-details-container mb-5 mt-md-5">
                     <p class="mt-3">{{ product.description }}</p>
