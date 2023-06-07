@@ -42,6 +42,35 @@ def profile(request):
         'orders': orders,
         'on_profile_page': True,
         'avatar': avatar,
+        'user_id': request.user.id,
+    }
+    return render(request, template, context)
+
+
+def edit_avatar(request):
+    avatar = get_object_or_404(Avatar, user=request.user)
+
+    if request.method == 'POST':
+        avatar_form = AvatarForm(request.POST, request.FILES, instance=avatar)
+        avatar_form.request = request
+
+        if avatar_form.is_valid():
+            avatar = avatar_form.save(commit=False)
+            avatar.user = request.user
+            avatar.save()
+
+            messages.success(request, 'Avatar updated successfully')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Update failed. \
+                Please ensure the form is valid.')
+    else:
+        avatar_form = AvatarForm(instance=avatar)
+
+    template = 'profiles/edit_avatar.html'
+    context = {
+        'avatar_form': avatar_form,
+        'avatar': avatar,
     }
     return render(request, template, context)
 
