@@ -32,18 +32,6 @@ def create_review(request, product_id):
     return render(request, 'blog/create_review.html', context)
 
 
-def view_reviews(request, product_id):
-    """ A view to show reviews"""
-
-    product = get_object_or_404(Product, pk=product_id)
-
-    context = {
-        'product': product,
-        }
-
-    return render(request, 'blog/reviews.html', context)
-
-
 def update_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.method == 'POST':
@@ -64,7 +52,7 @@ def delete_review(request, review_id):
         return redirect('product_detail', id=product_id)
 
     review = get_object_or_404(Review, id=review_id)
-    product_id = review.product.id 
+    product_id = review.product.id
     review.delete()
     messages.info(request, 'Review deleted!')
     return redirect(
