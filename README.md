@@ -218,6 +218,70 @@ Testing
 
 Deployment
 
+Local Deployment on Github
+
+Open your web browser and go to the GitHub website: https://github.com.
+
+Log in to your GitHub account if you haven't already.
+
+In the GitHub search bar, enter the name of your repository and press Enter to search for it.
+
+From the search results, click on your repository's name to open it.
+
+Once you are inside your repository, you will see several tabs near the top of the page, such as "Code," "Issues," "Pull requests," etc.
+
+Look for the "Settings" tab on the right side of the tabs, usually located towards the right-hand side of the screen. Click on it to open the repository settings.
+
+Scroll down until you find the "GitHub Pages" section.
+
+In the "GitHub Pages" section, you can choose the branch from which you want to deploy your pages. By default, it is set to the "main" branch.
+
+Next to the branch selection, you will see a dropdown menu with two options: "None" and "master" (or another branch name if you've chosen a different one). Click on the dropdown menu and select the branch you want to use.
+
+Once you've selected the branch, the page will refresh, and you will see a notification indicating the URL where your pages are published. It may take a few moments for the initial deployment to complete.
+
+Click on the URL provided in the notification or go back to the "GitHub Pages" section, and you will find the URL listed there. This is the live link to your deployed pages.
+
+### Deployment on Heroku
+
+Log into Heroku account. Click "NEW" on the Dashboard, select "Create new app" from the drop-down. Give the app a unique name, and click "Create app" to confirm.
+
+Log into ElephantSQL. Click "Create New Instance" on the Dashboard. Give your new plan a Name, select the Tiny Turtle (free) plan, the Tags field can be left blank. Select Region: EU-West-1 (Ireland). Then click "Review", confirm details, and click "Create instance".
+
+Return to the ElephantSQL Dashboard and click "database instance name" for this project, in the URL section, click the copy icon to copy the database URL.
+
+In the project workspace create a env.py file, ensure this is listed in the .gitignore file. In the env.py file write import os. After a blank line type: os.environ["DATABASE_URL"] = "". This will need a secret key as Django application so beneath the url type: os.environ["SECRET_KEY"] = "any_secret_key". And save the file.
+
+In settings.py add the followng code to the Path import: import os import dj_database_url if os.path.isfile('env.py'): import env A little further down, remove the insecure secret key provided by Django. Instead, we will reference the variable in the env.py file, so change your SECRET_KEY variable to the following: SECRET_KEY = os.environ.get('SECRET_KEY'). Next in settings.py, where you find the following: DATABASES = { 'default': { 'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3', } } Replace with: DATABASES = { 'default': dj_database_url.parse(os.environ.get("DATABASE_URL")) }
+
+Save the settings file and run the terminal command "python3 manage.py migrate". Follow this up and add, commit, push the project to gihub.
+
+Return to the Heroku Dashboard and select the Settings tab. Add some config vars: DATABASE_URL with the value of the copied url from ElephantSQL, SECRET_KEY with value of the secret create in env.py file. PORT with value of 8000.
+
+To connect Cloudinary to the Heroku project, set up a free account on Cloudinary. On the Cloudinary dashboard select Copy To Clipboard next to API Environment Variables.
+
+In the env.py file, add at the bottom, os.environ["CLOUDINARY_URL"] = "Value copied less the beginning part of CLOUDINARY_URL=" Copy this value again without the prefix and return to Heroku settings, Config Vars.
+
+Add new Config Var: CLOUDINARY_URL with value of copied text.
+
+In settings.py under INSTALLED_APPS: above 'django.contrib.staticfiles', add 'cloudinary_storage', below 'django.contrib.staticfiles', and 'cloudinary'.
+
+Near the end of settings file below STATIC_URL = '/static/' add STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage' STATICFILES_DIR = [os.path.join(BASE_DIR,'static')] STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/' DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+At the top of settings.py, under BASE_DIR type TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
+Scroll to half way down to TEMPLATES =, and in the 'DIRS': [] line, between the square brackets type TEMPLATES_DIR.
+
+Scroll back up, and below DEBUG = True, skip a line and type: ALLOWED_HOSTS = ['herokuappname.herokuapp.com', 'localhost']
+
+Create three directories in the top level, next to manage.py file: templates, media, and static. Additionally create a Procfile. Inside the Procfile add the line: web: gunicorn appname.wsgi
+
+Save, add, commit, and push the project.
+
+In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy through Github, this may need to be set up if its your first time. Search your repositories for the project. Scroll to the bottom of the page and select Deploy Branch.
+
 Credits
 Background Image: https://www.ripleys.com/
 404 Image: https://www.istockphoto.com/
