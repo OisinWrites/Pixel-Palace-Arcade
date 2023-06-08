@@ -20,9 +20,17 @@ Wireframes
         Image Selection
         Font choices
 
-    Logic
-        Class Models
+### Logic
+#### Database Schema of Django Models
+
+![schema list one](media/schema_list_one.png)
+
+![schema list two](media/schema_list_two.png)
+
+
         Python logic flowcharts
+
+![Logic Flowchart](media/logic_flowchart.png)
         
 
 ## Search Engine Optimization 
@@ -220,6 +228,7 @@ Testing
 Deployment
 
 Local Deployment on Github
+! As a django project however Github is not able to deploy this site. !
 
 Open your web browser and go to the GitHub website: https://github.com.
 
