@@ -30,7 +30,7 @@
                   <tr>
                     <th>Order Number</th>
                     <th>Customer</th>
-                    <th>Product</th>                    
+                    <th>Purchase</th>                    
                     <th>Postcode</th>
                     <th>Completed</th>
                   </tr>
@@ -39,7 +39,11 @@
                 <tbody>
                   {% for order in incomplete_orders %}                    
                       <tr>
-                        <td>...{{ order.order_number|slice:"-4:" }}</td>
+                        <td>
+                          <span data-toggle="tooltip" data-placement="top" title="{{ order.order_number }}">
+                            ...{{ order.order_number|slice:"-4:" }}
+                          </span>
+                        </td>
                         <td>{{ order.full_name }}</td>                        
                         <td class="d-inline-block" style="max-width: 30ch; word-wrap: break-word;">
                           {% for lineitem in order.lineitems.all %}
@@ -52,9 +56,23 @@
                           {% endfor %}
                         </td>
                         <td>
-                          {{ order.postcode }}
+                          <span data-toggle="tooltip" data-placement="top" 
+                          title="                          
+                          {{ order.street_address1 }}
+                          {{ order.street_address2 }}
+                          {{ order.town_or_city }}
+                          {{ order.county }}
+                          {{ order.country }}
+                          ">
+                            {{ order.postcode }}
+                          </span>                          
                         </td>                        
-                         <td>{{ order.completed }}</td>
+                         <td>            
+                          <form method="post">
+                          {% csrf_token %}
+                          <input type="hidden" name="order_id" value="{{ order.id }}">
+                          <button type="submit" class="btn btn-primary"><strong>SHIP</strong></button>
+                        </form></td>
                       </tr>                    
                   {% endfor %}
                 </tbody>
