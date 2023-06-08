@@ -11,6 +11,7 @@ https://github.com/users/OisinWrites/projects/7
 ## Design UX/UI
 
 Wireframes
+
 | Home | Products | Item Page |
 |------|----------|-----------|
 |![Wireframe for Homepage](media/wireframe_homepage.png)|![Wireframe for all products page](media/wireframe_all_products_page.png)|![Wireframe for product detail page](media/wireframe_product_details_page.png)|
@@ -282,9 +283,17 @@ Save, add, commit, and push the project.
 
 In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy through Github, this may need to be set up if its your first time. Search your repositories for the project. Scroll to the bottom of the page and select Deploy Branch.
 
-Credits
+## Credits
+
 Background Image: https://www.ripleys.com/
 404 Image: https://www.istockphoto.com/
 Favicon: http://onlinefavicon.com/
 Avatar Example Image: https://www.iconfinder.com/ & https://icon-library.com/
-Stripe implementation: CI Boutique Ado project
+Icons used throughtout project: https://fontawesome.com/
+
+Much of the product is based on the Code Institute walkthrough project.
+But I want to give particular acknowledgement to the Boutique Ado project for the following areas of my project submission.
+    Full Stripe implementation.
+    Sort and Search functionality for products.
+    The majority of both the bag and checkout apps, which have been implemented in my project and remain largely unaltered.
+
