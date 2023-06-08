@@ -1,15 +1,14 @@
-Pixel Palace Arcade
+# Pixel Palace Arcade
 
-Site Goals
+## Site Purpose
+This is an E-Commerce application that utilises Python's Django framework and implements Stripe Payment Systems. In particular the site is a retro games store and is designed to sell gaming merchandise. Users can review products and create avatar profiles for their online presence through the store. 
 
-Agile Development
-    https://github.com/users/OisinWrites/projects/7
-
-Example Sites
-
-Design 
+## Agile Development
+The agile development process has been documented through github's projects boards:
+https://github.com/users/OisinWrites/projects/7
 
 
+## Design 
 
     UX/UI
         Wireframes
@@ -22,15 +21,68 @@ Design
         Python logic flowcharts
         
 
-    Search Engine Optimization ![Retro Relics](media/aces_of_luftwaffe.jpg) 
-    ![example-site-mobile](/workspace/Pixel-Palace-Arcade/media/battle_arena_toshinden.jpg)
+## Search Engine Optimization 
 
-        ### Alternative Site Names
+    SEO Project Challenge
+
+1. What do your users need?
+
+* Users need a wide selection of retro games, consoles, and accessories.
+* They need clear and detailed product information, including condition, compatibility, and pricing.
+
+2. What information and features can you provide to meet those needs?
+
+* I could provide a comprehensive catalog of retro games, consoles, and accessories with high-quality images, descriptions, and specifications.
+* I could include pricing details, availability status, and user reviews/ratings to help users make informed decisions.
+* I could offer multiple shipping options, estimated delivery times, and transparent return policies.
+* I could provide various payment methods and secure checkout options to facilitate smooth transactions.
+* I could offer customer support channels, such as live chat, email, or a dedicated support page, to address any inquiries or issues.
+
+3. How can you make the information easy to understand?
+
+* By using clear and concise language in the product descriptions, avoiding jargon or technical terms.
+* Organize my site's layout in a user-friendly manner, with intuitive navigation and categorized sections for easy browsing.
+* Utilize user-friendly filters and sorting options to allow users to quickly find what they're looking for.
+* Provide visual cues, such as icons or badges, to highlight key information like item condition or compatibility.
+* Include FAQ sections and helpful guides to address common questions and assist users in understanding retro gaming terminology or concepts.
+
+4. How can you demonstrate expertise, authoritativeness and trustworthiness in your content?
+
+* Feature expert reviews or recommendations from trusted sources in the gaming community.
+* Showcase certifications or partnerships with reputable gaming organizations or manufacturers.
+* Provide detailed information about the company's history, mission, and the expertise of our team.
+* Incorporate user testimonials and reviews to showcase positive experiences from previous customers.
+* Include a secure SSL certificate and display trust badges to assure users that their transactions are safe and their data is protected.
+
+5. Would there be other pages within your own site you could link to from your chosen page?
+
+* Yes, you could link to pages like "About Us" to provide information about the company, "FAQ" to address common queries, "Shipping & Returns" for policies, and "Contact Us" for customer support.
+
+6. Are there opportunities to link back to external websites that already rank highly on Google?
+
+* I could provide links to reputable retro gaming communities, gaming news websites, or relevant industry forums to provide additional resources and build credibility, ensuring that the external sites are trustworthy and add value to the users.
+
+7. How can you help users discover other relevant parts of your web application?
+
+* Include related product recommendations or a "You may also like" section based on users' browsing and purchase history.
+* Implement a search feature that suggests related products or popular searches as users type.
+* Provide a "Featured Items" section or a curated collection of products to highlight new arrivals, bestsellers, or special promotions.
+* Utilize breadcrumbs or a clear navigation menu to allow users to easily navigate between different categories or sections of your website.
+* Implement a personalized user account system where users can save favorite items, create wishlists, or track their order history, encouraging them to explore more parts of the site.
+
+### Alternative Site Names
         
-| Retro Relics | pixel potatos | pixel planet | pixel perfect |
+| 8-Bit Bazaar | Pixel Emporiium | Pixel Odyssey | Pixel Palladium |
+|--------------|---------------|--------------|---------------|
+| ![ 8-bit bazaar ](media/bazaar_google.png) |![pixel emporium](media/emporium_google.png)|![pixel odyssey](media/odyssey_google.png)|![pixel palladium](media/palladium_google.png)|
+
+| Retro Relics | Pixel Potatos | Pixel Planet | Pixel Perfect |
 |--------------|---------------|--------------|---------------|
 | ![Retro Relics](media/retro_relics_google.png) |![pixel potatos](media/potatos_google.png)|![pixel planet](media/planet_google.png)|![pixel perfect](media/pixel_perfect_facebook.png)|
 
+| Pixel Paradise | Pixel Parlour | Pixel Pocket | Pixel Pavillion |
+|--------------|---------------|--------------|---------------|
+| ![pixel paradise](media/paradise_google.png) |![pixel parlour](media/parlour_google.png)|![pixel pocket](media/pocket_google.png)|![pixel pavillion ](media/pavillion_google.png)|
 
     Web Marketing
 
