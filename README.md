@@ -149,7 +149,22 @@ Additionally all product images for the site have descriptive and appropriate fi
 |----------------------|----------------|
 
 
-    Web Marketing
+## Web Marketing
+
+### Facebook 
+Our social media page for Pixel Palace Arcade
+https://www.facebook.com/people/Pixel-Palace-Arcade/100093332865500/
+
+| Facebook page| A Post on our Feed |
+|--------------|--------------------|
+| ![FB Business landing page](media/ppa_facebook_page.png) | ![FB example post](media/ppa_facebook_post.png) |
+
+### Mailchimp
+We signed up to Mailchimp and successfully sent an email campaign to advertise our site.
+| Email from Mailchimp |
+|----|
+| ![Mailchimp Email](media/mailchimp_email.png) |
+
 
 Features
 
