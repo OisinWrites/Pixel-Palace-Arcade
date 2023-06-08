@@ -7,49 +7,49 @@
         </li>
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'products' %}" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Products
+                All Games & Merch
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
                 <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
                 <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
-                <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
+                <a href="{% url 'products' %}" class="dropdown-item">All Games and Merch</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Classics
+                Classic Arcade
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="classics-link">
                 <a href="{% url 'products' %}?category=shooters" class="dropdown-item">Shoot 'em Ups</a>
                 <a href="{% url 'products' %}?category=platform_style" class="dropdown-item">Platformer</a>
                 <a href="{% url 'products' %}?category=puzzle" class="dropdown-item">Puzzle</a>
-                <a href="{% url 'products' %}?category=shooters,platformer,puzzle,classics" class="dropdown-item">All Classics</a>
+                <a href="{% url 'products' %}?category=shooters,platformer,puzzle,classics" class="dropdown-item">All Classic Arcade</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Modern Hits
+                New Releases
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="modern-hits-link">
                 <a href="{% url 'products' %}?category=star_wars_franchise" class="dropdown-item">Star Wars Collection</a>
                 <a href="{% url 'products' %}?category=racing_style" class="dropdown-item">Racing</a>
-                <a href="{% url 'products' %}?category=japan_made_games" class="dropdown-item">Japanese Releases</a>
-                <a href="{% url 'products' %}?category=japan_made_games,racing_style,star_wars_franchise" class="dropdown-item">All Modern Hits</a>
+                <a href="{% url 'products' %}?category=japan_made_games" class="dropdown-item">Best from Japan</a>
+                <a href="{% url 'products' %}?category=japan_made_games,racing_style,star_wars_franchise" class="dropdown-item">All New Releases</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Merchandise
+                Collectibles
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="merchandise-link">
                 <a href="{% url 'products' %}?category=collectible" class="dropdown-item">Collectors Corner</a>
                 <a href="{% url 'products' %}?category=soft_toys" class="dropdown-item">Plushies</a>
                 <a href="{% url 'products' %}?category=equip" class="dropdown-item">Controllers & Joysticks</a>
-                <a href="{% url 'products' %}?category=collectible,soft_toys,equip" class="dropdown-item">All Merch</a>
+                <a href="{% url 'products' %}?category=collectible,soft_toys,equip" class="dropdown-item">All Collectibles</a>
             </div>
         </li>
 

@@ -126,6 +126,29 @@ Additionally some names proved unsuitable, particularly 'Pixel Pocket Arcade', w
 * Unique gaming-themed gifts for gamers
 * Authentic gaming memorabilia for sale
 
+    Implemementation in the HTML
+
+Primary target for keyword replacement is the base.html, and the main nav / mobile top header includes, as they will show up across almost all pages of our site.
+First I've created the meta tags to directly tell the search engine about our site before it has to crawl the pages.
+<meta name="description"
+content= "The best website for arcade video games, gamer gifts, and classic
+gaming-themed merchandise">
+<meta name="keywords"
+content="Classic Arcade Games, 8-bit gaming merchandise, Nintendo Collectibles,
+Cool math games, Where to buy retro gaming accessories online, Best websites for vintage video games and collectibles,
+Unique gaming-themed gifts for gamers, Authentic gaming memorabilia for sale">
+Changing the category tabs to more descriptive alternatives
+| Old Navigation Menu | Navigation Menu for SEO |
+|---------------------|-------------------------|
+| ![nav menu before](media/nav_without_key_words.png) | ![nav menu after](media/nav_key_words.png) |
+
+I've used the "Cool Math Games" key phrase in the updated description of our Sudoku product, as this is the only approriate place for that strong search term.
+Additionally all product images for the site have descriptive and appropriate file names.
+
+|![Good file naming convention](media/proper_file_names.png)|![Cool math games Key word utilisation](media/cool_math_game_tag.png)|
+|----------------------|----------------|
+
+
     Web Marketing
 
 Features
