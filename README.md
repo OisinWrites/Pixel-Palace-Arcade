@@ -23,54 +23,85 @@ https://github.com/users/OisinWrites/projects/7
 
 ## Search Engine Optimization 
 
-    SEO Project Challenge
+### SEO Project Challenge
 
-1. What do your users need?
+    1. What do your users need?
 
-* Users need a wide selection of retro games, consoles, and accessories.
-* They need clear and detailed product information, including condition, compatibility, and pricing.
+    * Users need a wide selection of retro games, consoles, and accessories.
+    * They need clear and detailed product information, including condition, compatibility, and pricing.
 
-2. What information and features can you provide to meet those needs?
+    2. What information and features can you provide to meet those needs?
 
-* I could provide a comprehensive catalog of retro games, consoles, and accessories with high-quality images, descriptions, and specifications.
-* I could include pricing details, availability status, and user reviews/ratings to help users make informed decisions.
-* I could offer multiple shipping options, estimated delivery times, and transparent return policies.
-* I could provide various payment methods and secure checkout options to facilitate smooth transactions.
-* I could offer customer support channels, such as live chat, email, or a dedicated support page, to address any inquiries or issues.
+    * I could provide a comprehensive catalog of retro games, consoles, and accessories with high-quality images, descriptions, and specifications.
+    * I could include pricing details, availability status, and user reviews/ratings to help users make informed decisions.
+    * I could offer multiple shipping options, estimated delivery times, and transparent return policies.
+    * I could provide various payment methods and secure checkout options to facilitate smooth transactions.
+    * I could offer customer support channels, such as live chat, email, or a dedicated support page, to address any inquiries or issues.
 
-3. How can you make the information easy to understand?
+    3. How can you make the information easy to understand?
 
-* By using clear and concise language in the product descriptions, avoiding jargon or technical terms.
-* Organize my site's layout in a user-friendly manner, with intuitive navigation and categorized sections for easy browsing.
-* Utilize user-friendly filters and sorting options to allow users to quickly find what they're looking for.
-* Provide visual cues, such as icons or badges, to highlight key information like item condition or compatibility.
-* Include FAQ sections and helpful guides to address common questions and assist users in understanding retro gaming terminology or concepts.
+    * By using clear and concise language in the product descriptions, avoiding jargon or technical terms.
+    * Organize my site's layout in a user-friendly manner, with intuitive navigation and categorized sections for easy browsing.
+    * Utilize user-friendly filters and sorting options to allow users to quickly find what they're looking for.
+    * Provide visual cues, such as icons or badges, to highlight key information like item condition or compatibility.
+    * Include FAQ sections and helpful guides to address common questions and assist users in understanding retro gaming terminology or concepts.
 
-4. How can you demonstrate expertise, authoritativeness and trustworthiness in your content?
+    4. How can you demonstrate expertise, authoritativeness and trustworthiness in your content?
 
-* Feature expert reviews or recommendations from trusted sources in the gaming community.
-* Showcase certifications or partnerships with reputable gaming organizations or manufacturers.
-* Provide detailed information about the company's history, mission, and the expertise of our team.
-* Incorporate user testimonials and reviews to showcase positive experiences from previous customers.
-* Include a secure SSL certificate and display trust badges to assure users that their transactions are safe and their data is protected.
+    * Feature expert reviews or recommendations from trusted sources in the gaming community.
+    * Showcase certifications or partnerships with reputable gaming organizations or manufacturers.
+    * Provide detailed information about the company's history, mission, and the expertise of our team.
+    * Incorporate user testimonials and reviews to showcase positive experiences from previous customers.
+    * Include a secure SSL certificate and display trust badges to assure users that their transactions are safe and their data is protected.
 
-5. Would there be other pages within your own site you could link to from your chosen page?
+    5. Would there be other pages within your own site you could link to from your chosen page?
 
-* Yes, you could link to pages like "About Us" to provide information about the company, "FAQ" to address common queries, "Shipping & Returns" for policies, and "Contact Us" for customer support.
+    * Yes, you could link to pages like "About Us" to provide information about the company, "FAQ" to address common queries, "Shipping & Returns" for policies, and "Contact Us" for customer support.
 
-6. Are there opportunities to link back to external websites that already rank highly on Google?
+    6. Are there opportunities to link back to external websites that already rank highly on Google?
 
-* I could provide links to reputable retro gaming communities, gaming news websites, or relevant industry forums to provide additional resources and build credibility, ensuring that the external sites are trustworthy and add value to the users.
+    * I could provide links to reputable retro gaming communities, gaming news websites, or relevant industry forums to provide additional resources and build credibility, ensuring that the external sites are trustworthy and add value to the users.
 
-7. How can you help users discover other relevant parts of your web application?
+    7. How can you help users discover other relevant parts of your web application?
 
-* Include related product recommendations or a "You may also like" section based on users' browsing and purchase history.
-* Implement a search feature that suggests related products or popular searches as users type.
-* Provide a "Featured Items" section or a curated collection of products to highlight new arrivals, bestsellers, or special promotions.
-* Utilize breadcrumbs or a clear navigation menu to allow users to easily navigate between different categories or sections of your website.
-* Implement a personalized user account system where users can save favorite items, create wishlists, or track their order history, encouraging them to explore more parts of the site.
+    * Include related product recommendations or a "You may also like" section based on users' browsing and purchase history.
+    * Implement a search feature that suggests related products or popular searches as users type.
+    * Provide a "Featured Items" section or a curated collection of products to highlight new arrivals, bestsellers, or special promotions.
+    * Utilize breadcrumbs or a clear navigation menu to allow users to easily navigate between different categories or sections of your website.
+    * Implement a personalized user account system where users can save favorite items, create wishlists, or track their order history, encouraging them to explore more parts of the site.
+
+| KEY WORDS | KEY PHRASES |
+|-----------|-------------|
+| ![Key Words](media/key%20words.png) | ![Key Phrases](media/key%20phrases.png) |
+
+Search term hits according to WordTracker: Keyword research tool
+https://www.wordtracker.com/
+
+It seems that gaming gifts could be confusing as game of thrones was likely to be returned in search results. But retro games had good hits, unfortunately its next strongest hits were for 'stores near me', and a online store we can't avail of that key term without diminishing the sites credibility.
+
+Searching just the key word "game" showed interesting results that could be incorporated into our site.
+
+| Gaming themed gifts | Retro gaming | Games |
+|-----------|-------------|----------|
+| ![gaming themed gifts hit value ](media/search_hits_gifts.png) | ![ retro gaming hit vlaue](media/search_hits_retrogaming.png) | ![games hit value](media/search_hits_games.png) |
+
+This term, "Where to buy retro gaming accessories online", returned a website with the exact same purpose as Pixel Palace Arcade. Though ours looks much more inviting.
+
+| The Retro Gaming Store |
+|------------------------|
+| ![Google Search Result for "Where to buy retro gaming accessories online" ](media/similar_site_googled.png) |
+| ![ The Retro Gaming Store's landing page ](media/site_landing_page.png) |
+
+Googling our own store name once deployed to heroku got some shocking results.
+It turn out that these is an incredibly similar site to our own, only they're better as there's a bar.
+| ![ Google Search for Pixel Palace Arcade ](media/ppa_google_search.png)|
+|-------------------------|
+
 
 ### Alternative Site Names
+
+Having found a business with a remarkably similar name, I undertook some research into google search results for alternative names. After a dozen alternative ideas proved to be taken already I decided to keep the store name for now, rather than settle for a knock-off derivative version. Though I would have liked 'Pixel Perfect Arcade'. 
+Additionally some names proved unsuitable, particularly 'Pixel Pocket Arcade', which would mislead customers into thinking our site sold handheld games and devices, which, though it could, it currently does not.
         
 | 8-Bit Bazaar | Pixel Emporiium | Pixel Odyssey | Pixel Palladium |
 |--------------|---------------|--------------|---------------|
@@ -83,6 +114,17 @@ https://github.com/users/OisinWrites/projects/7
 | Pixel Paradise | Pixel Parlour | Pixel Pocket | Pixel Pavillion |
 |--------------|---------------|--------------|---------------|
 | ![pixel paradise](media/paradise_google.png) |![pixel parlour](media/parlour_google.png)|![pixel pocket](media/pocket_google.png)|![pixel pavillion ](media/pavillion_google.png)|
+
+    Strongest Key Words and Phrases
+
+* Classic Arcade Games
+* 8-bit gaming merchandise
+* Nintendo Collectibles
+* Cool math games
+* Where to buy retro gaming accessories online
+* Best websites for vintage video games and collectibles
+* Unique gaming-themed gifts for gamers
+* Authentic gaming memorabilia for sale
 
     Web Marketing
 
