@@ -263,3 +263,19 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+
+def admin_order_list(request):
+    if request.method == 'GET':
+        completed_orders = Order.objects.filter(completed=True)
+        return render(
+            request, 'admin_order_list.html',
+            {'completed_orders': completed_orders}
+            )
+
+    elif request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        order = Order.objects.get(id=order_id)
+        order.completed = True
+        order.save()
+        return redirect('admin_order_list')
