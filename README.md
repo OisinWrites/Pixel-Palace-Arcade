@@ -3,11 +3,13 @@ Pixel Palace Arcade
 Site Goals
 
 Agile Development
-    Epics and User Stories
+    https://github.com/users/OisinWrites/projects/7
 
 Example Sites
 
 Design 
+
+
 
     UX/UI
         Wireframes
@@ -18,8 +20,17 @@ Design
     Logic
         Class Models
         Python logic flowcharts
+        
 
-    Search Engine Optimization
+    Search Engine Optimization ![Retro Relics](media/aces_of_luftwaffe.jpg) 
+    ![example-site-mobile](/workspace/Pixel-Palace-Arcade/media/battle_arena_toshinden.jpg)
+
+        ### Alternative Site Names
+        
+| Retro Relics | pixel potatos | pixel planet | pixel perfect |
+|--------------|---------------|--------------|---------------|
+| ![Retro Relics](media/retro_relics_google.png) |![pixel potatos](media/potatos_google.png)|![pixel planet](media/planet_google.png)|![pixel perfect](media/pixel_perfect_facebook.png)|
+
 
     Web Marketing
 
