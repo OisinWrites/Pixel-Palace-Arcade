@@ -1,0 +1,13 @@
+# Site settings
+title: Pixel Palace Arcade
+baseurl: "/"
+
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-minimal
+
+# Plugins (if you're using any)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
