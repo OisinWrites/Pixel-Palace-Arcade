@@ -266,16 +266,20 @@ def checkout_success(request, order_number):
 
 
 def admin_order_list(request):
+    incomplete_orders = Order.objects.filter(completed=False)
+    orders = Order.objects.all()
+
+    context = {
+            'orders': orders,
+            'incomplete_orders': incomplete_orders,
+        }
+
     if request.method == 'GET':
-        completed_orders = Order.objects.filter(completed=True)
-        return render(
-            request, 'admin_order_list.html',
-            {'completed_orders': completed_orders}
-            )
+        return render(request, 'checkout/admin_order_list.html', context)
 
     elif request.method == 'POST':
         order_id = request.POST.get('order_id')
         order = Order.objects.get(id=order_id)
         order.completed = True
         order.save()
-        return redirect('admin_order_list')
+        return redirect('admin_order_list', context)

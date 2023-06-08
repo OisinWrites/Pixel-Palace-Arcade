@@ -1,25 +1,76 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
-  <h2>Completed Orders</h2>
-
-  <form method="post">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <th>Order Number</th>
-        <th>Completed</th>
-      </tr>
-      {% for order in completed_orders %}
-        <tr>
-          <td>{{ order.order_number }}</td>
-          <td>{{ order.completed }}</td>
-          <td>
-            <input type="hidden" name="order_id" value="{{ order.id }}">
-            <input type="submit" value="Mark as Completed">
-          </td>
-        </tr>
-      {% endfor %}
-    </table>
-  </form>
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+            <hr>
+            <h2 class="logo-font mb-4">Order Management</h2>
+            <h5 class="text-muted">Pending Orders</h5>
+            <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">          
+          <div class="order-history table-responsive">
+            <form method="post">
+              <table class="table table-sn table-borderless">
+                {% csrf_token %}
+                <thead>
+                  <tr>
+                    <th>Order Number</th>
+                    <th>Customer</th>
+                    <th>Product</th>                    
+                    <th>Postcode</th>
+                    <th>Completed</th>
+                  </tr>
+                </thead>
+                {% if incomplete_orders %}
+                <tbody>
+                  {% for order in incomplete_orders %}                    
+                      <tr>
+                        <td>...{{ order.order_number|slice:"-4:" }}</td>
+                        <td>{{ order.full_name }}</td>                        
+                        <td class="d-inline-block" style="max-width: 30ch; word-wrap: break-word;">
+                          {% for lineitem in order.lineitems.all %}
+                          {{ lineitem.product.name }}
+                          {% if lineitem.product_variant %}
+                          <strong><small>for: </small>{{ lineitem.product_variant }}</strong>
+                          {% endif %}
+                          <p class="text-right d-inline-block">x{{ lineitem.quantity }}</p>
+                          <br>
+                          {% endfor %}
+                        </td>
+                        <td>
+                          {{ order.postcode }}
+                        </td>                        
+                         <td>{{ order.completed }}</td>
+                      </tr>                    
+                  {% endfor %}
+                </tbody>
+                {% else %}
+                <tbody>
+                  <tr>
+                    <td colspan="7">No pending orders</td>
+                  </tr>
+                </tbody>
+                {% endif %}
+              </table>
+            </form>
+          </div>
+        </div> 
+      </div>           
+    </div>
 {% endblock %}
+
+
