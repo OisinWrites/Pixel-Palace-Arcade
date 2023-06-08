@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /accounts/
+Sitemap: https://pixel-palace-arcade.herokuapp.com/sitemap.xml
