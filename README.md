@@ -8,10 +8,13 @@ The agile development process has been documented through github's projects boar
 https://github.com/users/OisinWrites/projects/7
 
 
-## Design 
+## Design UX/UI
 
-    UX/UI
-        Wireframes
+Wireframes
+| Home | Products | Item Page |
+|------|----------|-----------|
+|![Wireframe for Homepage](media/wireframe_homepage.png)|![Wireframe for all products page](media/wireframe_all_products_page.png)|![Wireframe for product detail page](media/wireframe_product_details_page.png)|
+
         Colour choice
         Image Selection
         Font choices
@@ -216,8 +219,10 @@ Testing
 Deployment
 
 Credits
-
+Background Image: https://www.ripleys.com/
+404 Image: https://www.istockphoto.com/
 Favicon: http://onlinefavicon.com/
+Avatar Example Image: https://www.iconfinder.com/ & https://icon-library.com/
 Stripe implementation: CI Boutique Ado project
 
 Project Process
