@@ -144,9 +144,16 @@
               {% endwith %}
           {% endfor %}
       </div>
-    {% endif %}
 
-    <footer class="container-fluid fixed-bottom bg-black">
+    {% endif %}  
+
+    {% block page_header %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    <div class="sock"></div>
+    <footer class="container-fluid bg-black foot">
       <div class="container d-none d-md-flex h-100 align-items-center">
         <div class="col-4 d-flex flex-column justify-content-center">          
           <small>
@@ -171,13 +178,6 @@
         </div>
       </div>
     </footer>
-    
-
-    {% block page_header %}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
 
     {% block postloadjs %}
     <script type="text/javascript">
