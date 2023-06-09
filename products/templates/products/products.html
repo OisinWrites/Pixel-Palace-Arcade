@@ -12,9 +12,8 @@
 {% block content %}
     <div class="col-12 container-fluid bg-white mb-2">
         <div class="row">
-            <div class="col text-center mt-3">
-                <hr>
-                <h2 class="logo-font">Games</h2>
+            <div class="col text-center mt-5">                
+                <h3 class="logo-font mt-3">Games</h3>
                 <hr>
                 {% for c in current_categories %}
                 <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">

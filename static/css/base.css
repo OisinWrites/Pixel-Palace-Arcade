@@ -137,11 +137,6 @@ body {
     width: 100%;
 }
 
-.sock {
-    height: 5vh;
-    background-color: rgb(232, 232, 232, 0.0);
-}
-
 .overlay-card {
     padding: 2rem;
     top: 0;

@@ -1,11 +1,54 @@
 # Pixel Palace Arcade
 
 ## Site Purpose
-This is an E-Commerce application that utilises Python's Django framework and implements Stripe Payment Systems. In particular the site is a retro games store and is designed to sell gaming merchandise. Users can review products and create avatar profiles for their online presence through the store. 
+
+    This is an E-Commerce application that utilises Python's Django framework and implements Stripe Payment Systems. In particular the site is a retro games store and is designed to sell gaming merchandise. Users can review products and create avatar profiles for their online presence through the store. 
+
+## E-Commerce Business Model for Pixel Palace Arcade 
+
+    My focus is on creating a seamless and user-friendly platform for individual customers who are interested in purchasing gaming products.  
+
+    This is a B2C, business to customer model. 
+
+    
+
+    Here are the core intents and marketing strategies that I will implement: 
+
+    
+
+    Core Business Intents:  
+
+    a. Product Catalogue: I will curate a comprehensive catalogue of gaming products, including video games, consoles, accessories, and merchandise. I will ensure that the catalogue is well-organized, up-to-date, and easy to search, providing a smooth browsing experience for my customers.  
+
+    b. User Reviews and Ratings: I will enable customers to rate and review the items they have purchased. By incorporating user-generated content, I aim to help other customers make informed decisions while also establishing credibility and trust for my website.  
+
+    c. Seamless Purchasing Experience: I will prioritize the design of a user-friendly and intuitive interface that simplifies the purchasing process. Implementing secure payment gateways and offering multiple payment options will cater to customer preferences and enhance their buying experience.  
+
+    d. Order Management: Streamlining order processing, tracking, and fulfilment will be a priority. By implementing a robust inventory management system, I can ensure timely delivery and customer satisfaction, avoiding issues like overselling or running out of stock.  
+
+    e. Customer Support: I will offer responsive customer support channels, such as email, live chat, or phone, to promptly address any inquiries, concerns, or issues my customers may have. Delivering excellent customer service will contribute to positive reviews and encourage repeat business. 
+
+    
+
+    Marketing Strategies:  
+
+    a. Targeted Advertising: I will identify my target audience, such as gamers, and utilize digital marketing techniques like search engine optimization (SEO), pay-per-click (PPC) advertising, and social media marketing to reach and engage potential customers.  
+
+    b. Influencer Partnerships: Collaborating with influential gamers, streamers, or content creators who can promote my products to their audience through sponsored content, reviews, or giveaways will boost brand visibility and credibility.  
+
+    c. Email Marketing: Building an email subscriber list will allow me to send regular newsletters or promotional campaigns, keeping customers informed about new game releases, discounts, or special offers. I will personalize the content based on customer preferences and purchase history.  
+
+    d. Loyalty Programs: Implementing a loyalty program will reward frequent customers. By offering incentives like exclusive discounts, early access to new releases, or loyalty points for future purchases, I can encourage customer retention and foster brand loyalty.  
+
+    e. Social Proof and User-generated Content: I will encourage customers to share their purchases on social media platforms, incentivizing them with giveaways or featuring them on my website. This strategy will create social proof, increasing brand visibility and attracting more customers. 
+
+    I will continuously adapt and refine my business model and marketing strategies based on customer feedback and market trends. Regularly monitoring and analyzing key performance indicators (KPIs) will help me measure the effectiveness of my strategies and make data-driven decisions for continuous improvement. 
+
+ 
 
 ## Agile Development
-The agile development process has been documented through github's projects boards:
-https://github.com/users/OisinWrites/projects/7
+    The agile development process has been documented through github's projects boards:
+    https://github.com/users/OisinWrites/projects/7
 
 
 ## Design UX/UI
@@ -140,27 +183,28 @@ Additionally some names proved unsuitable, particularly 'Pixel Pocket Arcade', w
 
     Strongest Key Words and Phrases
 
-* Classic Arcade Games
-* 8-bit gaming merchandise
-* Nintendo Collectibles
-* Cool math games
-* Where to buy retro gaming accessories online
-* Best websites for vintage video games and collectibles
-* Unique gaming-themed gifts for gamers
-* Authentic gaming memorabilia for sale
+    * Classic Arcade Games
+    * 8-bit gaming merchandise
+    * Nintendo Collectibles
+    * Cool math games
+    * Where to buy retro gaming accessories online
+    * Best websites for vintage video games and collectibles
+    * Unique gaming-themed gifts for gamers
+    * Authentic gaming memorabilia for sale
 
     Implemementation in the HTML
 
-Primary target for keyword replacement is the base.html, and the main nav / mobile top header includes, as they will show up across almost all pages of our site.
-First I've created the meta tags to directly tell the search engine about our site before it has to crawl the pages.
-<meta name="description"
-content= "The best website for arcade video games, gamer gifts, and classic
-gaming-themed merchandise">
-<meta name="keywords"
-content="Classic Arcade Games, 8-bit gaming merchandise, Nintendo Collectibles,
-Cool math games, Where to buy retro gaming accessories online, Best websites for vintage video games and collectibles,
-Unique gaming-themed gifts for gamers, Authentic gaming memorabilia for sale">
-Changing the category tabs to more descriptive alternatives
+        Primary target for keyword replacement is the base.html, and the main nav / mobile top header includes, as they will show up across almost all pages of our site.
+        First I've created the meta tags to directly tell the search engine about our site before it has to crawl the pages.
+    <meta name="description"
+    content= "The best website for arcade video games, gamer gifts, and classic
+    gaming-themed merchandise">
+    <meta name="keywords"
+    content="Classic Arcade Games, 8-bit gaming merchandise, Nintendo Collectibles,
+    Cool math games, Where to buy retro gaming accessories online, Best websites for vintage video games and collectibles,
+    Unique gaming-themed gifts for gamers, Authentic gaming memorabilia for sale">
+    Changing the category tabs to more descriptive alternatives
+
 | Old Navigation Menu | Navigation Menu for SEO |
 |---------------------|-------------------------|
 | ![nav menu before](media/nav_without_key_words.png) | ![nav menu after](media/nav_key_words.png) |
@@ -189,7 +233,7 @@ We signed up to Mailchimp and successfully sent an email campaign to advertise o
 | ![Mailchimp Email](media/mailchimp_email.png) |
 
 
-Features
+## Features
 
 Feedback for user actions.
 The site gives feedback for user actions through message systems.
@@ -206,6 +250,8 @@ Users get an email notification for a successful purchase and when the admin mar
 
 ![Completed order on store](media/complete_order.png)
 
+![Shipping confirmation email](media/shipping_confirmation_email.png)
+
 ![Completed order email confirmation](media/complete_order_email_confirmation.png)
 
 Users can view their past orders and reviews, and they can see and edit their avatar.
@@ -217,7 +263,15 @@ Good for use of space and for privacy.
 
 ![hidden fields](media/hidden%20hover%20field.jpg)
 
+Custom error 404 page for enhanced user experience, and immersion.
+
+![Custom 404](media/custom_error_page.png)
+
 ## Testing
+
+### Stripe
+
+![stripe implementation verification](media/stripe_confirmation.png)
 
 ### Automated tests in development for all views.py logic for apps
 
@@ -353,15 +407,23 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
 
 ## Credits
 
-Background Image: https://www.ripleys.com/
-404 Image: https://www.istockphoto.com/
-Favicon: http://onlinefavicon.com/
-Avatar Example Image: https://www.iconfinder.com/ & https://icon-library.com/
-Icons used throughtout project: https://fontawesome.com/
+    * Background Image: https://www.ripleys.com/
 
-Much of the product is based on the Code Institute walkthrough project.
-But I want to give particular acknowledgement to the Boutique Ado project for the following areas of my project submission.
+    * 404 Image: https://www.istockphoto.com/
+
+    * Favicon: http://onlinefavicon.com/
+
+    * Avatar Example Image: https://www.iconfinder.com/ & https://icon-library.com/
+
+    * Icons used throughtout project: https://fontawesome.com/
+
+    * Much of the product is based on the Code Institute walkthrough project.
+
+    But I want to give particular acknowledgement to the Boutique Ado project for the following areas of my project submission.
+
     Full Stripe implementation.
+
     Sort and Search functionality for products.
+
     The majority of both the bag and checkout apps, which have been implemented in my project and remain largely unaltered.
 
