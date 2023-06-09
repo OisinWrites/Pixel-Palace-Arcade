@@ -10,11 +10,26 @@ https://github.com/users/OisinWrites/projects/7
 
 ## Design UX/UI
 
-Wireframes
+### Wireframes
 
 | Home | Products | Item Page |
 |------|----------|-----------|
 |![Wireframe for Homepage](media/wireframe_homepage.png)|![Wireframe for all products page](media/wireframe_all_products_page.png)|![Wireframe for product detail page](media/wireframe_product_details_page.png)|
+
+
+### Responsivity
+
+| Mobile | Tablet |
+|--------|--------|
+| ![mobile response](media/mobile_responsive.png)| ![tablet response](media/tablet_responsive.png) |
+
+| Laptop |
+|--------|
+| ![laptop response](media/laptop_responsive.png) |
+
+| Desktop |
+|---------|
+| ![desktop response](media/fullscreen_responsive.png) |
 
 ### Logic
 #### Database Schema of Django Models
@@ -192,6 +207,15 @@ Users get an email notification for a successful purchase and when the admin mar
 ![Completed order on store](media/complete_order.png)
 
 ![Completed order email confirmation](media/complete_order_email_confirmation.png)
+
+Users can view their past orders and reviews, and they can see and edit their avatar.
+
+![profile value](media/profile_value.png)
+
+For the admins pending orders page, the full order number and address are viewable on hover.
+Good for use of space and for privacy.
+
+![hidden fields](media/hidden%20hover%20field.jpg)
 
 ## Testing
 
