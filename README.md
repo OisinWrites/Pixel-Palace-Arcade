@@ -16,10 +16,6 @@ Wireframes
 |------|----------|-----------|
 |![Wireframe for Homepage](media/wireframe_homepage.png)|![Wireframe for all products page](media/wireframe_all_products_page.png)|![Wireframe for product detail page](media/wireframe_product_details_page.png)|
 
-        Colour choice
-        Image Selection
-        Font choices
-
 ### Logic
 #### Database Schema of Django Models
 
@@ -180,8 +176,49 @@ We signed up to Mailchimp and successfully sent an email campaign to advertise o
 
 Features
 
-Testing
-    Error Log
+Feedback for user actions.
+The site gives feedback for user actions through message systems.
+
+![action feedback](media/action_feedback.png)
+
+The admin can edit existing products on the site from the front end
+
+![admin crud](media/admin_model_crud.png)
+
+![admin crud result](media/admin_model_crud_result.png)
+
+Users get an email notification for a successful purchase and when the admin marks the order as shipped.
+
+![Completed order on store](media/complete_order.png)
+
+![Completed order email confirmation](media/complete_order_email_confirmation.png)
+
+## Testing
+
+### Automated tests in development for all views.py logic for apps
+
+Bag
+
+![bag auto tests](media/bag_views_tests.png)
+
+Blog
+
+![blog auto tests](media/blog_views_tests.png)
+
+Checkout
+
+![checkout auto tests](media/checkout_views_tests.png)
+
+Products
+
+![products auto tests](media/products_views_tests.png)
+
+Profiles
+
+![profiles auto tests](media/profiles_views_tests.png)
+
+### Error Log
+
     1. In connecting static files, specifically base.css into the base.html file the line {5 static 'css/base.css' %} throws back an error requesting missing endblock.
     2. Stackoverflow suggests moving the static directory under the app, opposed to the example project boutique_ado. And additionally directing to the new file location in settings. However this has not solved issue.
     3. Solution: Base.html was missing load static , whether this should have been performed by the existing same line in index.html after extending base or otherwise, the mock server is now functioning as desired.
@@ -223,11 +260,9 @@ Testing
     2. Included the cloudinary links to specific css folders beneath local static links in templates for both checkout and profile apps.
 
 
-    Validation and Accessibility
+## Deployment
 
-Deployment
-
-Local Deployment on Github
+### Local Deployment on Github
 ! As a django project however Github is not able to deploy this site. !
 
 Open your web browser and go to the GitHub website: https://github.com.
