@@ -309,6 +309,9 @@ def admin_order_list(request):
             order.completed = True
             order.save()
 
+            order = Order.objects.get(id=order_id)
+            print(order.email)
+
             _send_shipping_confirmation_email(order)
 
             messages.success(request, f'Order Shipped! \

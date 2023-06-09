@@ -1,8 +1,12 @@
+<li class="list-inline-item d-md-none text-black">
+    <a href="{% url 'home' %}" alt="home">
+        <i class="fa-solid fa-house-chimney"></i>
+    </a>
+</li>
 <li class="list-inline-item">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
-            <div><i class="fas fa-search fa-lg"></i></div>
-            <p class="my-0">Search</p>
+            <div><i class="fas fa-search fa-lg" alt="search"></i></div>
         </div>
     </a>
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
@@ -23,8 +27,7 @@
 <li class="list-inline-item dropdown">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
-            <div><i class="fas fa-user fa-lg"></i></div>
-            <p class="my-0">My Account</p>
+            <div><i class="fas fa-user fa-lg" alt="my account"></i></div>
         </div>
     </a>
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
@@ -41,11 +44,16 @@
         {% endif %}
     </div>
 </li>
+<li class="list-inline-item d-md-none text-black">
+    <a href="https://www.facebook.com/profile.php?id=100093332865500" target="_blank" rel="noopener">
+        <i class="fab fa-facebook"></i>
+    </a>
+</li>
 <li class="list-inline-item">
     <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
         <div class="text-center">
-            <div><i class="fas fa-shoppiing-bag fa-lg"></i></div>
-            <p class="my-0">
+            <div><i class="fas fa-shopping-bag fa-lg text-info"></i></div>
+            <p class="my-0 text-info">
                 {% if grand_total %}
                     €{{ grand_total|floatformat:2 }}
                 {% else %}
