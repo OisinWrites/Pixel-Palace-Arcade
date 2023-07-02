@@ -409,7 +409,11 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
 
     * Background Image: https://www.ripleys.com/
 
+    * Live Wallpaper: https://rare-gallery.com/95641-retro-arcade-room.html
+
     * 404 Image: https://www.istockphoto.com/
+
+    * High-res 'HAL 9000' from '2001, A Space Odyssey', Kubrick, 1968: https://wallpapersafari.com/w/DYZ94J
 
     * Favicon: http://onlinefavicon.com/
 

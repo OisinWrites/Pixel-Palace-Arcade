@@ -29,8 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME', '')
 CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY', '')
 CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET', '')
-DEBUG = False
-ALLOWED_HOSTS = ['pixel-palace-arcade.herokuapp.com', 'localhost']
+DEBUG = True
+ALLOWED_HOSTS = ['pixel-palace-arcade.herokuapp.com',
+                 '8000-oisinwrites-pixelpalace-r3kc9eox1tk.ws-eu101.gitpod.io']
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -142,16 +143,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+            UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+            MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+            CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+            NumericPasswordValidator',
     },
 ]
 
@@ -175,7 +180,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = (
+    'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    )
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile, Avatar
 from .forms import UserProfileForm, AvatarForm
-from blog.models import Review
+from review.models import Review
 
 from checkout.models import Order
 

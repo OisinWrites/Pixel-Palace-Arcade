@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('products', '0007_rename_rating_product_aggregate_rating'),
-        ('blog', '0001_initial'),
+        ('review', '0001_initial'),
     ]
 
     operations = [
@@ -22,10 +22,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Rating',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('user_rating', models.IntegerField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='products.product')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

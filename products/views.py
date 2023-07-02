@@ -7,8 +7,8 @@ from django.urls import reverse
 
 from .models import Product, Category
 from .forms import ProductForm
-from blog.forms import RatingForm
-from blog.models import Rating, Review
+from review.forms import RatingForm
+from review.models import Rating, Review
 from profiles.models import Avatar
 
 
