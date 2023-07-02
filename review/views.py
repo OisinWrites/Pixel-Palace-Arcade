@@ -38,7 +38,7 @@ def create_review(request, product_id):
         'product': product,
     }
 
-    return render(request, 'blog/create_review.html', context)
+    return render(request, 'review/create_review.html', context)
 
 
 def update_review(request, review_id):
