@@ -10,11 +10,12 @@ color: #DA7092; Thulian Pink
 
 /* -----------------------------------------Base---------*/
 body {
-    height: 90vh;
+    height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
     background: url("/static/media/arcade-live-still-background.png") no-repeat center;
     background-size: cover;
+    font-family: 'Play', sans-serif;
 }
 
 #video-background {
@@ -27,6 +28,20 @@ body {
     z-index: -1;
 }
 
+.custom-container {
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 1rem;
+}
+/*-----------------------------------------Header--------*/
+.coin-logo {
+    height: 3rem;
+}
+
+.header-icons div i{
+    font-size: 3rem !important;
+}
+/*-----------------------------------------Footer-------*/
 footer {
     position: fixed;
     bottom: 0;
@@ -37,6 +52,7 @@ footer {
     background: url("/static/media/paper-texture.jpg") no-repeat center center fixed;
     background-size: cover;
     max-width: fit-content;
+    position: relative;
 }
 
 .texture-text {
@@ -46,7 +62,7 @@ footer {
 }
 
 .opacity-75 {
-    opacity: 75%;
+    opacity: 0.75;
 }
 
 .test-div {
@@ -55,27 +71,29 @@ footer {
 }
 
 .moonstone {
-    background: #64A2AC;
+    background: #64A2ACcc;
+    height: 3rem;
+    width: 3rem;
 }
 
 .satin {
-    background: #bfa03c;
+    background: #bfa03ccc;
 }
 
 .xanthous {
-    background: #F3B844;
+    background: #F3B844cc;
 }
 
 .butterscotch {
-    background: #EF9742; 
+    background: #EF9742cc; 
 }
 
 .orange {
-    background: #EB7640; 
+    background: #EB7640cc; 
 }
 
 .pink {
-    background: #DA7092; 
+    background: #DA7092cc;
 }
 
 .moonstone-text {
