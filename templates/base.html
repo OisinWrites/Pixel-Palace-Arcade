@@ -50,18 +50,66 @@
   <body>
 
     <video autoplay loop muted id="video-background">
-      <source src="/static/media/arcade-room-live-wallpaper-compressed_tiny.mp4" type="video/mp4">
+      <sourssce src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
     </video>
     <!--<video autoplay loop muted id="video-background">
       <source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
     </video>-->
 
+    <head>
+      <div>Logo</div>
+      <div>Menu<i class="fa-sharp fa-solid fa-bars"></i></div>
+      <div>Search<i class="fa-solid fa-magnifying-glass"></i></div>
+      <div>Account</div>
+      <div>Basket</div>
+    </head>
     {% block page_header %}
     {% endblock %}
-    <div class="content">
-      {% block content %}
-      {% endblock %}
+
+    <div class="row">
+
+      <div class="texture">
+        <div class="moonstone opacity-75">
+          <div class="test-div"></div>
+        </div>
+      </div>
+  
+      <div class="texture">
+        <div class="satin opacity-75">
+          <div class="test-div">
+            <div>
+              <i class="fa-sharp fa-solid fa-bars"></i>
+              Menu
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="texture">
+        <div class="xanthous opacity-75">
+          <div class="test-div"></div>
+        </div>
+      </div>
+      <div class="texture">
+        <div class="butterscotch opacity-75">
+          <div class="test-div"></div>
+        </div>
+      </div>
+      <div class="texture">
+        <div class="orange opacity-75">
+          <div class="test-div"></div>
+        </div>
+      </div>
+      <div class="texture">
+        <div class="pink opacity-75">
+          <div class="test-div"></div>
+        </div>
+      </div>
     </div>
+
+    {% block content %}
+    {% endblock %}
+  
 
     <footer class="container-fluid foot">
       <div class="container d-none d-md-flex h-100 align-items-center">

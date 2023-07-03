@@ -1,7 +1,97 @@
 /*palette. 
-color: #0A0A0A; Night
-color: #FAF6F9; Snow
-color: #00E5FF; Electric
-color: #D03999; Mulberry
-color: #151D7A; Midnight
+color: #64A2AC; Moonstone
+color: #BFA13C; Satin Sheen Gold
+color: #F3B844; Xanthous
+color: #EF9742; Butterscotch
+color: #EB7640; Orange Crayola
+color: #DA7092; Thulian Pink
 */
+
+
+/* -----------------------------------------Base---------*/
+body {
+    height: 90vh;
+    overflow-y: auto;
+    background: url("/static/media/arcade-live-still-background.png") no-repeat center;
+    background-size: cover;
+    z-index: -1;
+}
+
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+/*----------------------------------------Colour Palette and Texture---*/
+.texture {
+    background: url("/static/media/paper-texture.jpg") no-repeat center center fixed;
+    background-size: cover;
+    max-width: fit-content;
+}
+
+.opacity-75 {
+    opacity: 75%;
+}
+
+.test-div {
+    height: 6rem;
+    width: 6rem;
+}
+
+.moonstone {
+    background: #64A2AC;
+}
+
+.satin {
+    background: #BFA13C;
+}
+
+.xanthous {
+    background: #F3B844;
+}
+
+.butterscotch {
+    background: #EF9742; 
+}
+
+.orange {
+    background: #EB7640; 
+}
+
+.pink {
+    background: #DA7092; 
+}
+
+.moonstone-text {
+    color: #64A2AC;
+}
+
+.satin-text {
+    color: #BFA13C;
+}
+
+.xanthous-text {
+    color: #F3B844;
+}
+
+.butterscotch-text {
+    color: #EF9742; 
+}
+
+.orange-text {
+    color: #EB7640; 
+}
+
+.pink-text {
+    color: #DA7092; 
+}

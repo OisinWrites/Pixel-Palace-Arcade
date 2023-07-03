@@ -53,6 +53,14 @@
 
 ## Design UX/UI
 
+### Design overhaul
+
+Inspiration 
+https://www.wix.com/blog/best-website-designs
+https://www.dopplepress.com/
+https://www.yantra.com.sg/
+https://www.clarityincrazy.com/
+
 ### Wireframes
 
 | Home | Products | Item Page |
@@ -410,6 +418,8 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
     * Background Image: https://www.ripleys.com/
 
     * Live Wallpaper: https://rare-gallery.com/95641-retro-arcade-room.html
+
+    * Image used for texture: https://www.vecteezy.com/photo/19927262-old-paper-texture-and-background-vintage
 
     * 404 Image: https://www.istockphoto.com/
 
