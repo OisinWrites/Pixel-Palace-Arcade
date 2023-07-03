@@ -16,6 +16,12 @@ body {
     background: url("/static/media/arcade-live-still-background.png") no-repeat center;
     background-size: cover;
     font-family: 'Play', sans-serif;
+    color: #EBEBEB;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
 #video-background {
@@ -29,22 +35,59 @@ body {
 }
 
 .custom-container {
-    border-radius: 5px;
+    border-radius: 2px;
     overflow: hidden;
     margin: 1rem;
-}
-/*-----------------------------------------Header--------*/
-.coin-logo {
-    height: 3rem;
+    width: fit-content;
 }
 
-.header-icons div i{
-    font-size: 3rem !important;
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+}
+/*-----------------------------------------Header--------*/
+.header {
+    width: 100%;
+    display: flex;
+}
+
+.coin-logo {
+    height: 5rem;
+}
+
+.header-icons, .footer-links {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.header div {
+    margin-right: 1rem;
+}
+
+.header div i{
+    font-size: 2rem;
+    padding: .5rem;
+    flex-direction: row;
+    margin-top: .75rem;
 }
 /*-----------------------------------------Footer-------*/
 footer {
     position: fixed;
     bottom: 0;
+}
+
+footer div p {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    font-size: .8rem;
+}
+
+/*------------------------------------------Index-------*/
+.index-logo {
+    white-space: nowrap;
 }
 
 /*----------------------------------------Colour Palette and Texture---*/
@@ -72,8 +115,6 @@ footer {
 
 .moonstone {
     background: #64A2ACcc;
-    height: 3rem;
-    width: 3rem;
 }
 
 .satin {
@@ -96,26 +137,34 @@ footer {
     background: #DA7092cc;
 }
 
+.white {
+    background: #EBEBEBcc;
+}
+
 .moonstone-text {
-    color: #64a3accc;
+    color: #64a3ac;
 }
 
 .satin-text {
-    color: #BFA13Ccc;
+    color: #BFA13C;
 }
 
 .xanthous-text {
-    color: #F3B844cc;
+    color: #F3B844;
 }
 
 .butterscotch-text {
-    color: #EF9742cc; 
+    color: #EF9742; 
 }
 
 .orange-text {
-    color: #EB7640cc; 
+    color: #EB7640; 
 }
 
 .pink-text {
-    color: #DA7092cc; 
+    color: #DA7092; 
+}
+
+.white-text, li a {
+    color: #EBEBEB;
 }

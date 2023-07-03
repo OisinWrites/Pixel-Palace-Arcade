@@ -49,15 +49,8 @@
   </head>
   <body>
 
-    <!--<video autoplay loop muted id="video-background">
-      <source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
-    </video>
-    <!--<video autoplay loop muted id="video-background">
-      <source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
-    </video>-->
-
-    <head>
-      <div class="container row header-icons">
+    <header>
+      <div class="header">
         
         <div>
           <a href="/">
@@ -65,55 +58,77 @@
           </a>
         </div>
   
-        <div class="texture-text moonstone-text">
-          <i class="fa-sharp fa-solid fa-bars"></i>
-        </div>
+        <div class="header-icons">
 
-        <div class="texture-text satin-text">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+          <div class="texture-text moonstone-text">
+            <i class="fa-sharp fa-solid fa-bars"></i>
+          </div>
+  
+          <div class="texture-text satin-text">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+  
+          <div class="texture-text xanthous-text">
+            <i class="fa-solid fa-pause"></i>
+          </div>
+  
+          <div class="texture-text butterscotch-text">
+            <i class="fa-solid fa-person-falling"></i>
+          </div>
+  
+          <div class="texture-text orange-text">
+            <i class="fa-solid fa-coins"></i>
+          </div>
 
-        <div class="texture-text xanthous-text">
-          <i class="fa-solid fa-person-falling"></i>
-        </div>
-
-        <div class="texture-text butterscotch-text">
-          <i class="fa-solid fa-coins"></i>
         </div>
   
       </div>
-    </head>
+    </header>
+
+
     {% block page_header %}
     {% endblock %}
  
-
+    <div class="content">
+      <video autoplay loop muted id="video-background">
+        <source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
+      </video>
     {% block content %}
     {% endblock %}
-  
+   </div>
 
-    <footer class="container-fluid foot">
-      <div class="container d-none d-md-flex h-100 align-items-center">
-        <div class="col-4 d-flex flex-column justify-content-center">          
-          <small>
-            <ul class="list-unstyled mt-2">
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'products' %}">Products</a></li>
-              <li><a href="{% url 'profile' %}">Profile</a></li>
-            </ul>
-          </small>
-        </div>
-        <div class="col-4 d-flex flex-column justify-content-center">
-          <p><i class="fa-regular fa-copyright"></i> Copy right 2023 All Rights Reserved <strong>Pixel Palace Arcade</strong></p>
-        </div>
-        <div class="col-4 d-flex flex-column justify-content-center">
-          <ul class="list-inline text-white ml-auto">
-            <li class="list-inline-item m-2">
-              <a href="https://www.facebook.com/profile.php?id=100093332865500" target="_blank" rel="noopener">
-                <i class="fab fa-facebook" style="font-size: 3rem;"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+    <footer class="w-100">
+     
+      <div class="container row w-100">
+        
+          <div class="col d-flex flex-column justify-content-center">
+            <p><i class="fa-regular fa-copyright"></i> <small>Copy right 2023 All Rights Reserved </small><strong>Pixel Palace Arcade</strong></p>
+          </div>
+
+          <!--<div class="footer-links">
+            <div class="col d-flex flex-column justify-content-center">
+              <small>
+                <ul class="list-unstyled mt-2">
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'products' %}">Products</a></li>
+                  <li><a href="{% url 'profile' %}">Profile</a></li>
+                </ul>
+              </small>
+            </div>
+  
+             <hr class="white">
+             
+            <div class="col d-flex flex-column justify-content-center">
+              <ul class="list-inline text-white ml-auto">
+                <li class="list-inline-item m-2">
+                  <a href="https://www.facebook.com/profile.php?id=100093332865500" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook" style="font-size: 3rem;"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>-->
+          
       </div>
     </footer>
 
