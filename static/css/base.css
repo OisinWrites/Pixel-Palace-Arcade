@@ -12,9 +12,9 @@ color: #DA7092; Thulian Pink
 body {
     height: 90vh;
     overflow-y: auto;
+    overflow-x: hidden;
     background: url("/static/media/arcade-live-still-background.png") no-repeat center;
     background-size: cover;
-    z-index: -1;
 }
 
 #video-background {
@@ -39,6 +39,12 @@ footer {
     max-width: fit-content;
 }
 
+.texture-text {
+    background: url("/static/media/paper-texture.jpg") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-clip: text;
+}
+
 .opacity-75 {
     opacity: 75%;
 }
@@ -53,7 +59,7 @@ footer {
 }
 
 .satin {
-    background: #BFA13C;
+    background: #bfa03c;
 }
 
 .xanthous {
@@ -73,25 +79,25 @@ footer {
 }
 
 .moonstone-text {
-    color: #64A2AC;
+    color: #64a3accc;
 }
 
 .satin-text {
-    color: #BFA13C;
+    color: #BFA13Ccc;
 }
 
 .xanthous-text {
-    color: #F3B844;
+    color: #F3B844cc;
 }
 
 .butterscotch-text {
-    color: #EF9742; 
+    color: #EF9742cc; 
 }
 
 .orange-text {
-    color: #EB7640; 
+    color: #EB7640cc; 
 }
 
 .pink-text {
-    color: #DA7092; 
+    color: #DA7092cc; 
 }

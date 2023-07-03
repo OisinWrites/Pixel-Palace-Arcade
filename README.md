@@ -415,6 +415,8 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
 
 ## Credits
 
+    * Coin Logo for header: https://www.pngegg.com/en/png-ertzr
+
     * Background Image: https://www.ripleys.com/
 
     * Live Wallpaper: https://rare-gallery.com/95641-retro-arcade-room.html
