@@ -1,3 +1,11 @@
+/*palette. 
+color: #0A0A0A; Night
+color: #FAF6F9; Snow
+color: #00E5FF; Electric
+color: #D03999; Mulberry
+color: #151D7A; Midnight
+*/
+
 .gameover {
     background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1685982724/static/media/gameover404_j7a4ie.jpg') no-repeat center center fixed;
     height: 100%;
@@ -29,7 +37,7 @@ cursor: pointer;
 }
 
 .star-rating input[type="radio"]:checked + label {
-color: #ffd700; /* Change to your desired color for filled stars */
+color:#D03999;
 }
 
 
@@ -52,11 +60,31 @@ html {
 }
 
 body {
-    background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1685620596/static/media/homepage_background_cropped.72812c30b9cd.jpg') no-repeat center center fixed;
+    /*background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1685620596/static/media/homepage_background_cropped.72812c30b9cd.jpg') no-repeat center center fixed;*/
+    background: url('/static/media/arcade-live-still-background.png') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Lato';
+    color: #0A0A0A;
+    font-family: 'Play', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+  
+.content {
+    position: relative;
+    z-index: 1;
+    /* Add your desired styles for the content */
 }
 
 .allauth-form-inner-content {
@@ -75,17 +103,14 @@ body {
 
 .logo-font {
     text-transform: uppercase;
+    font-family: 'Press Start 2P', cursive;
+    color: #FAF6F9;
 }
 
 .man-logo-link {
     width: fit-content;
 }
 
-.shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
-}
 
 .btn-black {
     background: black;
@@ -131,9 +156,6 @@ body {
 }
 
 .foot {
-    position: fixed !important;
-    bottom: 0;
-    left: 0;
     width: 100%;
 }
 
