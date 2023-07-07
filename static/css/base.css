@@ -110,7 +110,13 @@ footer div p {
 }
 
 .title-border {
-    border: 1rem;
+    border: 1rem solid #64A2AC;
+    width: fit-content;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /*----------------------------------------Colour Palette and Texture---*/
@@ -164,6 +170,10 @@ footer div p {
     background: #EBEBEBcc;
 }
 
+.onyx {
+    background: #34373Dcc;
+}
+
 .moonstone-text {
     color: #64a3ac;
 }
@@ -190,4 +200,50 @@ footer div p {
 
 .white-text, li a {
     color: #EBEBEB;
+}
+
+.onyx-text {
+    color: #34373D;
+}
+
+.start-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.play-font {
+    font-family: 'Play', sans-serif;
+}
+
+/*------------------------------animate text by color change----*/
+
+@keyframes flicker {
+    0% {
+        color: #34373D
+    }
+    90% {
+        color: #34373D;
+    }
+    95% {
+      color: #BFA13C;
+    }
+    100% {
+      color: #DA7092;
+    }
+  }
+  
+  .flicker {
+    animation: flicker 3650ms infinite;
+  }
+
+/*------------------------------------------return to top arrow--------*/
+.fa-circle-arrow-up {
+    font-size: 2rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 0.5rem;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

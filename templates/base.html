@@ -128,11 +128,20 @@
           </div>-->
           
       </div>
+
+      <div class="hidden border xanthous" id="return-top">
+        <a class="">
+          <i class="fa-solid fa-circle-arrow-up xanthous-text mx-auto my-auto"></i>
+        </a>	
+      </div>
     </footer>
 
     {% block postloadjs %}
     {% endblock %}
     <script>
+
+// persist pause play selection, remove button when no video present  
+
       document.addEventListener('DOMContentLoaded', () => {
         const isIndexPage = window.location.pathname === '/'; // Check if current page is the index page
 
@@ -150,6 +159,39 @@
           secondDiv.classList.remove('xanthous-text'); // Remove the xanthous-text class from the second div
         }
       });
+
+// return to top button
+
+      window.addEventListener('DOMContentLoaded', function() {
+          var topLink = document.getElementById('return-top');
+          
+          topLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }); 
+        });
+
+      window.addEventListener('scroll', function() {
+        var myElement = document.getElementById('return-top');
+        var scrollPosition = window.scrollY;
+
+        if (scrollPosition > 0) {
+          myElement.classList.remove('hidden');
+        } else {
+          myElement.classList.add('hidden');
+        }
+      });
+
+      // Check initial scroll position on page load
+      window.addEventListener('DOMContentLoaded', function() {
+        var myElement = document.getElementById('return-top');
+        var scrollPosition = window.scrollY;
+
+        if (scrollPosition === 0) {
+          myElement.classList.add('hidden');
+        }
+      });
+
 
     </script>
   </body>
