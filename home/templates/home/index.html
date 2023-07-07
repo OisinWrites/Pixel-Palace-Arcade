@@ -2,43 +2,76 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block content %}
+    <video autoplay loop muted id="video-background">
+        <source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
+    </video>
 
-    <div class="custom-container">
-        <div class="texture">
-            <div class="pink">
-                <h1 class="index-logo texture-text white-text p-1 my-0 mx-1">
-                    Pixel Palace
-                </h1>
+    <div class="title-border">
+        <div class="custom-container">
+            <div class="texture">
+                <div class="pink">
+                    <h1 class="index-logo texture-text white-text p-1 my-0 mx-1">
+                        Pixel Palace
+                    </h1>
+                </div>
+            </div>
+        </div>
+    
+        <div class="custom-container">
+            <div class="texture">
+                <div class="satin">
+                    <h2 class="index-logo texture-text white-text p-1 my-0 mx-1">
+                        Arcade
+                    </h2>
+                </div>
+            </div>
+        </div>
+    
+        <div class="custom-container">
+            <div class="texture">
+                <div class="moonstone">
+                    <a href="{% url 'products' %}" class="text-uppercase my-0 white-text">
+                        <p class="my-0 mx-1">Browse the collection</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="custom-container">
-        <div class="texture">
-            <div class="satin">
-                <h2 class="index-logo texture-text white-text p-1 my-0 mx-1">
-                    Arcade
-                </h2>
-            </div>
-        </div>
-    </div>
 
-    <div class="custom-container">
-        <div class="texture">
-            <div class="moonstone">
-                <a href="{% url 'products' %}" class="text-uppercase my-0 white-text">
-                    <p class="my-0 mx-1">Browse the collection</p>
-                </a>
-            </div>
-        </div>
-    </div>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('video-background');
+    const pauseButton = document.getElementById('pause-button');
+
+    // Check if the play or pause state is stored in the localStorage
+    const isVideoPaused = localStorage.getItem('videoPaused');
+    if (isVideoPaused === 'true') {
+        video.pause();
+        pauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+    } else {
+        video.play();
+        pauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    }
+
+    pauseButton.addEventListener('click', () => {
+        if (video.paused) {
+        video.play();
+        pauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        localStorage.setItem('videoPaused', 'false'); // Store the play state in localStorage
+        } else {
+        video.pause();
+        pauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+        localStorage.setItem('videoPaused', 'true'); // Store the pause state in localStorage
+        }
+    });
+    });
+
+
+</script>
 
  {% endblock %}

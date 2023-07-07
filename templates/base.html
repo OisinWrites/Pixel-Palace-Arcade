@@ -51,7 +51,7 @@
 
     <header>
       <div class="header">
-        
+       
         <div>
           <a href="/">
             <img class="coin-logo" src="/static/media/logo-coin.png" alt="Pixel Palace Arcade">
@@ -60,15 +60,15 @@
   
         <div class="header-icons">
 
-          <div class="texture-text moonstone-text">
+          <div class="menu-icon texture-text moonstone-text">
             <i class="fa-sharp fa-solid fa-bars"></i>
           </div>
   
-          <div class="texture-text satin-text">
+          <div class="search-icon texture-text satin-text">
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
   
-          <div class="texture-text xanthous-text">
+          <div class="texture-text xanthous-text" id="pause-button">
             <i class="fa-solid fa-pause"></i>
           </div>
   
@@ -90,9 +90,7 @@
     {% endblock %}
  
     <div class="content">
-      <video autoplay loop muted id="video-background">
-        <source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">
-      </video>
+
     {% block content %}
     {% endblock %}
    </div>
@@ -134,5 +132,25 @@
 
     {% block postloadjs %}
     {% endblock %}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const isIndexPage = window.location.pathname === '/'; // Check if current page is the index page
+
+        const pauseButton = document.getElementById('pause-button');
+        const firstDiv = document.querySelector('.menu-icon');
+        const secondDiv = document.querySelector('.search-icon');
+
+        if (!isIndexPage) {
+          pauseButton.style.display = 'none'; // Hide the pause button
+          firstDiv.classList.add('satin-text'); // Add the satin-text class to the first div
+          secondDiv.classList.add('xanthous-text'); // Add the xanthous-text class to the second div
+        } else {
+          pauseButton.style.display = ''; // Show the pause button
+          firstDiv.classList.remove('satin-text'); // Remove the satin-text class from the first div
+          secondDiv.classList.remove('xanthous-text'); // Remove the xanthous-text class from the second div
+        }
+      });
+
+    </script>
   </body>
 </html>

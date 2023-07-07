@@ -415,6 +415,8 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
 
 ## Credits
 
+    * Colour Palette https://www.designcuts.com/product/expired-instant-film-texture-pack
+
     * Coin Logo for header: https://www.pngegg.com/en/png-ertzr
 
     * Background Image: https://www.ripleys.com/
@@ -423,7 +425,7 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
 
     * Image used for texture: https://www.vecteezy.com/photo/19927262-old-paper-texture-and-background-vintage
 
-    * 404 Image: https://www.istockphoto.com/
+    * Game Over Image: https://www.istockphoto.com/
 
     * High-res 'HAL 9000' from '2001, A Space Odyssey', Kubrick, 1968: https://wallpapersafari.com/w/DYZ94J
 

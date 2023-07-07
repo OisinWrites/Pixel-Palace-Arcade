@@ -5,6 +5,7 @@ color: #F3B844; Xanthous
 color: #EF9742; Butterscotch
 color: #EB7640; Orange Crayola
 color: #DA7092; Thulian Pink
+color: #34373D; Onyx
 */
 
 
@@ -13,7 +14,7 @@ body {
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-    background: url("/static/media/arcade-live-still-background.png") no-repeat center;
+    background: url("/static/media/arcade-live-still-background.png") no-repeat center center fixed;
     background-size: cover;
     font-family: 'Play', sans-serif;
     color: #EBEBEB;
@@ -49,6 +50,19 @@ h1 {
 .header {
     width: 100%;
     display: flex;
+    position: sticky;
+    height: 5rem;
+    z-index: 9999;
+    
+}
+
+#header-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5rem;
+    z-index: -1;
 }
 
 .coin-logo {
@@ -71,6 +85,11 @@ h1 {
     flex-direction: row;
     margin-top: .75rem;
 }
+
+/*-----------------------------------------Content------*/
+.content {
+    margin-top: 5rem;
+}
 /*-----------------------------------------Footer-------*/
 footer {
     position: fixed;
@@ -90,16 +109,20 @@ footer div p {
     white-space: nowrap;
 }
 
+.title-border {
+    border: 1rem;
+}
+
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
-    background: url("/static/media/paper-texture.jpg") no-repeat center center fixed;
+    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
     background-size: cover;
     max-width: fit-content;
     position: relative;
 }
 
 .texture-text {
-    background: url("/static/media/paper-texture.jpg") no-repeat center center fixed;
+    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
     background-size: cover;
     -webkit-background-clip: text;
 }
@@ -110,7 +133,7 @@ footer div p {
 
 .test-div {
     height: 6rem;
-    width: 6rem;
+    width: 100vw;
 }
 
 .moonstone {
