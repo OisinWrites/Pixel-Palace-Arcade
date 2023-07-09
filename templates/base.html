@@ -64,7 +64,7 @@
             <i class="fa-sharp fa-solid fa-bars"></i>
           </div>
   
-          <div class="search-icon texture-text satin-text">
+          <div onclick="toggleSearchBar()" class="search-icon texture-text satin-text">
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
   
@@ -88,9 +88,18 @@
 
     {% block page_header %}
     {% endblock %}
- 
+    <div class="modal-overlay">
+      <div class="modal-content" id="search-results">
+        <!-- Search results will be dynamically inserted here -->
+      </div>
+    </div>
+    
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Search">
+      <button type="submit">Search</button>
+    </form>
+    
     <div class="content">
-
     {% block content %}
     {% endblock %}
    </div>
@@ -130,9 +139,7 @@
       </div>
 
       <div class="hidden border xanthous" id="return-top">
-        <a class="">
-          <i class="fa-solid fa-circle-arrow-up xanthous-text mx-auto my-auto"></i>
-        </a>	
+          <i class="fa-solid fa-circle-arrow-up xanthous-text mx-auto my-auto"></i>	
       </div>
     </footer>
 
@@ -182,7 +189,7 @@
         }
       });
 
-      // Check initial scroll position on page load
+// Check initial scroll position on page load
       window.addEventListener('DOMContentLoaded', function() {
         var myElement = document.getElementById('return-top');
         var scrollPosition = window.scrollY;
@@ -192,7 +199,38 @@
         }
       });
 
+// Search icon functionality
+      function toggleSearchBar() {
+        var searchBar = document.querySelector('.search-bar');
+        searchBar.style.display = (searchBar.style.display === '' || searchBar.style.display === 'none') ? 'block' : 'none';
+      }
 
+      document.addEventListener('DOMContentLoaded', function() {
+        var modalOverlay = document.querySelector('.modal-overlay');
+        var searchForm = document.getElementById('search-form');
+        var searchInput = document.getElementById('search-input');
+        var searchResultsContainer = document.getElementById('search-results');
+
+      searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var searchTerm = searchInput.value.trim();
+        if (searchTerm !== '') {
+          // Perform AJAX request or any other method to fetch the search results HTML page
+          // Once the page is fetched, extract the content and insert it into the modal content
+          fetch('search/?q=' + encodeURIComponent(searchTerm))
+            .then(function(response) {
+              return response.text();
+            })
+            .then(function(html) {
+              searchResultsContainer.innerHTML = html;
+              modalOverlay.style.display = 'block';
+            })
+            .catch(function(error) {
+              console.error('Error fetching search results:', error);
+            });
+        }
+      });
+    });
     </script>
   </body>
 </html>

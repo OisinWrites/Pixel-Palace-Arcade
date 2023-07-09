@@ -177,3 +177,13 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+def search_view(request):
+    query = request.GET.get('q')
+    results = Product.search(query) if query else []
+    context = {
+        'query': query,
+        'results': results
+    }
+    return render(request, 'products/search.html', context)
