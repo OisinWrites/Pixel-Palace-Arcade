@@ -6,6 +6,7 @@ color: #EF9742; Butterscotch
 color: #EB7640; Orange Crayola
 color: #DA7092; Thulian Pink
 color: #34373D; Onyx
+color: #EBEBEB; White
 */
 
 
@@ -52,7 +53,7 @@ h1 {
     display: flex;
     position: sticky;
     height: 5rem;
-    z-index: 9999;
+    z-index: 9500;
     
 }
 
@@ -77,40 +78,140 @@ h1 {
 
 .header div {
     margin-right: 1rem;
+    align-items: center;
 }
 
 .header div i{
-    font-size: 2rem;
-    padding: .5rem;
-    flex-direction: row;
-    margin-top: .75rem;
+    font-size: 7.34375vw;
+    flex-direction: row-wrap;
     cursor: pointer;
 }
-/*--------------------------Base popups, search and messages---*/
-
-.search-bar {
+/*--------------------------Base popups: menu, search and messages---*/
+/*MENU*/
+.modal-overlay-menu {
     display: none;
+    position: fixed;
+    top: 0;
+    background: #EBEBEB;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
 }
 
-.modal-overlay {
+.body-menu {
+    height: 100vh;
+    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.body-menu-content {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(191, 161, 60, 0.35);
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+}
+
+.body-menu-content div hr {
+    background-color: #DA709228;
+}
+
+.spin-image {
+    animation: spin 650ms linear 1;
+    transform-origin: center center;
+}
+
+.spin-image:hover {
+    animation: spin 550ms linear infinite;
+    transform-origin: center center;
+}
+  
+@keyframes spin {
+    0% {
+      transform: rotateY(0deg);
+    }
+    10% {
+      transform: rotateY(90deg);
+    }
+    30% {
+      transform: rotateY(135deg);
+    }
+    70% {
+        transform: rotateY(225deg);
+    }
+    90% {
+        transform: rotateY(270deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+/*SEARCH*/
+.search-bar {
+    display: none;
+    position: absolute;
+    margin-left: calc(50vw - 7rem);
+}
+
+.search-bar input {
+    border-width: 0rem;
+    background-color: #DA7092cc;
+    border-radius: 2px;
+    padding-left: 1rem;
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #EBEBEBcc;
+}
+
+.search-bar input[type="text"]  {
+    outline: none;
+    color: #EBEBEB;
+}
+
+.search-bar button {
+    border-width: 0rem;
+    background: none;
+    font-size: 1.2rem;
+}
+
+.modal-overlay-search {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
+    z-index: 9000;
     display: none;
 }
 
-.modal-content {
-    position: absolute;
+.modal-content-search {
+    position: relative;
     top: 50%;
     left: 50%;
+    width: 85vw;
     transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 4px;
+    background-color: #F3B844cc;
+    padding: 1rem;
+    border-radius: 2px;   
+}
+
+.modal-content-list{
+    max-height: 45vh;
+    overflow-y: auto;
+}
+
+.collapse-search {
+    position: absolute;
+    font-size: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    top: 6.5rem;
+    cursor: pointer;
 }
 
 /*-----------------------------------------Content------*/
@@ -143,7 +244,7 @@ footer div p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: calc(33vw - 8.5rem);
+    margin-left: calc(50vw - 8.5rem);
     margin-top: 20vh;
 }
 
@@ -152,7 +253,6 @@ footer div p {
     background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
     background-size: cover;
     max-width: fit-content;
-    position: relative;
 }
 
 .texture-text {
@@ -274,4 +374,33 @@ footer div p {
 
 .hidden {
     display: none;
+}
+
+/*---------Invisible scrollbar For WebKit browsers (Chrome, Safari, Opera)-----*/
+
+    ::-webkit-scrollbar {
+        width: 8px;
+}
+  
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+}
+  
+    ::-webkit-scrollbar-thumb {
+        background-color: transparent;
+}
+
+/*----------------------------------------style above 470xp-----------*/
+
+@media (min-width: 470px) {
+    /* style border off center for medium and larger screens */
+    .title-border {
+        margin-left: calc(33vw - 8.5rem)
+    }
+    /* style header icons to finish scaling */
+    .header div i{
+        font-size: 2rem;
+        padding: .5rem;
+    }
+
 }

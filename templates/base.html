@@ -88,16 +88,33 @@
 
     {% block page_header %}
     {% endblock %}
-    <div class="modal-overlay">
-      <div class="modal-content" id="search-results">
-        <!-- Search results will be dynamically inserted here -->
+    <!--The burger menu elements-->
+    <div class="modal-overlay-menu">
+      <div class="modal-content-menu" id="site-menu">
+        {% include 'home/includes/burger-menu.html' %}
       </div>
     </div>
-    
-    <form id="search-form">
-      <input type="text" id="search-input" placeholder="Search">
-      <button type="submit">Search</button>
-    </form>
+
+
+    <!--The search bar elements-->
+    <div class="search-bar">
+      <div class="modal-overlay-search">
+        <div>
+          <i class="fa-solid fa-circle-xmark collapse-search close-button butterscotch-text" id="close-button"></i>
+        </div>
+        <div class="modal-content-search" id="search-results">
+        </div>
+      </div>
+      
+      <div class="d-flex align-items-center justify-content-center">
+        <form id="search-form">
+          <input type="text" id="search-input" placeholder="Search the catalogue">
+          <button type="submit" class="search-form-submit">            
+            <i class="moonstone-text disaply-4 fa-solid fa-magnifying-glass" id="beat-fade"></i>
+          </button>
+        </form>
+      </div>
+    </div>
     
     <div class="content">
     {% block content %}
@@ -199,38 +216,86 @@
         }
       });
 
-// Search icon functionality
+// Site menu overlay functionality, appear
+
+     document.addEventListener('DOMContentLoaded', function() {
+        var menuIcon = document.querySelector('.menu-icon');
+        var siteMenuOverlay = document.querySelector('.modal-overlay-menu');
+        
+        siteMenuOverlay.style.display = 'none'; // Initially hide the modal overlay menu
+        
+        menuIcon.addEventListener('click', function() {
+          siteMenuOverlay.style.display = 'block'; // Show the modal overlay menu
+        });
+      });
+          
+
+// Search icon and bar functionality
+
+      // make search submit button beat on hover
+      document.addEventListener('DOMContentLoaded', function() {
+        var element = document.getElementById('beat-fade');
+
+        element.addEventListener('mouseover', function() {
+          element.classList.add('fa-beat-fade');
+        });
+
+        element.addEventListener('mouseout', function() {
+          element.classList.remove('fa-beat-fade');
+        });
+      });
+
+      // Have header icon appear and disappear the search bar
       function toggleSearchBar() {
         var searchBar = document.querySelector('.search-bar');
         searchBar.style.display = (searchBar.style.display === '' || searchBar.style.display === 'none') ? 'block' : 'none';
       }
 
       document.addEventListener('DOMContentLoaded', function() {
-        var modalOverlay = document.querySelector('.modal-overlay');
+        var modalOverlay = document.querySelector('.modal-overlay-search');
+        var closeButton = document.getElementById('close-button');
         var searchForm = document.getElementById('search-form');
         var searchInput = document.getElementById('search-input');
         var searchResultsContainer = document.getElementById('search-results');
 
-      searchForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        var searchTerm = searchInput.value.trim();
-        if (searchTerm !== '') {
-          // Perform AJAX request or any other method to fetch the search results HTML page
-          // Once the page is fetched, extract the content and insert it into the modal content
-          fetch('search/?q=' + encodeURIComponent(searchTerm))
-            .then(function(response) {
-              return response.text();
-            })
-            .then(function(html) {
-              searchResultsContainer.innerHTML = html;
-              modalOverlay.style.display = 'block';
-            })
-            .catch(function(error) {
-              console.error('Error fetching search results:', error);
-            });
+        closeButton.addEventListener('click', function(event) {
+          if (event.target === closeButton) {
+            closeModal();
+          }
+        });
+
+        function closeModal() {
+          modalOverlay.style.display = 'none';
+          searchInput.value = '';
+          searchResultsContainer.innerHTML = ''; // Clear the search results
         }
+
+        modalOverlay.addEventListener('click', function(event) {
+          if (event.target === modalOverlay) {
+            closeModal();
+          }
+        });
+
+        searchForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          var searchTerm = searchInput.value.trim();
+          if (searchTerm !== '') {
+            // Perform AJAX request or any other method to fetch the search results HTML page
+            // Once the page is fetched, extract the content and insert it into the modal content
+            fetch('search/?q=' + encodeURIComponent(searchTerm))
+              .then(function(response) {
+                return response.text();
+              })
+              .then(function(html) {
+                searchResultsContainer.innerHTML = html;
+                modalOverlay.style.display = 'block';
+              })
+              .catch(function(error) {
+                console.error('Error fetching search results:', error);
+              });
+          }
+        });
       });
-    });
     </script>
   </body>
 </html>
