@@ -15,7 +15,7 @@
       </h1>
 
       <div>
-        <a href="/" class="moonstone-text mt-3">
+        <a href="/" class="moonstone-text">
           <p>Home</p>
         </a>
         <hr>
@@ -33,14 +33,20 @@
         <hr>
       </div>
       <div>
-        <a href="/" class="butterscotch-text">
+        <a href="{% url 'account_login' %}" class="butterscotch-text">
           <p>Log in</p>
         </a>
         <hr>
       </div>
       <div>
-        <a href="/" class="orange-text">
+        <a href="{% url 'account_signup' %}" class="orange-text">
           <p>Sign up</p>
+        </a>
+        <hr>
+      </div>
+      <div>
+        <a href="/checkout/" class="pink-text">
+          <p>Complete Purchase</p>
         </a>
         <hr>
       </div>

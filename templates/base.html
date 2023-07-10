@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -282,7 +284,7 @@
           if (searchTerm !== '') {
             // Perform AJAX request or any other method to fetch the search results HTML page
             // Once the page is fetched, extract the content and insert it into the modal content
-            fetch('search/?q=' + encodeURIComponent(searchTerm))
+            fetch('/search/?q=' + encodeURIComponent(searchTerm))
               .then(function(response) {
                 return response.text();
               })

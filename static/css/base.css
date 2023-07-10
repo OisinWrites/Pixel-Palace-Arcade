@@ -21,9 +21,17 @@ body {
     color: #EBEBEB;
 }
 
+a {
+    color:#DA7092;
+}
+
 a:hover {
     text-decoration: none;
     color: inherit;
+}
+
+button {
+    border-color: #EBEBEB;
 }
 
 #video-background {
@@ -113,15 +121,22 @@ h1 {
     height: 100vh;
     width: 100vw;
     top: 0;
+    font-size: 2.5rem;
 }
 
 .body-menu-content div hr {
     background-color: #DA709228;
 }
 
+.body-menu-content div a:hover {
+    color: #EBEBEB;
+}
+
 .spin-image {
+    height: 8rem;
     animation: spin 650ms linear 1;
     transform-origin: center center;
+    margin-bottom: 4rem;
 }
 
 .spin-image:hover {
