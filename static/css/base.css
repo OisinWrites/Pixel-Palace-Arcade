@@ -12,9 +12,10 @@ color: #EBEBEB; White
 
 /* -----------------------------------------Base---------*/
 body {
-    height: 100vh;
+    height: 100%;
+    width: 100%;
+    margin: 0 !important;
     overflow-y: auto;
-    overflow-x: hidden;
     background: url("/static/media/arcade-live-still-background.png") no-repeat center center fixed;
     background-size: cover;
     font-family: 'Play', sans-serif;
@@ -133,6 +134,14 @@ h1 {
 
 .di2:hover {
     background: #EF9742;
+}
+
+.di3:hover {
+    background: #EB7640;
+}
+
+.di4:hover {
+    background: #DA7092;
 }
 
 /*--------------------------Shopping bag header coin icon and bag total figure--*/
@@ -256,9 +265,9 @@ h1 {
     position: relative;
     top: 50%;
     left: 50%;
-    width: 85vw;
+    width: 65vw;
     transform: translate(-50%, -50%);
-    background-color: #F3B844cc;
+    background-color: #EBEBEB;
     padding: 1rem;
     border-radius: 2px;   
 }
@@ -266,6 +275,11 @@ h1 {
 .modal-content-list{
     max-height: 45vh;
     overflow-y: auto;
+}
+
+.modal-content-list a div:hover {
+    font-size: 1.1rem;
+    color:#64A2AC;
 }
 
 .collapse-search {
@@ -314,6 +328,19 @@ footer div p {
 .call-to-action:hover {
     background-color: #EBEBEB !important;
 }
+
+/*---------------------------------------------Products--------------------------------*/
+
+/*-----------------------------------All Products-----*/
+
+.product-container {
+    padding-bottom: 3.5rem;
+    padding-top: 1rem;
+    width: 100vw;
+}
+
+/*--------------------------------Product Description-*/
+/*-------------------------------------Edit Product---*/
 
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
@@ -446,7 +473,7 @@ footer div p {
 /*---------Invisible scrollbar For WebKit browsers (Chrome, Safari, Opera)-----*/
 
     ::-webkit-scrollbar {
-        width: 8px;
+        width: 0rem;
 }
   
     ::-webkit-scrollbar-track {

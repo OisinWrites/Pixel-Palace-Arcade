@@ -79,7 +79,7 @@
               <i class="fa-solid fa-person-falling"></i>
             </a>
             <!--The User Options dropdown menu-->
-            <div class="hidden" id="user-options-dropdown">
+            <div class="hidden user-options-dropdown" id="user-options-dropdown">
               <div class="texture rounded">
                 <ul class="moonstone list-inline list-unstyled text-center" aria-labelledby="dropdownButton">
                   {% if user.is_authenticated %}
@@ -125,7 +125,7 @@
         <div>
           <i class="fa-solid fa-circle-xmark collapse-search close-button butterscotch-text" id="close-button"></i>
         </div>
-        <div class="modal-content-search" id="search-results">
+        <div class="modal-content-search texture" id="search-results">
         </div>
       </div>
       
@@ -139,16 +139,16 @@
       </div>
     </div>
     
-    <div class="content">
+    
     {% block content %}
     {% endblock %}
-   </div>
+ 
 
     <footer class="w-100">
      
       <div class="container row w-100">
         
-          <div class="col d-flex flex-column justify-content-center">
+          <div class="col d-flex flex-column justify-content-center m-3">
             <p><i class="fa-regular fa-copyright"></i> <small>Copy right 2023 All Rights Reserved </small><strong>Pixel Palace Arcade</strong></p>
           </div>
 

@@ -3,14 +3,20 @@
 <head>
     <title>Search Results</title>
 </head>
-<body>
-    <h1 class="white-text">Search Results for "{{ query }}"</h1>
+<body class="satin">
+    <h1 class="xanthous-text">Search Results for "{{ query }}"</h1>
+
+    <hr>
 
     <ul class="modal-content-list">
         {% for product in results %}
-            <li>{{ product.name }}</li>
+            <a href="{% url 'product_detail' product.id %}">
+                <div class="card-body d-flex align-items-end pb-0">
+                    <p class="mb-0">{{ product.name }}</p>
+                </div>
+            </a>
         {% empty %}
-            <li>No results found.</li>
+            <li class="onyx-text">No results found.</li>
         {% endfor %}
     </ul>
 
