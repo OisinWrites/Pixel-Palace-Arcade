@@ -84,7 +84,7 @@ h1 {
     flex-grow: 1;
 }
 
-.header div {
+.header div, #user-options {
     margin-right: 1rem;
     align-items: center;
 }
@@ -94,6 +94,48 @@ h1 {
     flex-direction: row-wrap;
     cursor: pointer;
 }
+
+.menu-icon:hover {
+    color: #EF9742;
+}
+
+.search-icon:hover {
+    color: #EB7640;
+}
+
+.shopping-bag-icon:hover {
+    color: #64A2AC;
+}
+
+/*--------------------------The account dropdown menu----*/
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+#user-options:hover {
+    color: #DA7092;
+}
+
+#user-options-dropdown  {
+    position: fixed !important;
+    top: 5rem;
+    right: 5vw;
+}
+
+#user-options-dropdown div ul li a {
+    color:  #EBEBEB;
+}
+
+.di1:hover {
+    background: #F3B844;
+}
+
+.di2:hover {
+    background: #EF9742;
+}
+
+
 /*--------------------------Base popups: menu, search and messages---*/
 /*MENU*/
 .modal-overlay-menu {
@@ -253,7 +295,7 @@ footer div p {
 }
 
 .title-border {
-    border: 1rem solid #64A2AC;
+    border: 1rem solid #F3B844;
     max-width: fit-content;
     display: flex;
     flex-direction: column;
@@ -261,6 +303,10 @@ footer div p {
     align-items: center;
     margin-left: calc(50vw - 8.5rem);
     margin-top: 20vh;
+}
+
+.call-to-action:hover {
+    background-color: #EBEBEB !important;
 }
 
 /*----------------------------------------Colour Palette and Texture---*/
