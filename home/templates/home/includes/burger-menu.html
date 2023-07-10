@@ -26,12 +26,26 @@
         </a>
         <hr>
       </div>
+      {% if user.is_authenticated %}
       <div>
-        <a href="/profile" class="xanthous-text">
+        <a href="/profile" class="orange-text">
           <p>Profile</p>
         </a>
         <hr>
       </div>
+      <div>
+        <a href="{% url 'view_bag' %}" class="pink-text">
+          <p>Checkout</p>
+        </a>
+        <hr>
+      </div>
+      <div>
+        <a href="{% url 'account_logout' %}" class="xanthous-text">
+          <p>Sign out</p>
+        </a>
+        <hr>
+      </div>
+      {% else %}
       <div>
         <a href="{% url 'account_login' %}" class="butterscotch-text">
           <p>Log in</p>
@@ -44,12 +58,7 @@
         </a>
         <hr>
       </div>
-      <div>
-        <a href="{% url 'view_bag' %}" class="pink-text">
-          <p>Checkout</p>
-        </a>
-        <hr>
-      </div>
+      {% endif %}
 
     </div>
   </div>

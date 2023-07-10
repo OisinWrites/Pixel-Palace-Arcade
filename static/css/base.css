@@ -98,50 +98,19 @@ h1 {
 }
 
 .menu-icon:hover {
-    color: #EF9742;
+    color: #F3B844;
 }
 
 .search-icon:hover {
-    color: #EB7640;
+    color: #EF9742;
+}
+
+.pause-icon:hover {
+    color: #EB7640; 
 }
 
 .shopping-bag-icon:hover {
     color: #64A2AC;
-}
-
-/*--------------------------The account dropdown menu----*/
-
-.dropdown-toggle::after {
-    display: none;
-}
-
-#user-options:hover {
-    color: #DA7092;
-}
-
-#user-options-dropdown  {
-    position: absolute;
-    top: 6rem;
-}
-
-#user-options-dropdown div ul li a {
-    color:  #EBEBEB;
-}
-
-.di1:hover {
-    background: #F3B844;
-}
-
-.di2:hover {
-    background: #EF9742;
-}
-
-.di3:hover {
-    background: #EB7640;
-}
-
-.di4:hover {
-    background: #DA7092;
 }
 
 /*--------------------------Shopping bag header coin icon and bag total figure--*/
@@ -192,7 +161,7 @@ h1 {
     height: 8rem;
     animation: spin 650ms linear 1;
     transform-origin: center center;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
 .spin-image:hover {
@@ -224,19 +193,20 @@ h1 {
 .search-bar {
     display: none;
     position: absolute;
-    top: 6rem;
-    margin-left: calc(50vw - 7rem);
+    font-size: 1.6rem;
+    top: 6.2rem;
+    margin-left: calc(50vw - 10.65rem);
 }
 
 .search-bar input {
     border-width: 0rem;
-    background-color: #DA7092cc;
+    background-color: #EBEBEB;
     border-radius: 2px;
     padding-left: 1rem;
 }
 
 .search-bar input[type="text"]::placeholder {
-    color: #EBEBEBcc;
+    color: #DA7092cc;
 }
 
 .search-bar input[type="text"]  {
@@ -247,7 +217,7 @@ h1 {
 .search-bar button {
     border-width: 0rem;
     background: none;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 .modal-overlay-search {
@@ -289,6 +259,49 @@ h1 {
     z-index: 9999;
     top: 6.5rem;
     cursor: pointer;
+}
+
+/*--------------------------The account dropdown menu----*/
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.user-name {
+    position: absolute;
+    top: 4rem;
+    font-size: 1.4rem;
+}
+
+#user-options:hover {
+    color: #DA7092;
+}
+
+#user-options-dropdown  {
+    position: absolute;
+    top: 6rem;
+    right:1rem;
+}
+
+#user-options-dropdown div ul li a {
+    color:  #EBEBEB;
+    font-size: 1.5rem;
+}
+
+.di1:hover {
+    background: #F3B844;
+}
+
+.di2:hover {
+    background: #EF9742;
+}
+
+.di3:hover {
+    background: #EB7640;
+}
+
+.di4:hover {
+    background: #DA7092;
 }
 
 /*-----------------------------------------Content------*/
@@ -337,6 +350,25 @@ footer div p {
     padding-bottom: 3.5rem;
     padding-top: 1rem;
     width: 100vw;
+}
+
+.category-banner {
+    width: 100vw;
+    color: #EB7640 !important;
+}
+
+.category-container {
+    max-width: 95vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.current-category {
+    background-color: #f3b844cc;
+}
+
+.current-category a:hover {
+    color: #EBEBEB;
 }
 
 /*--------------------------------Product Description-*/
@@ -496,5 +528,4 @@ footer div p {
         font-size: 2rem;
         padding: .5rem;
     }
-
 }
