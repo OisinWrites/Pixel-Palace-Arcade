@@ -78,13 +78,34 @@
             <a href="/profile" class="texture-text butterscotch-text profile-icon">
               <i class="fa-solid fa-person-falling"></i>
             </a>
+            <!--The User Options dropdown menu-->
+            <div class="hidden" id="user-options-dropdown">
+              <div class="texture rounded">
+                <ul class="moonstone list-inline list-unstyled text-center" aria-labelledby="dropdownButton">
+                  {% if user.is_authenticated %}
+                  <li><a class="dropdown-item di1" href="/profile">Profile</a></li>
+                  <li><a class="dropdown-item di2" href="{% url 'account_logout' %}">Log out</a></li>
+                  {% else %}
+                  <li><a class="dropdown-item di1" href="{% url 'account_login' %}">Log in</a></li>
+                  <li><a class="dropdown-item di2" href="{% url 'account_signup' %}">Sign up</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
           </div>
- 
+
           <div class="texture-text orange-text shopping-bag-icon">
-            <i class="fa-solid fa-coins"></i>
+            <a href="{% url 'view_bag' %}">
+              <div class="orange-text"><i class="fa-solid fa-coins"></i>
+              </div>
+              <p class="my-0 bag-total orange-text">
+                  {% if grand_total %}
+                      €{{ grand_total|floatformat:2 }}
+                  {% endif %}
+              </p>
+            </a>
           </div>
- 
-      </div>
+        </div>
     </header>
 
 
@@ -115,21 +136,6 @@
             <i class="moonstone-text disaply-4 fa-solid fa-magnifying-glass" id="beat-fade"></i>
           </button>
         </form>
-      </div>
-    </div>
-
-    <!--The User Options dropdown menu-->
-    <div class="hidden" id="user-options-dropdown">
-      <div class="texture rounded">
-        <ul class="moonstone list-inline list-unstyled text-center" aria-labelledby="dropdownButton">
-          {% if user.is_authenticated %}
-          <li><a class="dropdown-item di1" href="/profile">Profile</a></li>
-          <li><a class="dropdown-item di2" href="{% url 'account_logout' %}">Log out</a></li>
-          {% else %}
-          <li><a class="dropdown-item di1" href="{% url 'account_login' %}">Log in</a></li>
-          <li><a class="dropdown-item di2" href="{% url 'account_signup' %}">Sign up</a></li>
-          {% endif %}
-        </ul>
       </div>
     </div>
     
@@ -263,9 +269,14 @@
       });
 
       // Have header icon appear and disappear the search bar
-      function toggleSearchBar() {
+      function toggleSearchBar(event) {
         var searchBar = document.querySelector('.search-bar');
         searchBar.style.display = (searchBar.style.display === '' || searchBar.style.display === 'none') ? 'block' : 'none';
+
+        if (searchBar.style.display === 'block') {
+          var searchInput = document.getElementById('search-input');
+          searchInput.focus(); // Set focus to the search input element
+        }
       }
 
       document.addEventListener('DOMContentLoaded', function() {

@@ -93,6 +93,7 @@ h1 {
     font-size: 7.34375vw;
     flex-direction: row-wrap;
     cursor: pointer;
+    min-width: 1.5rem;
 }
 
 .menu-icon:hover {
@@ -118,9 +119,8 @@ h1 {
 }
 
 #user-options-dropdown  {
-    position: fixed !important;
-    top: 5rem;
-    right: 5vw;
+    position: absolute;
+    top: 6rem;
 }
 
 #user-options-dropdown div ul li a {
@@ -135,6 +135,11 @@ h1 {
     background: #EF9742;
 }
 
+/*--------------------------Shopping bag header coin icon and bag total figure--*/
+
+.bag-total {
+    position: absolute;
+}
 
 /*--------------------------Base popups: menu, search and messages---*/
 /*MENU*/
@@ -210,6 +215,7 @@ h1 {
 .search-bar {
     display: none;
     position: absolute;
+    top: 6rem;
     margin-left: calc(50vw - 7rem);
 }
 
