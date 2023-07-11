@@ -11,10 +11,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row overlay-card">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
+    <div>
+        <a href="/products" class="xanthous-text go-back-to-products">
+            <i class="fa-solid fa-circle-left"></i>
+        </a>
+    </div>
+    <div class="container-fluid description-container texture">
+        <div class="row overlay-card overlay-card-details moonstone">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2">
+                <div class="image-container my-3">
                     {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank">
                         <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -25,12 +30,14 @@
                     </a>
                     {% endif %}
                 </div>
+
                 <div>
                     {% if reviews %}
-                        <h4>{{ product.category.get_friendly_name }}</h4>
-                        <h3> Reviews</h3>
+                        <h4> Reviews</h4>
                         <hr>
                         {% for review in reviews %}
+                        <small class="col text-right float-right">{{ review.created_at|date:"F d, Y" }}</small>
+                        <br>
                         <p>
                             <div class="d-flex">
                                 {% for avatar in avatars %}
@@ -39,20 +46,22 @@
                                     <img class="img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.user.username }} Avatar">
                                   </div>
                                   <div class="col-10">
-                                    <p>{{ avatar.player_name }}</p>
+                                    <p class="ml-5">{{ avatar.player_name }}</p>
                                   </div>
                                   {% endif %}
                                 {% endfor %}
                             </div>
                             <strong>{{ review.title }}</strong>
-                            <small class="col text-right">{{ review.created_at|date:"F d, Y" }}</small>
                             <br>{{ review.body }}<br>
                             {% if review.user == request.user %}
                                 <a class="text-danger col text-right" href="{% url 'delete_review' review.id %}">
                                     <small>delete your review</small>
                                 </a>
                             {% else %}
+                                {% if review.has_avatar %}                            
+                                {% else %}
                                 <small class="text-right">by {{ review.user }}</small>
+                                {% endif %}
                             {% endif %}
                             <hr>
                         </p>
@@ -67,28 +76,33 @@
                         {% endif %}
                     {% endif %}
                 </div>
+
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{ product.name }}</p>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="mb-1 mt-3">
+                    <h3 class="pl-1 mb-0 orange">{{ product.name }}</h3>
                     {% if request.user.is_superuser %}
-                        <small class="ml-3">
-                            <a href="{% url 'edit_product' product.id %}">Edit </a>                                                       
-                            <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                    <p class="orange mb-0">
+                        <small class="ml-1">
+                            <a class="white-text" href="{% url 'edit_product' product.id %}">Edit </a>                                                       
+                            <a class="onyx-text" href="{% url 'delete_product' product.id %}">Delete</a>
                         </small>
+                    </p>
                     {% endif %}
-                    <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                    <p class="lead pl-1 mb-0 text-left font-weight-bold butterscotch">€{{ product.price }}</p>
                     {% if product.category %}
-                    <p class="small mt-1 mb-0">
-                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                    <p class="small pl-1 mt-0 mb-0 butterscotch">
+                        <a class="white-text" href="{% url 'products' %}?category={{ product.category.name }}">
                             <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                         </a>
                     </p>
                     {% endif %}
-                    {% if product.aggregaterating %}
-                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.aggregaterating }} / 5</small>
+                    
+                    <div class="xanthous pl-1">
+                        {% if product.aggregaterating %}
+                    <small class="onyx-text"><i class="fas fa-star mr-1"></i>{{ product.aggregaterating }} / 5</small>
                     {% else %}
-                        <small class="text-muted">No Rating</small>
+                        <small class="onyx-text">No Rating</small>
                     {% endif %}
                                                           
                     {% if user.is_authenticated %}
@@ -97,7 +111,7 @@
                             <small class="text-muted">                                
                                 <form method="POST" action="{% url 'product_detail' product_id=product.id %}">
                                     {% csrf_token %}
-                                    <button class="magic-button" type="submit" name="delete_rating">
+                                    <button class="rating-button" type="submit" name="delete_rating">
                                         {{ request.user.username }}'s score: 
                                         <i class="fas fa-star mr-1"></i>
                                         {{ rating.rating }} / 5
@@ -118,7 +132,7 @@
                                         {% endif %}
                                     {% endfor %}
                                     {% if not has_review %}
-                                        <a href="{% url 'create_review' product.id %}">Leave a Review</a>
+                                        <a href="{% url 'create_review' product.id %}"><p>Leave a Review</p></a>
                                     {% endif %}
                                 {% endwith %}
                             {% endif %} 
@@ -132,36 +146,49 @@
                                 <input type="radio" name="rating" value="{{ rating }}" id="star{{ rating }}" style="display: none;">
                                 <label for="star{{ rating }}"><i class="fas fa-star"></i></label>
                             {% endfor %}
-                        </form>                                                                  
+                        </form>
+                        <p class="pink-text mb-0"><small>Please leave a rating before submitting a review</small></p>                                                                  
                         {% endif %}
                     {% endif %}              
+                    </div>
+
                 </div>
-                <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mt-3">{{ product.description }}</p>
+                <div class="mb-0 mt-1">
+                    <div>
+                        <button 
+                            class="expand-collapse-button mb-0 orange-text text-uppercase" 
+                            onclick="toggleMaxHeight()"
+                            id="toggle-description-field-button">
+                            <strong>Expand</strong>
+                        </button>
+                    </div>
+                    <p id="description-field" class="product-details-container mt-3">
+                        {{ product.description }} 
+                    </p>
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
                             {% with product.has_variants as v %}
                             {% if v %}
-                            <div class="col-12">
+                            <div class="col-12 xanthous">
                                 <p><strong>Console:</strong></p>
                                 <select class="form-control rounded-0 w-50" name="product_variant" id="product_variant">
-                                    <option value="xbox">XBOX One</option>
+                                    <option value="xbox"><div>XBOX One</div></option>
                                     <option value="ps">Playstation 4</option>
                                     <option value="ds">Nintendo</option>
                                     <option value="pc">Desktop</option>
                                 </select>
                             </div>
                             {% endif %}
-                            <div class="col-12">
-                                <p class="mt-3"><strong>Quantity:</strong></p>
+                            <div class="col-12 xanthous">
+                                <p class="mt-0"><strong>Quantity:</strong></p>
                                 <div class="form-group w-50">
                                     <div class="input-group input-group-{{ product.id }}">
                                         <div class="input-group-prepend">
                                             <button class="decrement-qty btn btn-black rounded-0 decrement-qty_{{ product.id }}" 
                                                 data-item_id="{{ product.id }}">
                                                 <span class="icon">
-                                                    <i class="fas fa-minus"></i>
+                                                    <i class="fas fa-minus onyx-text"></i>
                                                 </span>
                                             </button>
                                         </div>
@@ -172,7 +199,7 @@
                                             <button class="increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
                                                 data-item_id="{{ product.id }}">
                                                 <span class="icon">
-                                                    <i class="fas fa-plus"></i>
+                                                    <i class="fas fa-plus onyx-text"></i>
                                                 </span>
                                             </button>
                                         </div>
@@ -180,17 +207,22 @@
                                 </div>
                             </div>
 
-                            <div class="col{% if v %}-12 mt-2{% endif %}">
-                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                            <div class="col{% if v %}-12 mt-0{% endif %} butterscotch">
+                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-3">
                                     <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fa-solid fa-circle-chevron-left onyx-text"></i>                                    
                                     </span>
-                                    <span class="text-uppercase">Keep Shopping</span>
+                                    <span class="play-font onyx-text">Keep Shopping</span>
                                 </a>
-                                <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+                                
+                                <span class="icon">
+                                    <input type="submit" class="btn onyx-text rounded-0 play-font mt-3" value="Add to Bag">                                
+                                </span>                                
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            
                             {% endwith %}
+                            <div class="decoration-stripe orange"></div>
                         </div>
                     </form>
                 </div>
@@ -200,6 +232,46 @@
 {% endblock %}
 
 {% block postloadjs %}
+<script>
+
+    function setInitialMaxHeight() {
+        var detailsContainer = document.getElementById("description-field");
+        detailsContainer.style.maxHeight = "14vh";
+    }
+
+    // Set the initial max height on page load
+    window.onload = setInitialMaxHeight;
+
+    function toggleMaxHeight() {
+        var detailsContainer = document.getElementById("description-field");
+        var toggleButton = document.getElementById("toggle-description-field-button");
+
+        if (detailsContainer.style.maxHeight) {
+            detailsContainer.style.maxHeight = null;
+            toggleButton.innerHTML = "<strong>Collapse</strong>";
+        } else {
+            detailsContainer.style.maxHeight = "14vh";
+            toggleButton.innerHTML = "<strong>Expand</strong>";
+        }
+    }
+
+    // Remove button where unnecessary
+    function checkDescriptionLength() {
+        var descriptionCharactersAmount = document.getElementById('description-field');
+        var toggleDescriptionField = document.getElementById('toggle-description-field-button');
+
+        if (descriptionCharactersAmount.innerText.length < 200) {
+            toggleDescriptionField.classList.add('hidden');
+        } else {
+            toggleDescriptionField.classList.remove('hidden');
+        }
+        }
+    // Call the function when the page finishes loading
+    window.addEventListener('DOMContentLoaded', function() {
+    checkDescriptionLength();
+    });
+
+</script>
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}

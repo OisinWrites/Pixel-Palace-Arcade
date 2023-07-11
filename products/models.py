@@ -54,8 +54,8 @@ class Product(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
-    
+
     @staticmethod
     def search(query):
-        return Product.objects.filter(
-Q(name__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query)        )
+        return Product.objects.filter(Q(name__icontains=query) | Q(
+            description__icontains=query) | Q(category__name__icontains=query))

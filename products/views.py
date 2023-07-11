@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Exists, OuterRef
 from django.db.models.functions import Lower
 from django.urls import reverse
 
@@ -73,13 +73,19 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     rating = None
     avatars = None
+    reviews = None
 
     if request.user.is_authenticated:
         rating = Rating.objects.filter(
             product=product, user=request.user).first()
-        reviews = Review.objects.filter(product=product)
-        avatars = Avatar.objects.filter(
-            user__in=[review.user for review in reviews if review.user])
+        reviews = Review.objects.filter(product=product).select_related('user')
+        reviews = reviews.annotate(has_avatar=Exists(
+            Avatar.objects.filter(user_id=OuterRef('user_id'))))
+        user_ids = [review.user_id for review in reviews]
+        avatars = Avatar.objects.filter(user_id__in=user_ids)
+        avatar_dict = {avatar.user_id: avatar for avatar in avatars}
+        for review in reviews:
+            review.avatar = avatar_dict.get(review.user_id)
 
     if request.method == 'POST':
         if 'delete_rating' in request.POST:
