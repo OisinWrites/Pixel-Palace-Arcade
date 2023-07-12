@@ -88,9 +88,19 @@ class Game(models.Model):
             next_col -= 1
         elif self.direction == 'right':
             next_col += 1
-        
+
         new_body = [snake_head] + snake_body[:-1]
         self.update_snake_position(new_body)
+
+    def grow_snake(self):
+        snake_body = self.get_snake_body()
+        last_segment = snake_body[-1]
+        new_segment = (
+            2 * last_segment[0] - snake_body[-2][0],
+            2 * last_segment[1] - snake_body[-2][1]
+            )
+        snake_body.append(new_segment)
+        self.update_snake_position(snake_body)
 
 
 class Score(models.Model):
