@@ -38,6 +38,27 @@ class Game(models.Model):
             ]
         self.snake_body = self._serialize_body(snake_body)
 
+    def get_snake_body(self):
+        return self._deserialize_body(self.snake_body)
+
+    def update_snake_position(self, new_body):
+        self.snake_body = self._serialize_body(new_body)
+
+    def _serialize_body(self, body):
+        return ','.join(f'{row},{col}' for row, col in body)
+
+    def _deserialize_body(self, body_str):
+        return [tuple(map(int, segment.split(','))) for segment in body_str.split(',')]
+
+    def check_collision(self, next_row, next_col):
+        if next_row < 0 or next_row >= self.board_height or next_col < 0 or next_col >= self.board_width:
+            return True
+
+        snake_body = self.get_snake_body()
+        if (next_row, next_col) in snake_body[1:]:
+            return True
+
+        return False
 
 class Score(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
