@@ -15,6 +15,7 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('profile/', include('profiles.urls')),
     path('search/', search_view, name='search'),
+    path('snake/', include('snake.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'pixel_palace_arcade.views.handler404'
