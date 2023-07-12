@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import random
 
 
 class Player(models.Model):
@@ -89,8 +90,18 @@ class Game(models.Model):
         elif self.direction == 'right':
             next_col += 1
 
+        if self.check_collision(next_row, next_col):
+            # Game over logic
+            return
+
         new_body = [snake_head] + snake_body[:-1]
         self.update_snake_position(new_body)
+
+        if self.food_position_row == next_row and \
+           self.food_position_col == next_col:
+            self.increment_score(10)
+            self.grow_snake()
+            self.generate_food()
 
     def grow_snake(self):
         snake_body = self.get_snake_body()
