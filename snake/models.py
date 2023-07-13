@@ -30,6 +30,7 @@ class Game(models.Model):
     snake_body = models.TextField(default='')
     food_position_row = models.PositiveIntegerField()
     food_position_col = models.PositiveIntegerField()
+    direction = models.CharField(max_length=10, default='right')
 
     def initialize_snake(self, initial_length):
         initial_row = self.board_height // 2
@@ -62,17 +63,16 @@ class Game(models.Model):
 
     """Check for snake hitting walls"""
     def check_collision(self, next_row, next_col):
-        if next_row < 0 or next_row >= self.board_height or \
-           next_col < 0 or next_col >= self.board_width:
-            return True
+        return next_row < 0 or next_row >= self.board_height or \
+               next_col < 0 or next_col >= self.board_width
 
-        snake_body = self.get_snake_body()
-        if (next_row, next_col) in snake_body[1:]:
-            return True
+    def change_direction(self, new_direction):
+        if (self.direction == 'up' and new_direction != 'down') or \
+           (self.direction == 'down' and new_direction != 'up') or \
+           (self.direction == 'left' and new_direction != 'right') or \
+           (self.direction == 'right' and new_direction != 'left'):
+            self.direction = new_direction
 
-        return False
-
-        """Set control meanings for snake direction input"""
     def move_snake(self):
         snake_head = self.get_snake_head()
         snake_body = self.get_snake_body()
@@ -81,6 +81,7 @@ class Game(models.Model):
             return
 
         next_row, next_col = snake_head
+
         if self.direction == 'up':
             next_row -= 1
         elif self.direction == 'down':
@@ -98,10 +99,31 @@ class Game(models.Model):
         self.update_snake_position(new_body)
 
         if self.food_position_row == next_row and \
-           self.food_position_col == next_col:
+                self.food_position_col == next_col:
             self.increment_score(10)
             self.grow_snake()
             self.generate_food()
+
+    def generate_food(self):
+        snake_body = self.get_snake_body()
+
+        all_positions = [(row, col) for row in range(self.board_height)
+                         for col in range(self.board_width)]
+        available_positions = [
+            pos for pos in all_positions if pos not in snake_body
+            ]
+
+        food_position = random.choice(available_positions)
+
+        self.food_position_row = food_position[0]
+        self.food_position_col = food_position[1]
+
+    def snake_ate_food(self, snake_head_row, snake_head_col):
+        return self.food_position_row == snake_head_row and \
+            self.food_position_col == snake_head_col
+
+    def increment_score(self, points):
+        self.score += points
 
     def grow_snake(self):
         snake_body = self.get_snake_body()
