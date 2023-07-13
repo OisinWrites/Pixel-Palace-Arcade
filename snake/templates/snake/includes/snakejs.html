@@ -2,14 +2,63 @@
 
     document.addEventListener("DOMContentLoaded", function() {
         // Elements
-        const gameBoard = document.getElementById("game-board");
-        const btnUp = document.getElementById("btn-up");
-        const btnDown = document.getElementById("btn-down");
-        const btnLeft = document.getElementById("btn-left");
-        const btnRight = document.getElementById("btn-right");
-        const btnPause = document.getElementById("btn-pause");
-        const btnEnd = document.getElementById("btn-end");
-        const scoreElement = document.getElementById("score");
+        var gameBoard = document.getElementById("game-board");
+        var btnUp = document.getElementById("btn-up");
+        var btnDown = document.getElementById("btn-down");
+        var btnLeft = document.getElementById("btn-left");
+        var btnRight = document.getElementById("btn-right");
+        var btnPause = document.getElementById("btn-pause");
+        var btnEnd = document.getElementById("btn-end");
+        var scoreElement = document.getElementById("score");
 
+        // Game state variables
+        var snakeBody = [];
+        var direction = game.direction;
+        var foodPosition = { row: game.food_position_row, col: game.food_position_col };
+        var gamePaused = false;
+
+        // Game board size
+        var boardWidth = game.board_width;
+        var boardHeight = game.board_height;
+
+        // Initialize the game
+        initializeGame();
+
+        // Add event listeners to control buttons
+        btnUp.addEventListener("click", function() { changeDirection("up"); });
+        btnDown.addEventListener("click", function() { changeDirection("down"); });
+        btnLeft.addEventListener("click", function() { changeDirection("left"); });
+        btnRight.addEventListener("click", function() { changeDirection("right"); });
+        btnPause.addEventListener("click", togglePause);
+        btnEnd.addEventListener("click", endGame);
+
+        // Function to initialize the game
+        function initializeGame() {
+            // Reset game board
+            gameBoard.innerHTML = "";
+
+            // Set up game board grid
+            for (var row = 0; row < boardHeight; row++) {
+                for (var col = 0; col < boardWidth; col++) {
+                    var square = document.createElement("div");
+                    square.classList.add("square");
+                    square.id = "cell-" + row + "-" + col;
+                    gameBoard.appendChild(square);
+                }
+            }
+
+            // Reset game state
+            snakeBody = game.get_snake_body;
+            direction = game.direction;
+            gamePaused = false;
+
+            // Render snake and food
+            renderSnake();
+            renderFood();
+
+            // Start game loop
+            gameLoop();
+        }
+    });
 
 </script>
