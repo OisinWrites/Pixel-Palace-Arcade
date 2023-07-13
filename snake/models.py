@@ -4,15 +4,12 @@ import random
 
 
 class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_name = models.CharField(max_length=255)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True
+        )
+    avatar = models.ForeignKey(Avatar, on_delete=models.CASCADE)
     games_played = models.PositiveIntegerField(default=0)
     highscore = models.PositiveIntegerField(default=0)
-
-    def save(self, *args, **kwargs):
-        if not self.avatar_name:
-            self.avatar_name = self.user.username
-        super().save(*args, **kwargs)
 
     def increment_games_played(self):
         self.games_played += 1

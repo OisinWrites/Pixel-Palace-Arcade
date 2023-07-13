@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block content %}
+ 
+<h1>Snake Game</h1>
+    <div id="player-info">
+        <p>Player: <span id="avatar-name">{{ player.avatar_name }}</span></p>
+        <p>Score: <span id="score">{{ game.score }}</span></p>
+    </div>
+    <div class="game-board-container">
+        <div id="game-board" class="game-board">
+            <!-- Render the game board -->
+        </div>
+    </div>
+    <div id="controls">
+        <button id="btn-up">Up</button>
+        <button id="btn-down">Down</button>
+        <button id="btn-left">Left</button>
+        <button id="btn-right">Right</button>
+        <button id="btn-pause">Pause</button>
+        <button id="btn-end">End</button>
+    </div>
+
+    {% include 'snake/includes/snakejs.html' %}
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+{% endblock %}
