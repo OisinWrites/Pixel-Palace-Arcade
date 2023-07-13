@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Player, Game, Score
 
 
-def home(request):
-    return render(request, 'home.html')
-
-
 def game(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -19,11 +15,7 @@ def game(request):
         'player': player,
         'game': game,
     }
-    return render(request, 'game.html', context)
-
-
-def login(request):
-    return render(request, 'login.html')
+    return render(request, 'snake.html', context)
 
 
 def leaderboard(request):
