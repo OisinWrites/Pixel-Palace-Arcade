@@ -1,5 +1,7 @@
 from django.db import models
+from profiles.models import Avatar
 from django.contrib.auth.models import User
+
 import random
 
 
@@ -7,7 +9,8 @@ class Player(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, blank=True
         )
-    avatar = models.ForeignKey(Avatar, on_delete=models.CASCADE)
+    avatar = models.ForeignKey(Avatar, on_delete=models.CASCADE,
+                               null=True, blank=True)
     games_played = models.PositiveIntegerField(default=0)
     highscore = models.PositiveIntegerField(default=0)
 
@@ -95,8 +98,7 @@ class Game(models.Model):
         new_body = [snake_head] + snake_body[:-1]
         self.update_snake_position(new_body)
 
-        if self.food_position_row == next_row and \
-                self.food_position_col == next_col:
+        if self.snake_ate_food(next_row, next_col):
             self.increment_score(10)
             self.grow_snake()
             self.generate_food()

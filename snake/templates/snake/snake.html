@@ -6,17 +6,21 @@
 {% endblock %}
 
 {% block content %}
- 
-<h1>Snake Game</h1>
-    <div id="player-info">
-        <p>Player: <span id="avatar-name">{{ player.avatar_name }}</span></p>
+    <h1 class="moonstone-text">Snake Game</h1>
+    <div id="player-info" class="moonstone-text">
+        <p>Player: <span id="avatar-name">{{ avatar.player_name }}</span></p>
         <p>Score: <span id="score">{{ game.score }}</span></p>
     </div>
-    <div class="game-board-container"
-         data-width="{{ game.board_width }}"
-         data-height="{{ game.board_height }}">
+    <div id="game-board-container" class="game-board-container">
         <div id="game-board" class="game-board">
             <!-- Render the game board -->
+            {% for row in game_board %}
+                <div class="row">
+                    {% for col in row %}
+                        <div class="cell {% if col == 'X' %}snake {% elif col == 'O' %}food {% endif %}"></div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div id="controls">
@@ -27,11 +31,9 @@
         <button id="btn-pause">Pause</button>
         <button id="btn-end">End</button>
     </div>
-
-    {% include 'snake/includes/snakejs.html' %}
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
-
+    {{ block.super }}
+    <script src="{% static 'snake/js/snake.js' %}"></script>
 {% endblock %}
