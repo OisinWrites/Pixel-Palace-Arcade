@@ -30,3 +30,24 @@
         <a href="{% url 'end_game' %}"><button>End</button></a>
     </div>
 
+<script>
+    $(document).ready(function() {
+        // AJAX request to start_game view on DOM load
+        $.ajax({
+        type: "GET",
+        url: "",  // Replace this with the URL configured for start_game view
+        success: function(response) {
+            // Handle the success response, e.g., update the game UI based on the received data
+            console.log(response.message);
+            // Additional logic to update the game UI based on the response data
+        },
+        error: function(error) {
+            // Handle the error response, if any
+            console.error(error);
+        }
+        });
+    });
+</script>
+
+</body>
+</html>

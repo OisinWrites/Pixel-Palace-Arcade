@@ -5,7 +5,7 @@ from profiles.models import Avatar
 from django.http import JsonResponse
 
 
-def start_game(request):
+def game(request):
     if request.user.is_authenticated:
         # If the user is logged in,
         # try to find the corresponding Player model instance
