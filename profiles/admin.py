@@ -7,7 +7,7 @@ class AvatarAdmin(admin.ModelAdmin):
         'user',
         'image_url',
         'image',
-        'player_name',
+        'avatar_name',
     )
 
 
