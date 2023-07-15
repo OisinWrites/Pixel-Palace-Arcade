@@ -1,11 +1,9 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block page_header %}
-
-{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel Palace Arcade: Snakemode</title>
+</head>
+<body>
     <h1 class="moonstone-text">Snake Game</h1>
     <div id="player-info" class="moonstone-text">
         <p>Player: <span id="avatar-name">{{ avatar.player_name }}</span></p>
@@ -24,16 +22,11 @@
         </div>
     </div>
     <div id="controls">
-        <button id="btn-up">Up</button>
-        <button id="btn-down">Down</button>
-        <button id="btn-left">Left</button>
-        <button id="btn-right">Right</button>
-        <button id="btn-pause">Pause</button>
-        <button id="btn-end">End</button>
+        <a href="{% url 'change_direction' direction='up' %}"><button>Up</button></a>
+        <a href="{% url 'change_direction' direction='down' %}"><button>Down</button></a>
+        <a href="{% url 'change_direction' direction='left' %}"><button>Left</button></a>
+        <a href="{% url 'change_direction' direction='right' %}"><button>Right</button></a>
+        <a href="{% url 'pause_game' %}"><button>Pause</button></a>
+        <a href="{% url 'end_game' %}"><button>End</button></a>
     </div>
-{% endblock %}
 
-{% block postloadjs %}
-    {{ block.super }}
-    <script src="{% static 'snake/js/snake.js' %}"></script>
-{% endblock %}
