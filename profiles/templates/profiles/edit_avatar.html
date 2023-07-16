@@ -38,15 +38,15 @@
                 <a class="d-flex justify-content-center" href="{{ avatar.image.url }}" target="_blank">                    
                     <div class="image-container col-3">
                         {% if avatar.image %}
-                            <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.player_name }}'s Avatar">
+                            <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.avatar_name }}'s Avatar">
                         {% else %}
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.player_name }}'s Avatar">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.avatar_name }}'s Avatar">
                         {% endif %}
                     </div>
                 </a>                 
                 <div class="text-center">
                     <div>
-                        <h3>{{ avatar.player_name }}</h3>
+                        <h3>{{ avatar.avatar_name }}</h3>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center" >

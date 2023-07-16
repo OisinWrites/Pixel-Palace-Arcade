@@ -5,29 +5,40 @@
 </head>
 <body>
     <h1 class="moonstone-text">Snake Game</h1>
+    
     <div id="player-info" class="moonstone-text">
-        <p>Player: <span id="avatar-name">{{ avatar.player_name }}</span></p>
+        <p>Player: <span id="avatar-name">
+            {{ avatar.avatar_name }}
+            {% if player.avatar.avatar_name %}  
+            {{ player.avatar.avatar_name }}
+            {% elif player.user.username %}
+            {{ player.user.username }}
+            {% elif player.player_name %}
+            {{ player.player_name }}
+            {% else %}
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit">Save Name</button>
+            </form>
+            {% endif %}
+        </span></p>
         <p>Score: <span id="score">{{ game.score }}</span></p>
     </div>
+    
     <div id="game-board-container" class="game-board-container">
         <div id="game-board" class="game-board">
-            <!-- Render the game board -->
-            {% for row in game_board %}
-                <div class="row">
-                    {% for col in row %}
-                        <div class="cell {% if col == 'X' %}snake {% elif col == 'O' %}food {% endif %}"></div>
-                    {% endfor %}
-                </div>
+            {% for row in rows %}
+                {% for col in cols %}
+                    <div class="square {% if game_board.row.1 == forloop.counter0 and game_board.row.0 == forloop.parentloop.counter0 %}snake-head{% endif %}"></div>
+                {% endfor %}
+                <div style="clear: both;"></div> <!-- Clear float after each row -->
             {% endfor %}
         </div>
     </div>
+    
     <div id="controls">
-        <a href="{% url 'change_direction' direction='up' %}"><button>Up</button></a>
-        <a href="{% url 'change_direction' direction='down' %}"><button>Down</button></a>
-        <a href="{% url 'change_direction' direction='left' %}"><button>Left</button></a>
-        <a href="{% url 'change_direction' direction='right' %}"><button>Right</button></a>
-        <a href="{% url 'pause_game' %}"><button>Pause</button></a>
-        <a href="{% url 'end_game' %}"><button>End</button></a>
+
     </div>
 
 <script>

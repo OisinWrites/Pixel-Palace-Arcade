@@ -11,66 +11,24 @@ color: #EBEBEB; White
 
 /* snake.css */
 
-/* Game board container */
 .game-board-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+    width: 24rem; /* 12 columns of 2rem each */
+    height: 18rem; /* 9 rows of 2rem each */
+    border: 2px solid #082b13; /* Optional border for visualization */
 }
 
-/* Game board */
-.game-board {
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1fr);
-    gap: 1px;
-    background-color: #33333362;
-    border: 2px solid #fff;
+.square {
+    height: 2rem;
+    width: 2rem;
+    background: #0d55256e;
+    border: 1px solid #0d5525;
+    box-sizing: border-box;
+    float: left;
 }
 
-/* Game board row */
-.row {
-    display: flex;
+.snake-head {
+    background-color: #0d5525;
 }
-
-/* Game board cell */
-.cell {
-    flex: 1;
-    background-color: #fff;
-}
-
-/* Snake */
-.snake {
-    background-color: #39a849;
-    z-index: 300;
-    width: 10px;
-    height: 10px;
-}
-
-/* Food */
-.food {
-    background-color: #BFA13C;
-}
-
-/* Player info */
-#player-info {
-    margin-bottom: 20px;
-}
-
-/* Controls */
-#controls {
-    position: fixed;
-    bottom: 5rem;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#controls button {
-    margin: 0 5px;
-}
-
 /* -----------------------------------------Base---------*/
 body {
     height: 100%;

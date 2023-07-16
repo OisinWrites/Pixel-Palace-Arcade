@@ -31,16 +31,16 @@
                     <a class="d-flex justify-content-center" href="{% url 'edit_avatar' %}">
                         <div class="image-container col-3">
                             {% if avatar.image %}
-                                <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.player_name }}'s Avatar">
+                                <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.avatar_name }}'s Avatar">
                             {% else %}
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.player_name }}'s Avatar">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.avatar_name }}'s Avatar">
                             {% endif %}
                         </div>
                     </a>                 
                     <div class="text-center">
                         <a class="d-flex justify-content-center" href="{% url 'edit_avatar' %}">
                             <div>
-                                {{ avatar.player_name }}
+                                {{ avatar.avatar_name }}
                             </div>
                         </a>
                     </div>
