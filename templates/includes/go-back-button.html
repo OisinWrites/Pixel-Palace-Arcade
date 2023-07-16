@@ -1,0 +1,10 @@
+<script text="javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+        var goBackButtons = document.getElementsByClassName("go-back-button");
+        for (var i = 0; i < goBackButtons.length; i++) {
+            goBackButtons[i].addEventListener("click", function() {
+                window.history.back();
+            });
+        }
+    });
+</script>

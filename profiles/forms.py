@@ -45,7 +45,7 @@ class AvatarForm(forms.ModelForm):
     Form to create alternate personal details for
     social engagement within site.
     """
-    player_name = forms.CharField(
+    avatar_name = forms.CharField(
         max_length=50,
         widget=forms.TextInput(attrs={'placeholder': 'Enter player name'}),
         label=''
@@ -79,4 +79,4 @@ class AvatarForm(forms.ModelForm):
 
     class Meta:
         model = Avatar
-        fields = ['image', 'player_name']
+        fields = ['image', 'avatar_name']

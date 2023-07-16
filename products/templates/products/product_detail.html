@@ -11,14 +11,14 @@
 {% endblock %}
 
 {% block content %}
-    <div>
-        <a class="xanthous-text go-back-button">
-            <i class="fa-solid fa-circle-left"></i>
-        </a>
-    </div>
-    <div class="container-fluid description-container texture">
+    <div class="container-fluid description-container texture mt-0">
         <div class="row overlay-card overlay-card-details moonstone">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2">
+            <div>
+                <div class="go-back-button orange-text mt-2">
+                    <i class="fa-solid fa-circle-left"></i>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2 mt-5">
                 <div class="image-container my-3">
                     {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank">
@@ -78,7 +78,7 @@
                 </div>
 
             </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-5">
                 <div class="mb-1 mt-3">
                     <h3 class="pl-1 mb-0 orange">{{ product.name }}</h3>
                     {% if request.user.is_superuser %}
@@ -273,5 +273,6 @@
 
 </script>
 {{ block.super }}
+{% include 'includes/go-back-button.html' %}
 {% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}

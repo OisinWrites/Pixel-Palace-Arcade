@@ -1,0 +1,69 @@
+<script text="javascript">
+    // Have header icon appear and disappear the search bar
+    function toggleSearchBar(event) {
+        var searchBar = document.querySelector('.search-bar');
+        searchBar.style.display = (searchBar.style.display === '' || searchBar.style.display === 'none') ? 'block' : 'none';
+
+        if (searchBar.style.display === 'block') {
+            var searchInput = document.getElementById('search-input');
+            searchInput.focus(); // Set focus to the search input element
+        }
+    }
+
+    function closeModal() {
+        var modalOverlay = document.querySelector('.modal-overlay-search');
+        var searchInput = document.getElementById('search-input');
+        var searchResultsContainer = document.getElementById('search-results');
+
+        modalOverlay.style.display = 'none';
+        searchInput.value = '';
+        searchResultsContainer.innerHTML = ''; // Clear the search results
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var modalOverlay = document.querySelector('.modal-overlay-search');
+        var closeButton = document.getElementById('close-button');
+        var searchForm = document.getElementById('search-form');
+        var searchInput = document.getElementById('search-input');
+        var searchResultsContainer = document.getElementById('search-results');
+
+        closeButton.addEventListener('click', function(event) {
+            if (event.target === closeButton) {
+                closeModal();
+            }
+        });
+
+        modalOverlay.addEventListener('click', function(event) {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var searchTerm = searchInput.value.trim();
+            if (searchTerm !== '') {
+                // Perform AJAX request or any other method to fetch the search results HTML page
+                // Once the page is fetched, extract the content and insert it into the modal content
+                fetch('/search/?q=' + encodeURIComponent(searchTerm))
+                    .then(function(response) {
+                        return response.text();
+                    })
+                    .then(function(html) {
+                        searchResultsContainer.innerHTML = html;
+                        modalOverlay.style.display = 'block';
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching search results:', error);
+                    });
+            }
+        });
+
+        // Listen for keydown events on the document and call closeModalOnEsc function
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    });
+</script>

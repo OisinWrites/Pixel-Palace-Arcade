@@ -9,46 +9,29 @@ color: #34373D; Onyx
 color: #EBEBEB; White
 */
 
-/* snake.css */
-
-.game-board-container {
-    width: 24rem; /* 12 columns of 2rem each */
-    height: 18rem; /* 9 rows of 2rem each */
-    border: 2px solid #082b13; /* Optional border for visualization */
-}
-
-.square {
-    height: 2rem;
-    width: 2rem;
-    background: #0d55256e;
-    border: 1px solid #0d5525;
-    box-sizing: border-box;
-    float: left;
-}
-
-.snake-head {
-    background-color: #0d5525;
-}
 /* -----------------------------------------Base---------*/
 body {
     height: 100%;
     width: 100%;
     margin: 0 !important;
     overflow-y: auto;
-    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center absolute;
+    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
     font-family: 'Play', sans-serif;
     color: #EBEBEB;
+    z-index: -10;
 }
 
 body::before {
-    content: "";
-    background-color: #f3b9443f;
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1;
+    height:100vh;
+    background-color: rgba(191, 161, 60, 0.35);
+    z-index: -9;
 }
 
 .index-background {
@@ -89,13 +72,14 @@ h1 {
     font-family: 'Press Start 2P', cursive;
     font-size: 1rem;
 }
+
 /*-----------------------------------------Header--------*/
 .header {
     width: 100%;
     display: flex;
     position: sticky;
     height: 5rem;
-    z-index: 9500;
+    z-index: 1;
     
 }
 
@@ -116,6 +100,7 @@ h1 {
     display: flex;
     justify-content: flex-end;
     flex-grow: 1;
+    z-index: 10;
 }
 
 .header div, #user-options {
@@ -161,7 +146,7 @@ h1 {
     background: #EBEBEB;
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
+    z-index: 9998;
 }
 
 .body-menu {
@@ -227,8 +212,9 @@ h1 {
     display: none;
     position: absolute;
     font-size: 1.1rem;
-    top: 6.2rem;
-    margin-left: calc(50vw - 10.65rem);
+    top: 5.2rem;
+    margin-left: calc(50vw - 7rem);
+    z-index: 8000;
 }
 
 .search-bar input {
@@ -251,6 +237,7 @@ h1 {
     border-width: 0rem;
     background: none;
     font-size: 1.6rem;
+    z-index: 9999;
 }
 
 .modal-overlay-search {
@@ -281,17 +268,20 @@ h1 {
 }
 
 .modal-content-list a div:hover {
-    font-size: 1.1rem;
     color:#64A2AC;
 }
 
 .collapse-search {
     position: absolute;
-    font-size: 2rem;
+    font-size: 2.2rem;
     right: 2rem;
     z-index: 9999;
     top: 6.5rem;
     cursor: pointer;
+}
+
+.search-form-submit i {
+    z-index: 9999;
 }
 
 /*--------------------------The account dropdown menu----*/
@@ -386,7 +376,7 @@ footer div p {
 }
 
 .dropdown-menu {
-    background: #da7092d5;
+    background: #da7092;
 }
 
 .dropdown-item {
@@ -460,11 +450,23 @@ footer div p {
 }
 /*-------------------------------------Edit Product---*/
 
+/*-----------------------------------Review Product---*/
+
+.review-page-image {
+    height: auto;
+    width: 50%;
+}
+
+.review-form textarea, #id_title {
+    opacity: 0.75;
+    color: #34373D;
+}
+
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
     background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
     background-size: cover;
-    max-width: fit-content;
+    max-width: max-content;
 }
 
 .texture-text {
@@ -474,7 +476,7 @@ footer div p {
 }
 
 .opacity-75 {
-    opacity: 0.75;
+    opacity: 0.90;
 }
 
 .test-div {
@@ -483,31 +485,31 @@ footer div p {
 }
 
 .moonstone {
-    background: #64A2ACcc;
+    background: #64A2AC;
 }
 
 .satin {
-    background: #bfa03ccc;
+    background: #bfa03c;
 }
 
 .xanthous {
-    background: #F3B844cc;
+    background: #F3B844;
 }
 
 .butterscotch {
-    background: #EF9742cc; 
+    background: #EF9742; 
 }
 
 .orange {
-    background: #EB7640cc; 
+    background: #EB7640; 
 }
 
 .pink {
-    background: #DA7092cc;
+    background: #DA7092;
 }
 
 .white {
-    background: #EBEBEBcc;
+    background: #EBEBEB;
 }
 
 .onyx {
@@ -613,5 +615,30 @@ footer div p {
     .header div i{
         font-size: 2rem;
         padding: .5rem;
+    }
+}
+
+@media (max-width: 739px) {
+    .search-form-submit i {
+        color: #DA7092 !important;
+    }
+}
+
+@media (min-width: 740px) {
+
+    /* Place the search bar into the space of the header */
+    .search-bar {
+        top: 1rem;
+        margin-left: 0;
+        right: 25.5rem;
+    }
+}
+
+@media (min-width: 899px) {
+    /* Place the search bar into the space of the header */
+    .search-bar {
+        font-size: 1.6rem;
+        top: 1rem;
+        right: calc(50vw - 7rem);
     }
 }

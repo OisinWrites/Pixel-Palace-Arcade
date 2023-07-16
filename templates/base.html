@@ -85,7 +85,7 @@
             <!--The User Options dropdown menu-->
             <div class="hidden user-options-dropdown" id="user-options-dropdown">
               <div class="texture rounded">
-                <ul class="moonstone list-inline list-unstyled text-center" aria-labelledby="dropdownButton">
+                <ul class="pink list-inline list-unstyled text-center" aria-labelledby="dropdownButton">
                   {% if user.is_authenticated %}
                   <li><a class="dropdown-item di1" href="/profile">Profile</a></li>
                   <li><a class="dropdown-item di2" href="{% url 'account_logout' %}">Log out</a></li>
@@ -137,7 +137,7 @@
         <form id="search-form">
           <input type="text" id="search-input" placeholder="Search the catalogue">
           <button type="submit" class="search-form-submit">            
-            <i class="moonstone-text disaply-4 fa-solid fa-magnifying-glass" id="beat-fade"></i>
+            <i class="moonstone-text fa-solid fa-magnifying-glass" id="beat-fade"></i>
           </button>
         </form>
       </div>
@@ -182,8 +182,8 @@
           
       </div>
 
-      <div class="hidden border xanthous" id="return-top">
-          <i class="fa-solid fa-circle-arrow-up xanthous-text mx-auto my-auto"></i>	
+      <div class="hidden border orange" id="return-top">
+          <i class="fa-solid fa-circle-arrow-up orange-text mx-auto my-auto"></i>	
       </div>
     </footer>
 
@@ -272,63 +272,6 @@
         });
       });
 
-      // Have header icon appear and disappear the search bar
-      function toggleSearchBar(event) {
-        var searchBar = document.querySelector('.search-bar');
-        searchBar.style.display = (searchBar.style.display === '' || searchBar.style.display === 'none') ? 'block' : 'none';
-
-        if (searchBar.style.display === 'block') {
-          var searchInput = document.getElementById('search-input');
-          searchInput.focus(); // Set focus to the search input element
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var modalOverlay = document.querySelector('.modal-overlay-search');
-        var closeButton = document.getElementById('close-button');
-        var searchForm = document.getElementById('search-form');
-        var searchInput = document.getElementById('search-input');
-        var searchResultsContainer = document.getElementById('search-results');
-
-        closeButton.addEventListener('click', function(event) {
-          if (event.target === closeButton) {
-            closeModal();
-          }
-        });
-
-        function closeModal() {
-          modalOverlay.style.display = 'none';
-          searchInput.value = '';
-          searchResultsContainer.innerHTML = ''; // Clear the search results
-        }
-
-        modalOverlay.addEventListener('click', function(event) {
-          if (event.target === modalOverlay) {
-            closeModal();
-          }
-        });
-
-        searchForm.addEventListener('submit', function(event) {
-          event.preventDefault();
-          var searchTerm = searchInput.value.trim();
-          if (searchTerm !== '') {
-            // Perform AJAX request or any other method to fetch the search results HTML page
-            // Once the page is fetched, extract the content and insert it into the modal content
-            fetch('/search/?q=' + encodeURIComponent(searchTerm))
-              .then(function(response) {
-                return response.text();
-              })
-              .then(function(html) {
-                searchResultsContainer.innerHTML = html;
-                modalOverlay.style.display = 'block';
-              })
-              .catch(function(error) {
-                console.error('Error fetching search results:', error);
-              });
-          }
-        });
-      });
-
       // Dropdown menu for user options. Toggling hidden class.
       const userOptions = document.getElementById('user-options');
       const userOptionsDropdown = document.getElementById('user-options-dropdown');
@@ -375,15 +318,8 @@
 
       userName.style.right = rightValue;
 
-
-      // JavaScript code to handle the button click event for return a page
-        var goBackButtons = document.getElementsByClassName("go-back-button");
-        for (var i = 0; i < goBackButtons.length; i++) {
-            goBackButtons[i].addEventListener("click", function() {
-                window.history.back();
-            });
-        }
     </script>
+    {% include 'products/includes/search-modal-functionality.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

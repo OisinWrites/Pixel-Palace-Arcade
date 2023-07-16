@@ -15,24 +15,28 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4 d-flex justify-content-center">My Avatar</h2>
-                <hr>
-            </div>
+    <div class="texture rounded m-3">
+        <div class="xanthous">
+                <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">My Avatar</h2>
         </div>
-        <div class="row d-flex">
-            <div class="col-12">
+    </div>
+
+
+    <div class="container-fluid texture mt-0">
+        <div class="row moonstone opacity-90">
+            <div>
+                <div class="go-back-button xanthous-text mt-2">
+                    <i class="fa-solid fa-circle-left"></i>
+                </div>
+            </div>
+            <div class="col-6 mt-5">
             {% if request.user.is_authenticated and avatar.user == request.user %}  
                 <div class="d-flex justify-content-center" >
-                    <a href="{% url 'profile' %}">
-                        <p>
+                    <a class="xanthous-text" href="{% url 'profile' %}">
+                        <h5 class="mb-4">
                             Continue with this hero? 
                             <i class="fa-solid fa-rotate-left"></i>
-                        </p>                  
+                        </h5>                  
                     </a>
                 </div>              
                 <a class="d-flex justify-content-center" href="{{ avatar.image.url }}" target="_blank">                    
@@ -44,32 +48,33 @@
                         {% endif %}
                     </div>
                 </a>                 
-                <div class="text-center">
+                <div class="text-center mt-2">
                     <div>
                         <h3>{{ avatar.avatar_name }}</h3>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center" >
-                    <a class="text-danger" href="{% url 'delete_avatar' %}">
+                    <i class="fa-solid fa-skull onyx-text mr-2"></i>
+                    <a class="onyx-text d-flex align-items-center justify-content-center" href="{% url 'delete_avatar' %}">
                         <p>
                            Forfeit this hero? 
-                           <i class="fa-solid fa-skull"></i>
-                        </p>                  
+                        </p>                       
                     </a>
-                </div> 
-                <hr>                                  
-                <h4 class="d-flex justify-content-center">Edit your Avatar</h4>
-                <div class="col-12 d-flex justify-content-center">                    
-                    <form method="POST" class="form mb-2" enctype="multipart/form-data">
+               </div> 
+            </div>
+            <div class="col-6 mt-5">                                  
+                <h4 class="text-center">Edit your Avatar</h4>
+                <div class="d-flex align-items-center justify-content-center">                    
+                    <form method="POST" class="form mb-2 text-center" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ avatar_form|crispy }}
-                        <div class="text-right">
-                            <button class="btn btn-black rounded-0" type="submit"><i class="fa-solid fa-user-shield"></i> Begin!</button>
-                        </div>
                     </form>
                 </div>
-                <div class="text-center">
-                    <hr>
+                <div class="text-center display-4">
+                    <button class="btn onyx-text rounded-0" type="submit">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <p>Begin!</p>
+                    </button>
                 </div>
             {% endif %}                
             </div>            
@@ -79,6 +84,7 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    {% include 'includes/go-back-button.html' %}
     <script type="text/javascript">
         $('#new-image').change(function() {
             var file = $('#new-image')[0].files[0];
