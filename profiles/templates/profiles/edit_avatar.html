@@ -17,19 +17,21 @@
 {% block content %}
     <div class="texture rounded m-3">
         <div class="xanthous">
-                <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">My Avatar</h2>
+            <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">
+                My Avatar
+            </h2>
         </div>
     </div>
 
-
-    <div class="container-fluid texture mt-0">
+    <div class="container-fluid m-0">
         <div class="row moonstone opacity-90">
             <div>
                 <div class="go-back-button xanthous-text mt-2">
                     <i class="fa-solid fa-circle-left"></i>
                 </div>
             </div>
-            <div class="col-6 mt-5">
+
+            <div class="col-12 col-lg-6 mt-5 m-0">
             {% if request.user.is_authenticated and avatar.user == request.user %}  
                 <div class="d-flex justify-content-center" >
                     <a class="xanthous-text" href="{% url 'profile' %}">
@@ -62,7 +64,8 @@
                     </a>
                </div> 
             </div>
-            <div class="col-6 mt-5">                                  
+
+            <div class="col-12 col-lg-6 mt-5 m-0 ">                                  
                 <h4 class="text-center">Edit your Avatar</h4>
                 <div class="d-flex align-items-center justify-content-center">                    
                     <form method="POST" class="form mb-2 text-center" enctype="multipart/form-data">
@@ -70,11 +73,13 @@
                         {{ avatar_form|crispy }}
                     </form>
                 </div>
-                <div class="text-center display-4">
-                    <button class="btn onyx-text rounded-0" type="submit">
-                        <i class="fa-solid fa-user-shield"></i>
-                        <p>Begin!</p>
-                    </button>
+                <div class="text-center mb-5">
+                    <div class="d-inline-block m-0 xanthous display-4 rounded-circle">
+                        <button class="btn rounded-0 white-text" type="submit">
+                            <i class="ml-3 fa-solid fa-user-shield display-4"></i>
+                            <h4>Begin!</h4>
+                        </button>
+                    </div>
                 </div>
             {% endif %}                
             </div>            
