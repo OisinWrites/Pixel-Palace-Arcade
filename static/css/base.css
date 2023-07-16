@@ -386,7 +386,7 @@ footer div p {
 }
 
 .dropdown-menu {
-    background: #64a3acf5;
+    background: #da7092d5;
 }
 
 .dropdown-item {
@@ -414,14 +414,13 @@ footer div p {
 
 /*--------------------------------Product Description---*/
 
-.go-back-to-products {
+.go-back-button{
     position: absolute;
     font-size: 2rem;
     margin-left: 1rem;
-    margin-top: 1rem;
 }
 
-.go-back-to-products:hover, .fa-circle-arrow-up:hover {
+.go-back-button:hover, .fa-circle-arrow-up:hover {
     color: #DA7092;
 }
 

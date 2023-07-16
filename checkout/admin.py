@@ -7,6 +7,12 @@ class OrderLineItemAdminInline(admin.TabularInline):
     readonly_fields = ('lineitem_total',)
 
 
+class OrderLineItemAdmin(admin.ModelAdmin):
+    list_display = (
+        'product',
+    )
+
+
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineItemAdminInline,)
 
@@ -29,3 +35,4 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderLineItem, OrderLineItemAdmin)

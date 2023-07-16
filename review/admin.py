@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Review
+from .models import Review, Rating
 
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -12,5 +12,14 @@ class ReviewAdmin(admin.ModelAdmin):
     )
 
 
+class RatingAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'product',
+        'rating',
+    )
+
+
 # Register your models here.
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Rating, RatingAdmin)

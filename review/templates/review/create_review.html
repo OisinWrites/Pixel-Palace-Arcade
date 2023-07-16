@@ -13,6 +13,11 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container-fluid">
+        <div>
+            <a class="xanthous-text" id="go-back-button">
+                <i class="fa-solid fa-circle-left"></i>
+            </a>
+        </div>
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="product-details-container mb-5 mt-md-5">
@@ -31,7 +36,7 @@
                             {% csrf_token %}
                             {{ form|crispy }}
                         
-                            <button type="submit">Post Review</button>
+                            <button class="moonstone white-text" type="submit">Post Review</button>
                           </form>
                     {% endif %}                    
                 </div>
