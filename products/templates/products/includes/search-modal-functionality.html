@@ -20,6 +20,12 @@
         searchResultsContainer.innerHTML = ''; // Clear the search results
     }
 
+    function closeModalReview() {
+        var modalReviewContentOverlay = document.querySelector('.review-content-modal');
+
+        modalOverlay.style.display = 'none';
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         var modalOverlay = document.querySelector('.modal-overlay-search');
         var closeButton = document.getElementById('close-button');
@@ -30,12 +36,14 @@
         closeButton.addEventListener('click', function(event) {
             if (event.target === closeButton) {
                 closeModal();
+                closeModalReview();
             }
         });
 
         modalOverlay.addEventListener('click', function(event) {
             if (event.target === modalOverlay) {
                 closeModal();
+                closeModalReview();
             }
         });
 
@@ -63,6 +71,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
+                closeModalReview();
             }
         });
     });

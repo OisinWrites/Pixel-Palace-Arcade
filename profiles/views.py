@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile, Avatar
 from .forms import UserProfileForm, AvatarForm
-from review.models import Review
+from review.models import Review, Rating
+from products.models import Product
 
 from checkout.models import Order
 
@@ -42,6 +43,13 @@ def profile(request):
     orders = profile.orders.all()
     reviews = Review.objects.filter(user=request.user)
 
+    ratings = {}
+    for review in reviews:
+        product = review.product
+        rating = Rating.objects.filter(
+            product=product, user=request.user).first()
+        ratings[product.id] = rating
+
     template = 'profiles/profile.html'
     context = {
         'form': form,
@@ -51,6 +59,7 @@ def profile(request):
         'on_profile_page': True,
         'avatar': avatar,
         'user_id': request.user.id,
+        'ratings': ratings,
     }
     return render(request, template, context)
 

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body class="moonstone">
+
+            <div class="d-flex justify-content-center">
+                <a class="white-text" href="{% url 'product_detail' review.product.id %}">
+                    {{ review.product }}
+                </a>
+            </div>
+            <hr>
+            <small class="col text-right float-right">{{ review.created_at|date:"F d, Y" }}</small>
+            <a><strong>{{ review.title }}</strong></a>
+
+            <p>{{ review.body }}</p>
+
+            <a class="onyx-text float-right mr-2" href="{% url 'delete_review' review.id %}">
+                delete
+            </a>
+
+</body>
+</html>

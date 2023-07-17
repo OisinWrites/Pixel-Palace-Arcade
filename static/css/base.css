@@ -240,7 +240,7 @@ h1 {
     z-index: 9999;
 }
 
-.modal-overlay-search {
+.modal-overlay-search, .review-content-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -461,6 +461,12 @@ footer div p {
     opacity: 0.75;
     color: #34373D;
 }
+
+/*--------------------------------------------Profiles------------*/
+
+/*---------review card pop up modal for review content------------*/
+
+.review-content-modal
 
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {

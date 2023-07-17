@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from review.views import review_modal
 
 urlpatterns = [
     path('', views.profile, name='profile'),
@@ -9,4 +10,6 @@ urlpatterns = [
          views.edit_avatar, name='edit_avatar'),
     path('delete_avatar/', views.delete_avatar,
          name='delete_avatar'),
+    path('review_modal/<int:review_id>/', review_modal,
+         name='review_modal'),
 ]

@@ -80,3 +80,15 @@ def delete_review(request, review_id):
     messages.info(request, 'Review deleted!')
     return redirect(
         reverse('product_detail', kwargs={'product_id': product_id}))
+
+
+def review_modal(request, review_id):
+    # Fetch the review based on the review_id
+    review = get_object_or_404(Review, id=review_id)
+
+    context = {
+        'review': review,
+    }
+    return render(
+        request, 'review/includes/review-content-modal.html', context
+        )
