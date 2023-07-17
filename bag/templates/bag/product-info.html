@@ -1,3 +1,5 @@
 <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+{% if item.product.has_variants %}
 <p class="my-0"><strong>Console:</strong>{% if item.product.has_variants %}{{ item.variant|upper }}{% else %}N/A{% endif %}</p>
+{% endif %}
 <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
