@@ -497,6 +497,18 @@ footer div p {
     color: #EBEBEB;
 }
 
+/*------------------------------------------------------Checkout-------*/
+
+@media (min-width: 992px) {
+
+    .y-scroll-form {
+        max-height: 30vh !important;
+        overflow-y: auto;
+    }
+
+}
+    
+
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
     background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
