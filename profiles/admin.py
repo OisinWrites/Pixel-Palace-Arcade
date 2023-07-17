@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Avatar
+from .models import Avatar, UserProfile
 
 
 class AvatarAdmin(admin.ModelAdmin):
@@ -11,4 +11,12 @@ class AvatarAdmin(admin.ModelAdmin):
     )
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'default_street_address1',
+    )
+
+
 admin.site.register(Avatar, AvatarAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)

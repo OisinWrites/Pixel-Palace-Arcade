@@ -20,6 +20,7 @@ def profile(request):
     avatar = Avatar.objects.filter(user=profile.user).first()
 
     if request.method == 'POST':
+        profile = get_object_or_404(UserProfile, user=request.user)
         form = UserProfileForm(request.POST, instance=profile)
         avatar_form = AvatarForm(request.POST, request.FILES, instance=avatar)
         avatar_form.request = request
@@ -30,12 +31,16 @@ def profile(request):
             avatar.user = request.user
             avatar.save()
 
-            messages.success(request, 'Profile and avatar \
-                updated successfully')
+            messages.success(
+                request, 'Profile and avatar updated successfully')
             return redirect('profile')
         else:
-            messages.error(request, 'Update failed. \
-                Please ensure the forms are valid.')
+            # Display form errors for debugging
+            for field, error in form.errors.items():
+                messages.error(request, f"Form Error ({field}): {error}")
+            for field, error in avatar_form.errors.items():
+                messages.error(
+                    request, f"Avatar Form Error ({field}): {error}")
     else:
         form = UserProfileForm(instance=profile)
         avatar_form = AvatarForm(instance=avatar)
@@ -62,6 +67,24 @@ def profile(request):
         'ratings': ratings,
     }
     return render(request, template, context)
+
+
+@login_required
+def update_delivery_info(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, 'Delivery information updated successfully')
+        else:
+            # Display form errors for debugging
+            for field, error in form.errors.items():
+                messages.error(request, f"Form Error ({field}): {error}")
+
+    return redirect('profile')
 
 
 def edit_avatar(request):
