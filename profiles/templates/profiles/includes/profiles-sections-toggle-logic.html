@@ -1,0 +1,129 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all toggle elements
+        const deliveryToggle = document.querySelector('.delivery-section-toggle');
+        const reviewToggle = document.querySelector('.review-section-toggle');
+        const orderToggle = document.querySelector('.order-section-toggle');
+
+        // Get all section elements
+        const deliverySection = document.getElementById('delivery-section');
+        const reviewSection = document.getElementById('review-section');
+        const orderSection = document.getElementById('order-section');
+
+        // Function to hide all sections
+        function hideAllSections() {
+            deliverySection.style.display = 'none';
+            reviewSection.style.display = 'none';
+            orderSection.style.display = 'none';
+        }
+
+        // Function to hide a specific section
+        function hideSection(section) {
+            section.style.display = 'none';
+        }
+
+        // Function to hide all sections except the one provided
+        function hideOtherSections(exceptSection) {
+            if (deliverySection !== exceptSection) hideSection(deliverySection);
+            if (reviewSection !== exceptSection) hideSection(reviewSection);
+            if (orderSection !== exceptSection) hideSection(orderSection);
+        }
+
+        // Function to show the selected section
+        function showSection(section) {
+            hideOtherSections(section);
+            section.style.display = 'block';
+        }
+
+        // Function to get the current selected section from URL or local storage
+        function getCurrentSection() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedSection = urlParams.get('section');
+
+            if (selectedSection) {
+                const sectionElement = document.getElementById(selectedSection);
+                if (sectionElement) {
+                    return sectionElement.id;
+                }
+            }
+
+            // If section not found in URL or invalid, check local storage
+            const storedSection = localStorage.getItem('currentSection');
+            return storedSection;
+        }
+
+        // Function to store the current section ID in local storage
+        function storeCurrentSection(sectionId) {
+            localStorage.setItem('currentSection', sectionId);
+        }
+
+        // Add click event listeners to the toggle elements
+        // Toggles invert while their selection is active
+        deliveryToggle.addEventListener('click', function () {
+            const isDeliveryVisible = deliverySection.style.display === 'block';
+            if (isDeliveryVisible) {
+                hideSection(deliverySection);
+                clearCurrentSection();
+            } else {
+                showSection(deliverySection);
+                storeCurrentSection('delivery-section');
+            }
+        });
+
+        reviewToggle.addEventListener('click', function () {
+            const isReviewVisible = reviewSection.style.display === 'block';
+            if (isReviewVisible) {
+                hideSection(reviewSection);
+                clearCurrentSection();
+            } else {
+                showSection(reviewSection);
+                storeCurrentSection('review-section');
+            }
+        });
+
+        orderToggle.addEventListener('click', function () {
+            const isOrderVisible = orderSection.style.display === 'block';
+            if (isOrderVisible) {
+                hideSection(orderSection);
+                clearCurrentSection();
+            } else {
+                showSection(orderSection);
+                storeCurrentSection('order-section');
+            }
+        });
+
+        function clearCurrentSection() {
+            localStorage.removeItem('currentSection');
+        }
+
+        // On form submit, update the URL with the current section to maintain selection on refresh
+        const profileUpdateForm = document.getElementById('profile-update-form');
+        if (profileUpdateForm) {
+            profileUpdateForm.addEventListener('submit', function () {
+                const currentSectionId = getCurrentSection();
+                const url = new URL(window.location.href);
+                url.searchParams.set('section', currentSectionId);
+                window.history.replaceState({}, '', url);
+                storeCurrentSection(currentSectionId); // Also store in local storage
+            });
+        }
+
+        // On page load, check if there is a selected section in the URL or local storage
+        const currentSectionId = getCurrentSection();
+
+        // Initially hide all sections
+        hideAllSections();
+
+        // If there is a selected section, show it
+        if (currentSectionId) {
+            const currentSectionElement = document.getElementById(currentSectionId);
+            if (currentSectionElement) {
+                showSection(currentSectionElement);
+            }
+        } else {
+            // If no section is currently selected, hide all sections
+            hideAllSections();
+        }
+    });
+</script>
+

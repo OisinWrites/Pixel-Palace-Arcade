@@ -462,11 +462,22 @@ footer div p {
     color: #34373D;
 }
 
-/*--------------------------------------------Profiles------------*/
+/*--------------------------------------------Profile------------*/
 
-/*---------review card pop up modal for review content------------*/
+.avatar-on-profile {
+    position: absolute;
+    right: 2rem;
+    top: 9rem;
+}
 
-.review-content-modal
+.avatar-large {
+    height: 6rem;
+    width: auto;
+}
+
+.modal-content {
+    top: 20vh;
+}
 
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
