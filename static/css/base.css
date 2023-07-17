@@ -121,6 +121,10 @@ h1 {
 }
 
 .menu-icon:hover {
+    color: #BFA13C;
+}
+
+.game-icon:hover {
     color: #F3B844;
 }
 
@@ -192,6 +196,11 @@ h1 {
     animation: spin 550ms linear infinite;
     transform-origin: center center;
 }
+
+#header-coin-toss:hover  {
+    animation: spin 650ms linear 1;
+    transform-origin: center center;
+}
   
 @keyframes spin {
     0% {
@@ -213,6 +222,7 @@ h1 {
         transform: rotateY(360deg);
     }
 }
+
 /*SEARCH*/
 .search-bar {
     display: none;
@@ -681,11 +691,21 @@ footer div p {
     }
 }
 
-@media (min-width: 899px) {
+@media (min-width: 1060px) {
     /* Place the search bar into the space of the header */
     .search-bar {
         font-size: 1.6rem;
         top: 1rem;
         right: calc(50vw - 7rem);
     }
+}
+
+/* Reduce coin size for so header-icons can fit on the smallest screens */
+@media (max-width: 350px) {
+
+    .coin-logo {
+        height: 3.5rem;
+        margin-top: .65rem;
+    }
+
 }

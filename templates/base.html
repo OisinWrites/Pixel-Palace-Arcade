@@ -57,14 +57,20 @@
        
         <div>
           <a href="/">
-            <img class="coin-logo" src="https://res.cloudinary.com/dwhennrjl/image/upload/v1689615560/logo-coin_cah6hr.png" alt="Pixel Palace Arcade">
+            <img id="header-coin-toss" class="coin-logo" src="https://res.cloudinary.com/dwhennrjl/image/upload/v1689615560/logo-coin_cah6hr.png" alt="Pixel Palace Arcade">
           </a>
         </div>
   
         <div class="header-icons">
 
-          <div class="menu-icon texture-text moonstone-text">
+          <div class="menu-icon texture-text pink-text">
             <i class="fa-sharp fa-solid fa-bars"></i>
+          </div>
+
+          <div class="game-icon">
+            <a href="{% url 'products' %}"  class="texture-text moonstone-text profile-icon">
+              <i class="fa-solid fa-gamepad"></i>
+            </a>
           </div>
   
           <div onclick="toggleSearchBar()" class="search-icon texture-text satin-text">
