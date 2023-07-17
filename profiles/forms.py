@@ -47,11 +47,11 @@ class AvatarForm(forms.ModelForm):
     """
     avatar_name = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'placeholder': 'Enter player name'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Enter avatar name'}),
         label=''
     )
 
-    image = forms.ImageField(label='Choose your hero', required=False,
+    image = forms.ImageField(label='', required=False,
                              widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
@@ -59,7 +59,7 @@ class AvatarForm(forms.ModelForm):
         super(AvatarForm, self).__init__(*args, **kwargs)
 
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'border-black rounded-0'
+            field.widget.attrs['class'] = 'white-text moonstone rounded'
 
     def save(self, commit=True):
         instance = super(AvatarForm, self).save(commit=False)

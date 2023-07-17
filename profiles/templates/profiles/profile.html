@@ -30,9 +30,10 @@
     <div class="container-fluid xanthous">
 
         <!--Avatar creation section / Avatar Display-->
-        <div class="row">
+        <div class="pt-2">
             {% if avatar %}
-                {% if request.user.is_authenticated and avatar.user == request.user %}                
+                {% if request.user.is_authenticated and avatar.user == request.user %}
+                <div class="row">
                     <a class="d-flex justify-content-center avatar-on-profile" href="{% url 'edit_avatar' %}">
                         <div class="image-container">
                             {% if avatar.image %}
@@ -48,44 +49,51 @@
                                 <strong>{{ avatar.avatar_name }}</strong>
                             </h3>
                         </a>
-                    </div>                    
+                    </div>
+                </div>                
                 {% endif %}
             {% else %}                        
                 {% if request.user.is_authenticated %}
-                    <div class="avatar-creation-form-section-toggle" data-section="delivery-info">
-                        <p>Create an Avatar for your Profile</p>
+                <h5 class="d-flex align-items-center butterscotch justify-content-center m-0 p-2 text-nowrap">
+                    <strong>Create an Avatar for your Profile</strong>
+                </h5>
+
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div id="avatar-creation-form">
+                            <form method="POST" class="form mb-2" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ avatar_form|crispy }}
+                                <div class="text-center">
+                                    <button class="btn onyx-text" type="submit">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                        <br>
+                                        <p>Begin!</p>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div id="avatar-creation-form">
-                        <form method="POST" class="form mb-2" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ avatar_form|crispy }}
-                            <div class="text-right">
-                                <button class="btn btn-black rounded-0" type="submit">
-                                    <i class="fa-solid fa-user-shield"></i>
-                                        Begin!
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                </div>
                 {% endif %}
             {% endif %}                
         </div>
                    
         <!--The Section Options-->
-        <div class="white-text row">
-            <div class="col-4 delivery-section-toggle orange white-text pl-1 pr-1 text-nowrap" data-section="delivery-info">
+        <div class="white-text row pb-0 text-uppercase mb-3">
+            <div class="col-4 delivery-section-toggle orange white-text pt-3 text-nowrap d-flex align-items-center justify-content-center" data-section="delivery-info">
                 <p>Delivery Info</p>
             </div>
-            <div class="col-4 review-section-toggle orange white-text pl-1 pr-1" data-section="product-reviews">
+            <div class="col-4 review-section-toggle orange white-text pt-3 d-flex align-items-center justify-content-center" data-section="product-reviews">
                 <p>Reviews</p>
             </div>
-            <div class="col-4 order-section-toggle orange white-text pl-1 pr-1 text-nowrap" data-section="order-history">
+            <div class="col-4 order-section-toggle orange white-text pt-3 text-nowrap d-flex align-items-center justify-content-center" data-section="order-history">
                 <p>Order History</p>
             </div>
         </div>
 
         <!--Review Section-->
-        <div class="col-12 pb-3" id="review-section">
+        <div class="col-12 big-bottom" id="review-section">
             <h3 class="orange-text">Your Product Reviews</h3>
 
             <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
@@ -160,7 +168,7 @@
         </div>
 
         <!--Delivery Section-->
-        <div class="col-12 pb-5" id="delivery-section">
+        <div class="col-12 big-bottom" id="delivery-section">
             <div class="col-12 col-lg-6">
                 <h3 class="orange-text text-nowrap">Delivery Information</h3>
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
@@ -172,7 +180,7 @@
         </div>
 
         <!--Order Section-->
-        <div class="col-12 pb-3" id="order-section">
+        <div class="col-12 big-bottom" id="order-section">
             <div class="col-12 col-lg-6">
                 <h3 class="orange-text">Order History</h3>
                 <div class="order-history table-responsive">

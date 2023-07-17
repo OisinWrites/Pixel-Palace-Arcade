@@ -35,7 +35,8 @@ body::before {
 }
 
 .index-background {
-    background: url("/static/media/arcade-live-still-background.png") no-repeat center center fixed;
+    /*background: url("/static/media/arcade-live-still-background.png") no-repeat center center fixed;*/
+    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613878/static/css/arcade-live-still-background_otrsil.png") no-repeat center center fixed;
 }
 
 a {
@@ -71,6 +72,10 @@ button {
 h1 {
     font-family: 'Press Start 2P', cursive;
     font-size: 1rem;
+}
+
+.big-bottom {
+    padding-bottom: 5rem;
 }
 
 /*-----------------------------------------Header--------*/
@@ -151,7 +156,8 @@ h1 {
 
 .body-menu {
     height: 100vh;
-    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
+    /*background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;*/
+    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -479,15 +485,27 @@ footer div p {
     top: 20vh;
 }
 
+#file-submission-form {
+    max-width: 65vw;
+}
+
+#file-submission-form input {
+    max-width: 55vw;
+}
+
+#id-avatar-name ::placeholder {
+    color: #EBEBEB;
+}
+
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
-    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
     background-size: cover;
     max-width: max-content;
 }
 
 .texture-text {
-    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
     background-size: cover;
     -webkit-background-clip: text;
 }
