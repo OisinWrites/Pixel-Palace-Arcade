@@ -10,76 +10,71 @@
 {% endblock %}
 
 {% block content %}
-    <div class="texture rounded m-3">
-        <div class="xanthous-75 rounded">
-            <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">
-                My Avatar
-            </h2>
+
+    {% if request.user.is_authenticated and avatar.user == request.user %}  
+
+        <div class="texture rounded m-3">
+            <div class="xanthous-75 rounded">
+                <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">
+                    My Avatar
+                </h2>
+            </div>
         </div>
-    </div>
 
-    <div class="container-fluid m-0">
-        <div class="row moonstone opacity-90">
-            <div>
-                <div class="go-back-button xanthous-text mt-2">
-                    <i class="fa-solid fa-circle-left"></i>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-6 mt-5 m-0">
-            {% if request.user.is_authenticated and avatar.user == request.user %}  
-                <div class="d-flex justify-content-center" >
-                    <a class="xanthous-text" href="{% url 'profile' %}">
-                        <h5 class="mb-4">
-                            Continue with this hero? 
-                            <i class="fa-solid fa-rotate-left"></i>
-                        </h5>                  
-                    </a>
-                </div>              
-                <a class="d-flex justify-content-center" href="{{ avatar.image.url }}" target="_blank">                    
-                    <div class="image-container col-3">
-                        {% if avatar.image %}
-                            <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.avatar_name }}'s Avatar">
-                        {% else %}
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.avatar_name }}'s Avatar">
-                        {% endif %}
-                    </div>
-                </a>                 
-                <div class="text-center mt-2">
-                    <div>
-                        <h3>{{ avatar.avatar_name }}</h3>
+        <div class="container-fluid m-0">
+            <div class="row moonstone opacity-90">
+                <div>
+                    <div class="go-back-button xanthous-text mt-2">
+                        <i class="fa-solid fa-circle-left"></i>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center" >
-                    <i class="fa-solid fa-skull onyx-text mr-2"></i>
-                    <a class="onyx-text d-flex align-items-center justify-content-center" href="{% url 'delete_avatar' %}">
-                        <p>
-                           Forfeit this hero? 
-                        </p>                       
-                    </a>
-               </div> 
-            </div>
 
-            <div class="col-12 col-lg-6 mt-5 m-0 ">                                  
-                <h4 class="text-center">Edit your Avatar</h4>
-                <div class="d-flex align-items-center justify-content-center">                    
-                    <form method="POST" class="form mb-2 text-center" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ avatar_form|crispy }}
-                    </form>
-                </div>
-                <div class="text-center mb-5">
-                    <div class="d-inline-block m-0 xanthous display-4 rounded-circle">
-                        <button class="btn rounded-0 white-text" type="submit">
-                            <i class="ml-3 fa-solid fa-user-shield display-4"></i>
-                            <h4>Begin!</h4>
-                        </button>
+                <div class="col-12 mt-5 m-0">     
+                        <div class="image-container col-4 offset-3">
+                            {% if avatar.image %}
+                            <a href="{{ avatar.image.url }}" target="_blank">                    
+                                <img class="card-img-top img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.avatar_name }}'s Avatar">
+                            </a>
+                            {% else %}
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ avatar.avatar_name }}'s Avatar">
+                            {% endif %}
+                        </div>
+                
+                    <div class="text-center mt-2">
+                        <div>
+                            <h3>{{ avatar.avatar_name }}</h3>
+                        </div>
                     </div>
+                    <div class="d-flex justify-content-center" >
+                        <i class="fa-solid fa-skull onyx-text mr-2"></i>
+                        <a class="onyx-text d-flex align-items-center justify-content-center" href="{% url 'delete_avatar' %}">
+                            <p>
+                            Forfeit this hero? 
+                            </p>                       
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3" >
+                        <a href="{% url 'avatar_form' %}" class="xanthous-text d-flex align-items-center justify-content-center">
+                            <h5>
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                Edit your Avatar
+                            </h5>                       
+                        </a>
+                    </div> 
                 </div>
-            {% endif %}                
-            </div>            
-        </div>     
-    </div>
+          
+            </div>     
+        </div>
+
+    {% else %}
+
+    <script>
+        // JavaScript code to redirect to the homepage for rouge users
+        window.location.href = "{% url 'home' %}";
+    </script>
+
+    {% endif %}
+
 {% endblock %}
 
 {% block postloadjs %}

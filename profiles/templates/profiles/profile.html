@@ -156,7 +156,7 @@
                                 {% endif %}
                             {% endwith %}
                             <p class="xanthous-text"><strong>{{ review.title }}</strong></p>
-                            <small class="text-nowrap text-muted">click to see details</small>
+                            <small class="text-nowrap onyx-text">click to see details</small>
                             <div>
                                 <a class="white-text rounded pink float-right pl-1 pr-1" href="{% url 'delete_review' review.id %}">
                                     delete
@@ -181,46 +181,66 @@
         </div>
 
         <!--Order Section-->
-        <div class="col-12 big-bottom" id="order-section">
-            <div class="col-12 col-lg-6">
+        <div class="big-bottom" id="order-section">
                 <h3 class="orange-text">Order History</h3>
-                <div class="order-history table-responsive">
-                    <table class="table table-sn table-borderless">
-                        <thread>
-                            <tr>
-                                <th>Order Number</th>
-                                <th>Date</th>
-                                <th>Items</th>
-                                <th>Order Total</th>
-                            </tr>
-                        </thread>
-                        <tbody>
+
+                <div>
+                    <div class="container-fluid">      
+                        <div class="row satin rounded mt-2 p-1">
+                        
                             {% for order in orders %}
-                            <tr>
-                                <td>
-                                    <a href="{% url 'order_history' order.order_number %}"
-                                    title="{{ order.order_number}}">
-                                    {{ order.order_number|truncatechars:6 }}
-                                    </a>
-                                </td>
-                                <td>{{ order.date }}</td>
-                                <td>
-                                    <ul class="listed-unstyled">
-                                        {% for item in order.lineitems.all %}
-                                            <li class="small">
-                                                {% if item.product.has_variants %}
-                                                    Console {{ item.product.variant|upper }}
-                                                {% endif %}{{ item.product.name }} x{{ item.quantity }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                                <td>€{{ order.grand_total }}</td>
-                            </tr>
+                                <div class="my-1 col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="butterscotch p-2">
+                                        <div class="orange p-3">                                        
+                                            <div>
+                                                {{ order.date|date:"d/m/y" }}
+                                            </div>                                        
+                                            <div>
+                                                <p class="mt-2 mb-0">Order no. </p>
+                                                <em>
+                                                    {{ order.order_number|slice:":17" }}<br>
+                                                    {{ order.order_number|slice:"17:" }}
+                                                </em>
+                                            </div>                
+                                            <p>
+                                                {% for lineitem in order.lineitems.all %}
+                                                    <p class="text-right d-inline-block">
+                                                        [{{ lineitem.quantity }}]
+                                                        {{ lineitem.product.name }}
+                                                        {% if lineitem.product_variant %}
+                                                            <br>
+                                                            <small>for </small>
+                                                            <strong>
+                                                                {{ lineitem.product_variant|upper }}
+                                                            </strong>
+                                                        {% endif %}
+                                                    </p>
+                                                    <br>
+                                                {% endfor %}
+                                                <p class="mb-1 float-right">
+                                                    €{{ order.grand_total }}
+                                                </p>
+                                                {% if order.completed %}                                                
+                                                <P>
+                                                    Order Shipped!
+                                                    <i class="fa-solid fa-truck-fast"></i>
+                                                </P>
+                                                {% else %}
+                                                <p>
+                                                    <i class="fa-regular fa-clock"></i>
+                                                    Order Pending
+                                                </p>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div> 
+                                </div>
                             {% endfor %}
-                        </tbody>
-                    </table>
+
+                        </div>
+                    </div>                      
                 </div>
+
             </div>
         </div>
 

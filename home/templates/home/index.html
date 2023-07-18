@@ -53,13 +53,14 @@
         </a>
     </div>
 
-    <div class="admin-icon xanthous p-1 rounded-circle">
-        <a href=""  class="texture-text white-text profile-icon">
-            <i class="fa-solid fa-key"></i>
-        </a>
-    </div>
-    <p class="admin-access xanthous-text text-uppercase">Admin Access</p>
-
+    {% if user.is_superuser %}
+        <div class="admin-icon xanthous p-1 rounded-circle">
+            <a href=""  class="texture-text white-text profile-icon">
+                <i class="fa-solid fa-key"></i>
+            </a>
+        </div>
+        <p class="admin-access xanthous-text text-uppercase">Admin Access</p>
+    {% endif %}
 
 <script>
 

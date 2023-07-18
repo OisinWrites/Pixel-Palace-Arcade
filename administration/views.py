@@ -11,29 +11,6 @@ from checkout.models import Order
 
 def admin_order_list(request):
 
-    def _send_shipping_confirmation_email(order):
-        """Send the user a shipping confirmation email"""
-        cust_email = order.email
-        subject = render_to_string(
-            'checkout/confirmation_emails/shipping_email_subject.txt',
-            {'order': order}
-        )
-        body = render_to_string(
-            'checkout/confirmation_emails/shipping_email_body.txt',
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
-        )
-
-        # Print the email content to the terminal
-        print("Subject: ", subject)
-        print("Body: ", body)
-
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
-        )
-
     if request.method == 'GET':
         incomplete_orders = Order.objects.filter(completed=False)
 
@@ -56,7 +33,7 @@ def admin_order_list(request):
             order = Order.objects.get(id=order_id)
             print(order.email)
 
-            _send_shipping_confirmation_email(order)
+            """_send_shipping_confirmation_email(order)"""
 
             messages.success(request, f'Order Shipped! \
                     A shipping confirmation \
@@ -65,3 +42,27 @@ def admin_order_list(request):
             return redirect('admin_order_list')
 
     return redirect('admin_order_list')
+
+
+def _send_shipping_confirmation_email(order):
+    """Send the user a shipping confirmation email"""
+    cust_email = order.email
+    subject = render_to_string(
+        'checkout/confirmation_emails/shipping_email_subject.txt',
+        {'order': order}
+    )
+    body = render_to_string(
+        'checkout/confirmation_emails/shipping_email_body.txt',
+        {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+    )
+
+    # Print the email content to the terminal
+    print("Subject: ", subject)
+    print("Body: ", body)
+
+    send_mail(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [cust_email]
+    )

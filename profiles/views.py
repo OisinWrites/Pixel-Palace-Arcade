@@ -94,6 +94,17 @@ def edit_avatar(request):
     """
     avatar = get_object_or_404(Avatar, user=request.user)
 
+    template = 'profiles/edit_avatar.html'
+    context = {
+        'avatar': avatar,
+    }
+    return render(request, template, context)
+
+
+def avatar_form(request):
+
+    avatar = get_object_or_404(Avatar, user=request.user)
+
     if request.method == 'POST':
         avatar_form = AvatarForm(request.POST, request.FILES, instance=avatar)
         avatar_form.request = request
@@ -111,7 +122,7 @@ def edit_avatar(request):
     else:
         avatar_form = AvatarForm(instance=avatar)
 
-    template = 'profiles/edit_avatar.html'
+    template = 'profiles/edit_avatar_form.html'
     context = {
         'avatar_form': avatar_form,
         'avatar': avatar,

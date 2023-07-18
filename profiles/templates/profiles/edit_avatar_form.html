@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://res.cloudinary.com/dwhennrjl/raw/upload/v1685971817/static/profiles/css/profile.652147a13ad2.css">
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated and avatar.user == request.user %}  
+
+        <div class="texture rounded m-3">
+            <div class="xanthous-75 rounded">
+                <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">
+                    Edit Avatar
+                </h2>
+            </div>
+        </div>
+
+        <div class="container-fluid m-0">
+            <div class="row moonstone opacity-90">
+                <div class="col-12 col-lg-6 mt-5 m-0 ">
+                    
+                    <a class="xanthous-text" href="{% url 'profile' %}">
+                        <h5 class="mb-4">
+                            Continue with this hero? 
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </h5>                  
+                    </a>
+                    <div class="d-flex align-items-center justify-content-center">                    
+                        <form method="POST" class="form mb-2 text-center" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ avatar_form|crispy }}
+
+                            <div class="col-4 offset-4 xanthous display-4 rounded-circle d-flex align-items-center justify-content-center">
+                                <button class="btn rounded-0 white-text" type="submit">
+                                    <i class="ml-3 fa-solid fa-user-shield display-4"></i>
+                                    <h4>Begin!</h4>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>             
+                </div>
+            </div>
+        </div>
+    {% else %}
+
+        <script>
+            // JavaScript code to redirect to the homepage for rouge users
+            window.location.href = "{% url 'home' %}";
+        </script>
+     
+    {% endif %} 
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {% include 'includes/go-back-button.html' %}
+    <script type="text/javascript">
+        $('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
+
+    <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+    <script type="text/javascript" src="https://res.cloudinary.com/dwhennrjl/raw/upload/v1685971818/static/profiles/js/countryfield.242381779a53.js"></script>
+{% endblock %}
