@@ -555,7 +555,18 @@ footer div p {
     bottom: 0rem;
 }
 
-    
+/*--------------Admin Pending Orders------*/
+
+.pending_order_section_slider {
+    display: flex;
+    overflow-x: auto;
+}
+
+/* Add the following CSS to prevent wrapping and control alignment */
+.butterscotch {
+    white-space: nowrap;
+ }
+   
 
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
@@ -583,12 +594,20 @@ footer div p {
     background: #64A2AC;
 }
 
+.moonstone-75 {
+    background: #64A2ACcc;
+}
+
 .satin {
     background: #bfa03c;
 }
 
 .xanthous {
     background: #F3B844;
+}
+
+.xanthous-75 {
+    background: #F3B844cc;
 }
 
 .butterscotch {
@@ -605,6 +624,10 @@ footer div p {
 
 .white {
     background: #EBEBEB;
+}
+
+.white-75 {
+    background: #EBEBEBcc;
 }
 
 .onyx {
