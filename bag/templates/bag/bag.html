@@ -97,13 +97,15 @@
                         </table>
                     </div>
                 {% else %}
-                    <p class="lead mb-5">Your bag is empty.</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Keep Shopping</span>
-                    </a>
+                    <div class="butterscotch p-2">
+                        <p class="py-3 lead orange d-flex align-items-center justify-content-center mb-5">Your bag is empty.</p>
+                        <a href="{% url 'products' %}" class="btn moonstone px-4 p-1 rounded-0 btn-lg">
+                            <span class="icon white-text">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="white-text text-uppercase">Keep Shopping</span>
+                        </a>
+                    </div>
                 {% endif %}
             </div>
         </div>

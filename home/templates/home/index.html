@@ -46,6 +46,20 @@
         </div>
     </div>
 
+    <div>
+        <a href="" class="fixed-bottom whitespace-nowrap mb-5 py-3 opacity-75 white-text rounded d-flex">
+            <i class="ml-4 display-4 fa-brands fa-facebook"></i>
+            <h5 class="ml-3 mt-3 whitespace-nowrap">Visit us on our Socials</h5>
+        </a>
+    </div>
+
+    <div class="admin-icon xanthous p-1 rounded-circle">
+        <a href=""  class="texture-text white-text profile-icon">
+            <i class="fa-solid fa-key"></i>
+        </a>
+    </div>
+    <p class="admin-access xanthous-text text-uppercase">Admin Access</p>
+
 
 <script>
 
@@ -77,6 +91,21 @@
     });
 
 
+</script>
+
+<script>
+    // Get the elements
+    const adminIcon = document.querySelector('.admin-icon');
+    const adminAccess = document.querySelector('.admin-access');
+  
+    // Add event listener for hover
+    adminIcon.addEventListener('mouseenter', () => {
+      adminAccess.style.display = 'block';
+    });
+  
+    adminIcon.addEventListener('mouseleave', () => {
+      adminAccess.style.display = 'none';
+    });
 </script>
 
  {% endblock %}

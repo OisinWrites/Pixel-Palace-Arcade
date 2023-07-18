@@ -15,7 +15,7 @@ body {
     width: 100%;
     margin: 0 !important;
     overflow-y: auto;
-    background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;
+    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
     background-size: cover;
     position: relative;
     font-family: 'Play', sans-serif;
@@ -76,6 +76,10 @@ h1 {
 
 .big-bottom {
     padding-bottom: 5rem;
+}
+
+.pointer-on-hover {
+    cursor: pointer;
 }
 
 /*-----------------------------------------Header--------*/
@@ -298,6 +302,8 @@ h1 {
 
 .search-form-submit i {
     z-index: 9999;
+    font-size: 1.5rem;
+    margin-bottom: 0;
 }
 
 /*--------------------------The account dropdown menu----*/
@@ -517,6 +523,37 @@ footer div p {
     }
 
 }
+
+/*----------------------------------------------------------Admin------*/
+
+/*----Index Icon---*/
+.admin-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+}
+
+.admin-icon a i {
+    font-size: 2rem;
+    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613878/static/css/arcade-live-still-background_otrsil.png") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.admin-access {
+    display: none;
+    position: fixed;
+    right:.2rem;
+    bottom: -.2rem;
+}
+
     
 
 /*----------------------------------------Colour Palette and Texture---*/
@@ -675,12 +712,6 @@ footer div p {
     }
 }
 
-@media (max-width: 739px) {
-    .search-form-submit i {
-        color: #DA7092 !important;
-    }
-}
-
 @media (min-width: 740px) {
 
     /* Place the search bar into the space of the header */
@@ -706,6 +737,17 @@ footer div p {
     .coin-logo {
         height: 3.5rem;
         margin-top: .65rem;
+    }
+
+}
+
+/*---------------On shorter mobile screens the title-border needs to raise 
+-----------------to allow for the facebook link--------------------------------*/
+
+@media (max-height: 650px) {
+
+    .title-border {
+        margin-top: 2vh !important;
     }
 
 }
