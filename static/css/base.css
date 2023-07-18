@@ -548,10 +548,11 @@ footer div p {
 }
 
 .admin-access {
+    font-size: 0.7rem;
     display: none;
     position: fixed;
-    right:.2rem;
-    bottom: -.2rem;
+    right: 1rem;
+    bottom: 0rem;
 }
 
     

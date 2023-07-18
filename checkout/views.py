@@ -242,64 +242,6 @@ def checkout_success(request, order_number):
     return render(request, template, context)
 
 
-def admin_order_list(request):
-
-    def _send_shipping_confirmation_email(order):
-        """Send the user a shipping confirmation email"""
-        cust_email = order.email
-        subject = render_to_string(
-            'checkout/confirmation_emails/shipping_email_subject.txt',
-            {'order': order}
-        )
-        body = render_to_string(
-            'checkout/confirmation_emails/shipping_email_body.txt',
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
-        )
-
-        # Print the email content to the terminal
-        print("Subject: ", subject)
-        print("Body: ", body)
-
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
-        )
-
-    if request.method == 'GET':
-        incomplete_orders = Order.objects.filter(completed=False)
-
-        form = MarkOrderCompletedForm()
-        context = {
-            'incomplete_orders': incomplete_orders,
-            'form': form
-        }
-
-        return render(request, 'checkout/admin_order_list.html', context)
-
-    elif request.method == 'POST':
-        form = MarkOrderCompletedForm(request.POST)
-        if form.is_valid():
-            order_id = form.cleaned_data['order_id']
-            order = Order.objects.get(id=order_id)
-            order.completed = True
-            order.save()
-
-            order = Order.objects.get(id=order_id)
-            print(order.email)
-
-            _send_shipping_confirmation_email(order)
-
-            messages.success(request, f'Order Shipped! \
-                    A shipping confirmation \
-                    email will be sent to {order.email}.')
-
-            return redirect('admin_order_list')
-
-    return redirect('admin_order_list')
-
-
 def _send_confirmation_email(order):
     """Send the user a confirmation email"""
     cust_email = order.email
