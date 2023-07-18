@@ -55,14 +55,14 @@
 
     {% if user.is_superuser %}
         <div class="admin-icon xanthous p-1 rounded-circle">
-            <a href=""  class="texture-text white-text profile-icon">
+            <a href="{% url 'admin_menu' %}"  class="texture-text white-text profile-icon">
                 <i class="fa-solid fa-key"></i>
             </a>
         </div>
         <p class="admin-access xanthous-text text-uppercase">Admin Access</p>
     {% endif %}
 
-<script>
+<script type="text/javascript">
 
     document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('video-background');
@@ -94,7 +94,7 @@
 
 </script>
 
-<script>
+<script type="text/javascript">
     // Get the elements
     const adminIcon = document.querySelector('.admin-icon');
     const adminAccess = document.querySelector('.admin-access');

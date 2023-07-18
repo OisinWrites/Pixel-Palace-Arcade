@@ -39,6 +39,8 @@ body::before {
     background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613878/static/css/arcade-live-still-background_otrsil.png") no-repeat center center fixed;
 }
 
+/*-----------------element rules--------*/
+
 a {
     color:#DA7092;
 }
@@ -50,6 +52,23 @@ a:hover {
 
 button {
     border-color: #EBEBEB;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+}
+
+.big-bottom {
+    padding-bottom: 5rem;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap !important;
+}
+
+.pointer-on-hover {
+    cursor: pointer;
 }
 
 #video-background, .index-background {
@@ -67,19 +86,6 @@ button {
     overflow: hidden;
     margin: 1rem;
     width: fit-content;
-}
-
-h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
-}
-
-.big-bottom {
-    padding-bottom: 5rem;
-}
-
-.pointer-on-hover {
-    cursor: pointer;
 }
 
 /*-----------------------------------------Header--------*/
@@ -566,6 +572,60 @@ footer div p {
 .butterscotch {
     white-space: nowrap;
  }
+
+/*----------------------Admin Menu--------*/
+
+#hal_administrator {
+    background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1689613848/static/css/hal-9000-menu-page.jpg') center center fixed;
+    background-size: cover;
+    z-index: 100;
+}
+
+#hal_administrator::before {
+    background-color: rgba(191, 161, 60, 0);
+}
+
+.fade-out {
+    animation: fadeOut 5s linear;
+    animation-fill-mode: forwards; 
+}
+
+.fade-out-lsater {
+    animation: fadeOut 10s linear;
+    animation-fill-mode: forwards; 
+}
+
+
+.typing-text {
+    position: fixed;
+    bottom: 3rem;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*-------Fades out Hal's message about knowing who you are----*/
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/*------Animates Hal's messages-----------*/
+@keyframes typingAnimation {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.typing-text::after {
+    content: attr(data-content);
+    display: inline-block;
+    width: 0;
+    animation: typingAnimation 5s steps(40, end);
+}
    
 
 /*----------------------------------------Colour Palette and Texture---*/

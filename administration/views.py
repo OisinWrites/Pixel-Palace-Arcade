@@ -8,6 +8,8 @@ from django.template.loader import render_to_string
 from .forms import MarkOrderCompletedForm
 from checkout.models import Order
 
+from profiles.models import Avatar, UserProfile
+
 
 def admin_order_list(request):
 
@@ -66,3 +68,15 @@ def _send_shipping_confirmation_email(order):
         settings.DEFAULT_FROM_EMAIL,
         [cust_email]
     )
+
+
+def admin_menu(request):
+
+    profile = get_object_or_404(UserProfile, user=request.user)
+    avatar = Avatar.objects.filter(user=profile.user).first()
+
+    context = {
+        'avatar': avatar,
+    }
+
+    return render(request, 'administration/admin_menu.html', context)

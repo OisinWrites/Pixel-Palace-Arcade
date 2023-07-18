@@ -251,7 +251,7 @@
 {% block postloadjs %}
     {{ block.super }}
     <!--Script to toggle Avatar Creation Form-->
-    <script>
+    <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             // Get reference to the element with id="avatar-creation-form"
             const avatarForm = document.getElementById('avatar-creation-form');
@@ -295,7 +295,7 @@
     </script>
 
     <!--Script to open reviews in more detail on click-->
-    <script>
+    <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         // Get all review elements
         const reviewElements = document.querySelectorAll('.review-element');
