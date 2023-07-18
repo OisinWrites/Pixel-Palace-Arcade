@@ -579,6 +579,7 @@ footer div p {
     background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1689613848/static/css/hal-9000-menu-page.jpg') center center fixed;
     background-size: cover;
     z-index: 100;
+    overflow: hidden;
 }
 
 #hal_administrator::before {
@@ -590,15 +591,15 @@ footer div p {
     animation-fill-mode: forwards; 
 }
 
-.fade-out-lsater {
-    animation: fadeOut 10s linear;
+.fade-out-later {
+    animation: fadeOut 12s linear;
     animation-fill-mode: forwards; 
 }
 
-
 .typing-text {
     position: fixed;
-    bottom: 3rem;
+    bottom: 1rem;
+    left: 1rem;
     font-size: 1rem;
     white-space: nowrap;
     overflow: hidden;
@@ -624,7 +625,27 @@ footer div p {
     content: attr(data-content);
     display: inline-block;
     width: 0;
-    animation: typingAnimation 5s steps(40, end);
+    animation: typingAnimation 30s steps(80, end);
+}
+
+#hals_eye {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 27vh;
+    width: 27vh;
+    opacity: 0.02;
+    animation: oscillateOpacity 2s linear infinite alternate;
+}
+
+@keyframes oscillateOpacity {
+    from {
+        opacity: 0.01;
+    }
+    to {
+        opacity: 0.1;
+    }
 }
    
 

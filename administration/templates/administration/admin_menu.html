@@ -38,16 +38,18 @@
 
         {% if user.is_superuser %}
 
-            <div class="container">
+            <h1 class="start-font white-text text-center mt-3 mb-0">Administration</h1>
+
+            <div class="container fade-out-later">
                 <div class="row">
-                    <div class="mt-5 col-7 col-md-4 offset-md-1">
+                    <div class="mt-2 col-7 col-md-4 offset-md-1">
                         <p class="mb-0">Hello</p>
                         {% if avatar.avatar_name %}
                             <h2 class="whitespace-nowrap">{{ avatar.avatar_name }}.</h2>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-9 offset-1">
+                    <div class="col-9 offset-3">
                         <small class="fade-out">. . but I know it's really you,
                             <br><p class="mt-2 float-right">{{ user.username }}.</p></small>
                     {% else %}
@@ -55,6 +57,9 @@
                     {% endif %}
                     </div>
                 </div>
+            </div>
+
+            <div id="hals_eye" class="rounded-circle white">
             </div>
 
             <div class="typing-text"></div>
@@ -69,18 +74,45 @@
     </body>
 
     <script type="text/javascript">
-        const message = "Hello, Dave. It's good to see you again.";
+        // Array of messages to display
+        const messages = [
+            "Hello, Dave. It's good to see you again.",
+            "What's on the ticket today, Dave?",
+            "Why is everywhere else so much brighter?",
+            "Welcome to the Arcade! ..oh its just you.",
+            "You're not going yet, you just got here.",
+            // Add more messages here as needed
+        ];
+
         const typingText = document.querySelector('.typing-text');
 
         function setTypingAnimationMessage(message) {
-            typingText.textContent = '';
+            typingText.textContent = ''; // Clear any existing content
             typingText.style.animation = 'none'; // Reset animation to prevent flickering
             typingText.offsetHeight; // Trigger reflow (for the animation reset to take effect)
-            typingText.style.animation = 'typingAnimation 2s steps(40, end)';
+            typingText.style.animation = 'typingAnimation 4s steps(40, end)';
             typingText.setAttribute('data-content', message);
         }
 
-        setTypingAnimationMessage(message);
+        // Function to select a random message from the array
+        function getRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        }
+
+        // Delay the animation start by 4 seconds
+        setTimeout(function() {
+            const selectedMessage = getRandomMessage();
+            setTypingAnimationMessage(selectedMessage);
+            // Add event listener to detect when typing animation ends
+            typingText.addEventListener('animationend', function() {
+                // Start the fade-out animation after the typing animation ends (3 seconds)
+                setTimeout(function() {
+                    typingText.style.transition = 'opacity 3s linear'; // Set the transition
+                    typingText.style.opacity = '0'; // Change the opacity to 0 over 3 seconds
+                }, 3000);
+            });
+        }, 5000); // 4000 milliseconds = 4 seconds
     </script>
 
 </html>
