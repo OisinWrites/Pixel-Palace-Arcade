@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.db.models import Q
 
 from .forms import OrderForm, MarkOrderCompletedForm
 from .models import Order, OrderLineItem
@@ -233,6 +234,9 @@ def checkout_success(request, order_number):
 
     if 'bag' in request.session:
         del request.session['bag']
+
+    # Filter products associated with the order based
+    # on whether they have variants or not
 
     template = 'checkout/checkout_success.html'
     context = {

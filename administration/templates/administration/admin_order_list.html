@@ -5,70 +5,54 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-6">
-            <hr>
-            <h2 class="logo-font mb-4">Order Management</h2>
-            <h5 class="text-muted">Pending Orders</h5>
-            <hr>
+
+  <div class="texture rounded m-3">
+    <div class="white">
+        <div class="start-font display-4 section-heading m-0 p-0">
+            <h2 class="orange-text m-2 p-2">Pending<br>Orders</h2>
         </div>
-      </div>
+    </div>
+  </div>
+
+    <div class="container onyx">
+
       <div class="row">
-        <div class="col-12">          
-          <div class="order-history table-responsive">
-            <form method="post">
-              <table class="table table-sn table-borderless">
-                {% csrf_token %}
-                <thead>
-                  <tr>
-                    <th>Order Number</th>
-                    <th>Customer</th>
-                    <th>Purchase</th>                    
-                    <th>Postcode</th>
-                    <th>Completed</th>
-                  </tr>
-                </thead>
                 {% if incomplete_orders %}
-                <tbody>
-                  {% for order in incomplete_orders %}                    
-                      <tr>
-                        <td>
-                          <span data-toggle="tooltip" data-placement="top" title="{{ order.order_number }}">
-                            ...{{ order.order_number|slice:"-4:" }}
-                          </span>
-                        </td>
-                        <td>{{ order.full_name }}</td>                        
-                        <td class="d-inline-block" style="max-width: 30ch; word-wrap: break-word;">
-                          {% for lineitem in order.lineitems.all %}
-                          {{ lineitem.product.name }}
-                          {% if lineitem.product_variant %}
-                          <strong><small>for: </small>{{ lineitem.product_variant }}</strong>
-                          {% endif %}
-                          <p class="text-right d-inline-block">x{{ lineitem.quantity }}</p>
-                          <br>
-                          {% endfor %}
-                        </td>
-                        <td>
-                          <span data-toggle="tooltip" data-placement="top" 
-                          title="                          
-                          {{ order.street_address1 }}
-                          {{ order.street_address2 }}
-                          {{ order.town_or_city }}
-                          {{ order.county }}
-                          {{ order.country }}
-                          ">
-                            {{ order.postcode }}
-                          </span>                          
-                        </td>                        
-                         <td>            
-                          <form method="post">
-                          {% csrf_token %}
-                          <input type="hidden" name="order_id" value="{{ order.id }}">
-                          <button type="submit" class="btn btn-primary"><strong>SHIP</strong></button>
-                        </form></td>
-                      </tr>                    
+                  {% for order in incomplete_orders %}
+                  <div class="col-sm-6 col-md-4">            
+                      
+                    <span data-toggle="tooltip" data-placement="top" title="{{ order.order_number }}">
+                      ...{{ order.order_number|slice:"-4:" }}
+                    </span>
+                    
+                    <p>{{ order.full_name }}</p>                        
+                    <p class="d-inline-block" style="max-width: 30ch; word-wrap: break-word;">
+                      {% for lineitem in order.lineitems.all %}
+                      {{ lineitem.product.name }}
+                      {% if lineitem.product_variant %}
+                      <strong><small>for: </small>{{ lineitem.product_variant }}</strong>
+                      {% endif %}
+                      <p class="text-right d-inline-block">x{{ lineitem.quantity }}</p>
+                      <br>
+                      {% endfor %}
+                    </p>
+                    <p>{{ order.street_address1 }}</p>
+                    <p>{{ order.street_address2 }}</p>
+                    <p>{{ order.town_or_city }}</p>                       
+                    <p>{{ order.county }}</p>
+                    <p>{{ order.country }}</p>
+                    <p>{{ order.postcode }}</p>
+                                           
+                                            
+                    <div>            
+                      <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="order_id" value="{{ order.id }}">
+                        <button type="submit" class="btn btn-primary"><strong>SHIP</strong></button>
+                      </form>
+                    </div>
+
+                  </div>                   
                   {% endfor %}
                 </tbody>
                 {% else %}
