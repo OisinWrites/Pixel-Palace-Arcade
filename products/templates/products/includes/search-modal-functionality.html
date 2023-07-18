@@ -74,5 +74,15 @@
                 closeModalReview();
             }
         });
+
+        // Adding the event listener for hovering on #user-options
+        var userOptions = document.getElementById('user-options');
+        var searchBar = document.querySelector('.search-bar');
+
+        userOptions.addEventListener('mouseover', function() {
+        if (searchBar.style.display === 'block') {
+            searchBar.style.display = 'none';
+        }
+        });
     });
 </script>
