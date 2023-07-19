@@ -9,104 +9,118 @@
   <div class="texture rounded m-3">
     <div class="white-75 d-flex rounded">
       <div class="start-font section-heading m-0 p-0">
-        <h3 class="orange-text m-2 p-2">
+        <h4 class="orange-text m-2 p-2 whitespace-nowrap">
           {% if incomplete_orders %}
            {{ incomplete_orders|length }}
           {% endif %}
           Pending
           <br>
           Orders
-        </h3>
+        </h4>
       </div>
     </div>
   </div>
 
-  <div class="texture rounded m-3 float-right section-secondary-heading">
-    <div class="orange-75 d-flex rounded">
-      <a href="{% url 'completed_orders' %}" class="start-font m-0 p-0">
-        <p class="white-text m-2 p-2">Completed<br>Orders</p>
-      </a>
+  <div class="texture rounded m-1 section-secondary-heading">
+    <div class="orange-75 d-flex p-1 rounded">
+      <div class="xanthous">
+        <a href="{% url 'completed_orders' %}" class="play-font m-0 p-0">
+          <p class="white-text m-0 px-1 py-0 whitespace-nowrap">Completed Orders</p>
+        </a>
+      </div>
     </div>
   </div>
 
   <div class="container-fluid moonstone big-bottom">
+    
     {% if incomplete_orders %}
 
-        <div class="row">
-            {% for order in incomplete_orders %}
-            <div class="pending-order-card my-2 col-sm-6 col-lg-4">            
-                
-                <div class="xanthous rounded mt-2 p-3">
+      <div class="butterscotch pb-0 select-all-orders">
+        <label class="ml-2 white-text">
+          <input type="checkbox" id="selectAllCheckbox">
+          Select All
+        </label>
+        <button type="button" id="submitSelectedButton" class="btn orange m-1 px-1 mb-0 white-text">
+          <strong>Confirm Shipment for Selected</strong>
+        </button>
+      </div>
 
-                    <div class="butterscotch p-2">
-                        <div class="orange p-1">
-                            <div class="text-center mb-0">{{ order.full_name }}'s Order</div>
-                        <div>
-                            <small>date placed:</small>
-                            <span class="float-right">{{ order.date|date:"d/m/y" }}</span>
-                        </div>
-                        <span data-toggle="tooltip" data-placement="top" title="{{ order.order_number }}">
-                            <small>order no. ending</small>
-                            <span class="float-right">.. {{ order.order_number|slice:"-7:" }}</span>
-                        </span>  
-                        </div>
-                    </div>                      
+      <div class="row pt-5">
+          {% for order in incomplete_orders %}
+          <div class="pending-order-card my-2 col-sm-6 col-lg-4">            
+              
+              <div class="xanthous rounded mt-2 p-3">
 
-                    <div class="pending_order_section_slider">
-                        <div class="col-12">
-                        <p class="mt-2 d-inline-block" style="max-width: 30ch; word-wrap: break-word;">
-                            {% for lineitem in order.lineitems.all %}
-                            <p class="text-right d-inline-block">[{{ lineitem.quantity }}]</p>
-                            {{ lineitem.product.name }}
-                            {% if lineitem.product_variant %}
-                            <strong>{{ lineitem.product_variant|upper }}</strong>
-                            {% endif %}
-                            <br>
-                            {% endfor %}
-                        </p>
-                        </div>
+                  <div class="butterscotch p-2">
+                      <div class="orange p-1">
+                          <div class="text-center mb-0">{{ order.full_name }}'s Order</div>
+                      <div>
+                          <small>date placed:</small>
+                          <span class="float-right">{{ order.date|date:"d/m/y" }}</span>
+                      </div>
+                      <span data-toggle="tooltip" data-placement="top" title="{{ order.order_number }}">
+                          <small>order no. ending</small>
+                          <span class="float-right">.. {{ order.order_number|slice:"-7:" }}</span>
+                      </span>  
+                      </div>
+                  </div>                      
 
-                        <div class="mt-2 col-12 text-right">
-                        <p>{{ order.street_address1 }}</p>
-                        <p>{{ order.street_address2 }}</p>
-                        <p>{{ order.town_or_city }}</p>                       
-                        <p>{{ order.county }}</p>
-                        <p>{{ order.country }}</p>
-                        <p>{{ order.postcode }}</p>
-                        </div>
-                    </div>
+                  <div class="pending_order_section_slider">
+                      <div class="col-12">
+                      <p class="mt-2 d-inline-block" style="max-width: 30ch; word-wrap: break-word;">
+                          {% for lineitem in order.lineitems.all %}
+                          <p class="text-right d-inline-block">[{{ lineitem.quantity }}]</p>
+                          {{ lineitem.product.name }}
+                          {% if lineitem.product_variant %}
+                          <strong>{{ lineitem.product_variant|upper }}</strong>
+                          {% endif %}
+                          <br>
+                          {% endfor %}
+                      </p>
+                      </div>
 
-                
-                    <div class="butterscotch p-1 d-flex align-items-center justify-content-between">
-                        <span class="mb-0 p-1 pointer-on-hover butterscotch float-left scroll-buttons scrollLeftButton">
-                        <i class="fa-solid fa-circle-chevron-left"></i>
-                        Purchase
-                        </span>
-                        <span class="mb-0 p-1 pointer-on-hover butterscotch float-right scroll-buttons scrollRightButton">
-                        Delivery
-                        <i class="fa-solid fa-circle-chevron-right"></i>
-                        </span>  
-                    </div>                     
-                
-                    <div class="col-12 mt-0 decoration-stripe orange  mb-1"></div>
+                      <div class="mt-2 col-12 text-right">
+                      <p>{{ order.street_address1 }}</p>
+                      <p>{{ order.street_address2 }}</p>
+                      <p>{{ order.town_or_city }}</p>                       
+                      <p>{{ order.county }}</p>
+                      <p>{{ order.country }}</p>
+                      <p>{{ order.postcode }}</p>
+                      </div>
+                  </div>
 
-                    <span class="text-center mt-0">            
-                        <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="order_id" value="{{ order.id }}">
-                        <div class="butterscotch p-1">
-                            <button type="submit" class="btn orange p-1 px-3 white-text">
-                            <strong>Confirm Shipment</strong>
-                            </button>
-                        </div>
-                        </form>
-                    </span>
+              
+                  <div class="butterscotch p-1 d-flex align-items-center justify-content-between">
+                      <span class="mb-0 p-1 pointer-on-hover butterscotch float-left scroll-buttons scrollLeftButton">
+                      <i class="fa-solid fa-circle-chevron-left"></i>
+                      Purchase
+                      </span>
+                      <span class="mb-0 p-1 pointer-on-hover butterscotch float-right scroll-buttons scrollRightButton">
+                      Delivery
+                      <i class="fa-solid fa-circle-chevron-right"></i>
+                      </span>  
+                  </div>                     
+              
+                  <div class="col-12 mt-0 decoration-stripe orange  mb-1"></div>
 
-                </div>
-                
-            </div>
-            {% endfor %}
-        </div>                
+                  <span class="text-center mt-0">            
+                      <form method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="order_id" value="{{ order.id }}">
+                      <div class="butterscotch p-1">
+                          <button type="submit" class="btn orange p-1 px-3 white-text">
+                          <strong>Confirm Shipment</strong>
+                          </button>
+                          <input class="m-2 float-right order-selection-box" type="checkbox" name="selected_orders" value="{{ order.id }}">
+                      </div>
+                      </form>
+                  </span>
+
+              </div>
+              
+          </div>
+          {% endfor %}
+      </div>                
                 
     {% else %}
 
@@ -120,27 +134,8 @@
 
     {% endif %}
 
-  <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-      const sliders = document.querySelectorAll(".pending_order_section_slider");
-      const scrollLeftButtons = document.querySelectorAll(".scrollLeftButton");
-      const scrollRightButtons = document.querySelectorAll(".scrollRightButton");
-  
-      for (let i = 0; i < sliders.length; i++) {
-        const slider = sliders[i];
-        const scrollLeftButton = scrollLeftButtons[i];
-        const scrollRightButton = scrollRightButtons[i];
-  
-        scrollLeftButton.addEventListener("click", function() {
-          slider.scrollLeft = 0;
-        });
-  
-        scrollRightButton.addEventListener("click", function() {
-          slider.scrollLeft = slider.scrollWidth;
-        });
-      }
-    });
-  </script>
+  {% include 'administration/includes/check-and-submit-script.html' %}
+
 {% endblock %}
 
 

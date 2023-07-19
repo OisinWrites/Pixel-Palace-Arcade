@@ -7,18 +7,20 @@
 {% block content %}
 
     <div class="texture rounded m-3">
-        <div class="orange-75 d-flex rounded">
+        <div class="white-75 d-flex rounded">
         <div class="start-font display-4 section-heading m-0 p-0">
-            <h2 class="white-text m-2 p-2">Completed<br>Orders</h2>
+            <h4 class="orange-text m-2 p-2">Completed<br>Orders</h4>
         </div>
         </div>
     </div>
-
-    <div class="texture rounded m-3 section-secondary-heading">
-        <div class="white-75 d-flex rounded">
-          <a href="{% url 'pending_orders' %}" class="start-font m-0 p-0">
-            <p class="orange-text m-2 p-2">Pending<br>Orders</p>
-          </a>
+ 
+    <div class="texture rounded m-1 section-secondary-heading">
+        <div class="orange-75 d-flex p-1 rounded">
+            <div class="xanthous">
+                <a href="{% url 'pending_orders' %}" class="play-font m-0 p-0">
+                    <p class="white-text m-0 px-1 py-0 whitespace-nowrap">Pending Orders</p>
+                </a>
+            </div>
         </div>
     </div>
 

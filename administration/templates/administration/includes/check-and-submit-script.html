@@ -1,0 +1,107 @@
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        // Buttons and sliding div for swap between order and shipping address
+        const sliders = document.querySelectorAll(".pending_order_section_slider");
+        const scrollLeftButtons = document.querySelectorAll(".scrollLeftButton");
+        const scrollRightButtons = document.querySelectorAll(".scrollRightButton");
+        // Select all and submit all buttons
+        const selectAllCheckbox = document.getElementById("selectAllCheckbox");
+        const submitSelectedButton = document.getElementById("submitSelectedButton");
+    
+        for (let i = 0; i < sliders.length; i++) {
+            const slider = sliders[i];
+            const scrollLeftButton = scrollLeftButtons[i];
+            const scrollRightButton = scrollRightButtons[i];
+    
+            scrollLeftButton.addEventListener("click", function() {
+            slider.scrollLeft = 0;
+            });
+    
+            scrollRightButton.addEventListener("click", function() {
+            slider.scrollLeft = slider.scrollWidth;
+            });
+        }
+    });
+
+    // Function to check/uncheck all checkboxes
+    function toggleSelectAll() {
+        const checkboxes = document.querySelectorAll('input[name="selected_orders"]');
+        const isChecked = selectAllCheckbox.checked;
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = isChecked;
+        });
+    }
+
+    // Attach event listener to "Select All" checkbox
+    selectAllCheckbox.addEventListener("change", toggleSelectAll);
+
+    // Function to get an array of selected order IDs
+    function getSelectedOrderIDs() {
+        const selectedIDs = [];
+        const checkboxes = document.querySelectorAll('input[name="selected_orders"]:checked');
+        checkboxes.forEach((checkbox) => {
+            selectedIDs.push(checkbox.value);
+        });
+        return selectedIDs;
+    }
+
+    // Function to get the CSRF token from the cookie
+    function getCSRFToken() {
+        const name = "csrftoken";
+        const cookies = document.cookie.split("; ");
+        for (const cookie of cookies) {
+            const [cookieName, cookieValue] = cookie.split("=");
+            if (cookieName === name) {
+            return cookieValue;
+            }
+        }
+        return null;
+    }
+
+    // Function to submit forms recursively
+    function submitForms(forms, index) {
+      if (index < forms.length) {
+        forms[index].submit();
+        setTimeout(() => {
+          submitForms(forms, index + 1);
+        }, 200); // Wait for a short interval before submitting the next form
+      }
+    }
+
+    // Attach event listener to "Submit Selected" button
+    submitSelectedButton.addEventListener("click", function () {
+        const selectedIDs = getSelectedOrderIDs();
+
+        if (selectedIDs.length === 0) {
+            alert("Please select at least one order to submit.");
+            return;
+        }
+
+        const forms = [];
+
+        selectedIDs.forEach((orderID) => {
+            const form = document.createElement("form");
+            form.method = "post";
+            form.action = "{% url 'pending_orders' %}";
+            form.style.display = "none";
+
+            const inputCSRF = document.createElement("input");
+            inputCSRF.type = "hidden";
+            inputCSRF.name = "csrfmiddlewaretoken";
+            inputCSRF.value = getCSRFToken();
+            form.appendChild(inputCSRF);
+
+            const inputOrderID = document.createElement("input");
+            inputOrderID.type = "hidden";
+            inputOrderID.name = "order_id";
+            inputOrderID.value = orderID;
+            form.appendChild(inputOrderID);
+
+            document.body.appendChild(form);
+            forms.push(form);
+        });
+
+        // Now, submit each form recursively
+        submitForms(forms, 0);
+    });
+</script>

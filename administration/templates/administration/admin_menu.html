@@ -62,21 +62,27 @@
             <div id="hals_eye" class="rounded-circle white">
             </div>
 
-            <div class="admin-areas-icons row">
-                <a href="{% url 'pending_orders' %}" class="text-center">
-                    <i class="fa-solid fa-box display-4"></i>
-                    <p class="mb-0">Complete</p>
-                    <p class="mb-0 ">Orders</p>
-                </a>
-                <div class="text-center mx-2">
-                    <i class="fa-solid fa-compact-disc display-4"></i>
-                    <p class="mb-0">Product</p>
-                    <p class="mb-0 ">Management</p>
+            <div class="admin-areas-icons">
+                <div class="text-center">
+                    <a href="{% url 'pending_orders' %}" class="white-text">
+                        <i class="fa-solid fa-box"></i>
+                        <p class="mb-0">Complete</p>
+                        <p class="mb-0 ">Orders</p>
+                    </a>
                 </div>
                 <div class="text-center">
-                    <i class="fa-regular fa-flag display-4"></i>
-                    <p class="mb-0">Flagged</p>
-                    <p class="mb-0 ">Content</p>
+                    <a class="white-text">
+                        <i class="fa-solid fa-compact-disc"></i>
+                        <p class="mb-0">Product</p>
+                        <p class="mb-0 ">Management</p>
+                    </a>
+                </div>
+                <div class="text-center white-text">
+                    <a class=" white-text">
+                        <i class="fa-regular fa-flag"></i>
+                        <p class="mb-0">Flagged</p>
+                        <p class="mb-0 ">Content</p>
+                    </a>
                 </div>
             </div>
 
