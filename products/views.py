@@ -193,3 +193,16 @@ def search_view(request):
         'results': results
     }
     return render(request, 'products/search.html', context)
+
+
+@login_required
+def product_management(request):
+    if not request.user.is_superuser:
+        messages.error(request, "Area Restricted. Returned to homepage.")
+        return redirect('index')
+
+    context = {
+
+    }
+
+    return render(request, 'products/product_management.html', context)
