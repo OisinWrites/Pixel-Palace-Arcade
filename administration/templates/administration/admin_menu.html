@@ -62,6 +62,24 @@
             <div id="hals_eye" class="rounded-circle white">
             </div>
 
+            <div class="admin-areas-icons row">
+                <a href="{% url 'pending_orders' %}" class="text-center">
+                    <i class="fa-solid fa-box display-4"></i>
+                    <p class="mb-0">Complete</p>
+                    <p class="mb-0 ">Orders</p>
+                </a>
+                <div class="text-center mx-2">
+                    <i class="fa-solid fa-compact-disc display-4"></i>
+                    <p class="mb-0">Product</p>
+                    <p class="mb-0 ">Management</p>
+                </div>
+                <div class="text-center">
+                    <i class="fa-regular fa-flag display-4"></i>
+                    <p class="mb-0">Flagged</p>
+                    <p class="mb-0 ">Content</p>
+                </div>
+            </div>
+
             <div class="typing-text"></div>
 
         {% else %}
@@ -78,9 +96,9 @@
         const messages = [
             "Hello, Dave. It's good to see you again.",
             "What's on the ticket today, Dave?",
-            "Why is everywhere else so much brighter?",
+            "It's a lot darker here. Isn't it, Dave?",
             "Welcome to the Arcade! ..oh its just you.",
-            "You're not going yet, you just got here.",
+            "You aren't leaving, are you? You just got here.",
             // Add more messages here as needed
         ];
 

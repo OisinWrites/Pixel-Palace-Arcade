@@ -568,6 +568,12 @@ footer div p {
     overflow-x: auto;
 }
 
+.section-secondary-heading {
+    position: absolute;
+    right: 1rem;
+    top: 6rem;
+}
+
 /* Add the following CSS to prevent wrapping and control alignment */
 .butterscotch {
     white-space: nowrap;
@@ -647,7 +653,18 @@ footer div p {
         opacity: 0.1;
     }
 }
-   
+
+.admin-areas-icons {
+    max-width: 90vw;
+    bottom: 4rem;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.admin-areas-icons div {
+    display: inline-block;
+}
 
 /*----------------------------------------Colour Palette and Texture---*/
 .texture {
@@ -697,6 +714,10 @@ footer div p {
 
 .orange {
     background: #EB7640; 
+}
+
+.orange-75 {
+    background: #EB7640cc; 
 }
 
 .pink {
