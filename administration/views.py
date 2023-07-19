@@ -6,6 +6,9 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+import json
+from django.http import JsonResponse
+
 from .forms import MarkOrderCompletedForm, MarkOrderIncompleteForm
 from checkout.models import Order
 
@@ -26,23 +29,23 @@ def pending_orders(request):
         return render(request, 'administration/pending_orders.html', context)
 
     elif request.method == 'POST':
-        form = MarkOrderCompletedForm(request.POST)
-        if form.is_valid():
-            order_id = form.cleaned_data['order_id']
-            order = Order.objects.get(id=order_id)
-            order.completed = True
-            order.save()
+        try:
+            data = json.loads(request.body)
+            order_ids = data.get('order_ids', [])
 
-            order = Order.objects.get(id=order_id)
-            print(order.email)
+            for order_id in order_ids:
+                try:
+                    order = Order.objects.get(id=order_id)
+                    order.completed = True
+                    order.save()
 
-            """_send_shipping_confirmation_email(order)"""
+                    """_send_shipping_confirmation_email(order)"""
 
-            messages.success(request, f'Order Shipped! \
-                    A shipping confirmation \
-                    email will be sent to {order.email}.')
+                except Order.DoesNotExist:
+                    pass
 
-            return redirect('pending_orders')
+        except json.JSONDecodeError:
+            pass
 
     return redirect('pending_orders')
 

@@ -69,7 +69,9 @@
     }
 
     // Attach event listener to "Submit Selected" button
-    submitSelectedButton.addEventListener("click", function () {
+    submitSelectedButton.addEventListener("click", async function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
         const selectedIDs = getSelectedOrderIDs();
 
         if (selectedIDs.length === 0) {
@@ -77,31 +79,16 @@
             return;
         }
 
-        const forms = [];
-
-        selectedIDs.forEach((orderID) => {
-            const form = document.createElement("form");
-            form.method = "post";
-            form.action = "{% url 'pending_orders' %}";
-            form.style.display = "none";
-
-            const inputCSRF = document.createElement("input");
-            inputCSRF.type = "hidden";
-            inputCSRF.name = "csrfmiddlewaretoken";
-            inputCSRF.value = getCSRFToken();
-            form.appendChild(inputCSRF);
-
-            const inputOrderID = document.createElement("input");
-            inputOrderID.type = "hidden";
-            inputOrderID.name = "order_id";
-            inputOrderID.value = orderID;
-            form.appendChild(inputOrderID);
-
-            document.body.appendChild(form);
-            forms.push(form);
+        await fetch("{% url 'pending_orders' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCSRFToken(),
+            },
+            body: JSON.stringify({ order_ids: selectedIDs }),
         });
 
-        // Now, submit each form recursively
-        submitForms(forms, 0);
+        // Reload the page after processing is complete to update the order list
+        window.location.reload();
     });
 </script>
