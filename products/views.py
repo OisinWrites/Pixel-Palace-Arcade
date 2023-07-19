@@ -227,24 +227,25 @@ def product_management(request):
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request,
-                               "You didn't enter any search criteria!")
-                return redirect(reverse('products'))
+    # Handle search query
+    query = None
+    if 'q' in request.GET:
+        query = request.GET['q']
+        if not query:
+            messages.error(request, "You didn't enter any search criteria!")
+            return redirect(reverse('product_management'))
 
-            queries = Q(name__icontains=query) | Q(
-                        description__icontains=query)
-            products = products.filter(queries)
+        # Use Q objects to filter by name or description containing the query
+        queries = Q(name__icontains=query) | Q(description__icontains=query)
+        products = products.filter(queries)
 
-    current_sorting = f'{sort}_{direction}'
+    # Existing code
 
+    # Update context with the search-term
     context = {
         'products': products,
-        'search-term': query,
+        'search_term': query,
         'current_categories': categories,
-        'current_sorting': current_sorting,
-        }
+    }
 
     return render(request, 'products/product_management.html', context)

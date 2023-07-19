@@ -11,78 +11,96 @@
     </div>
 </div>
 
-<div class="texture">
-    <ul class="list-unstyled xanthous col align-items-center justify-content-center category-banner mb-0">
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link" href="{% url 'products' %}" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Games & Merch
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="{% url 'product_management' %}?sort=price&direction=asc" class="dropdown-item di1">By Price</a>
-                <a href="{% url 'product_management' %}?sort=rating&direction=desc" class="dropdown-item di2">By Rating</a>
-                <a href="{% url 'product_management' %}?sort=category&direction=asc" class="dropdown-item di3">By Category</a>
-                <a href="{% url 'product_management' %}" class="dropdown-item di4">All Games and Merch</a>
-            </div>
-        </li>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link" href="#" id="classics-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Classic Arcade
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="classics-link">
-                <a href="{% url 'product_management' %}?category=shooters" class="dropdown-item di1">Shoot 'em Ups</a>
-                <a href="{% url 'product_management' %}?category=platform_style" class="dropdown-item di2">Platformer</a>
-                <a href="{% url 'product_management' %}?category=puzzle" class="dropdown-item di3">Puzzle</a>
-                <a href="{% url 'product_management' %}?category=shooters,platformer,puzzle,classics" class="dropdown-item di4">All Classic Arcade</a>
+    <div class="pt-1 px-3 xanthous">
+        <form method="GET" class="form-inline mt-3" id="admin-product-search-form">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search by name" name="q" value="{{ search_term|default_if_none:'' }}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn orange">Search</button>
+                </div>
             </div>
-        </li>
+        </form>
+    </div>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link" href="#" id="new-releases-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                New Releases
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="modern-hits-link">
-                <a href="{% url 'product_management' %}?category=star_wars_franchise" class="dropdown-item di1">Star Wars Collection</a>
-                <a href="{% url 'product_management' %}?category=racing_style" class="dropdown-item di2">Racing</a>
-                <a href="{% url 'product_management' %}?category=japan_made_games" class="dropdown-item di3">Best from Japan</a>
-                <a href="{% url 'product_management' %}?category=japan_made_games,racing_style,star_wars_franchise" class="dropdown-item di4">All New Releases</a>
-            </div>
-        </li>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link" href="#" id="collectibles-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Collectibles
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="merchandise-link">
-                <a href="{% url 'product_management' %}?category=collectible" class="dropdown-item di1">Collectors Corner</a>
-                <a href="{% url 'product_management' %}?category=soft_toys" class="dropdown-item di2">Plushies</a>
-                <a href="{% url 'product_management' %}?category=equip" class="dropdown-item di3">Controllers & Joysticks</a>
-                <a href="{% url 'product_management' %}?category=collectible,soft_toys,equip" class="dropdown-item di4">All Collectibles</a>
+    <div class="container xanthous">
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-unstyled pl-0 xanthous col-6 mb-0">
+                    <h5 class="mb-0 onyx-text pt-2">Filter by Category</h5>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'product_management' %}" class="dlogo-font pl-0 font-weight-bold nav-link">All Games and Merch</a>
+                        <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+                            <a href="{% url 'product_management' %}?sort=price&direction=asc" class="dropdown-item di1">By Price</a>
+                            <a href="{% url 'product_management' %}?sort=rating&direction=desc" class="dropdown-item di2">By Rating</a>
+                            <a href="{% url 'product_management' %}?sort=category&direction=asc" class="dropdown-item di3">By Category</a>
+                            <a href="{% url 'product_management' %}" class="dropdown-item di4">All Games and Merch</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="logo-font pl-0 font-weight-bold nav-link" href="#" id="classics-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Classic Arcade
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="classics-link">
+                            <a href="{% url 'product_management' %}?category=shooters" class="dropdown-item di1">Shoot 'em Ups</a>
+                            <a href="{% url 'product_management' %}?category=platform_style" class="dropdown-item di2">Platformer</a>
+                            <a href="{% url 'product_management' %}?category=puzzle" class="dropdown-item di3">Puzzle</a>
+                            <a href="{% url 'product_management' %}?category=shooters,platformer,puzzle,classics" class="dropdown-item di4">All Classic Arcade</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="logo-font pl-0 font-weight-bold nav-link" href="#" id="new-releases-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            New Releases
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="modern-hits-link">
+                            <a href="{% url 'product_management' %}?category=star_wars_franchise" class="dropdown-item di1">Star Wars Collection</a>
+                            <a href="{% url 'product_management' %}?category=racing_style" class="dropdown-item di2">Racing</a>
+                            <a href="{% url 'product_management' %}?category=japan_made_games" class="dropdown-item di3">Best from Japan</a>
+                            <a href="{% url 'product_management' %}?category=japan_made_games,racing_style,star_wars_franchise" class="dropdown-item di4">All New Releases</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="logo-font pl-0 font-weight-bold nav-link" href="#" id="collectibles-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Collectibles
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="merchandise-link">
+                            <a href="{% url 'product_management' %}?category=collectible" class="dropdown-item di1">Collectors Corner</a>
+                            <a href="{% url 'product_management' %}?category=soft_toys" class="dropdown-item di2">Plushies</a>
+                            <a href="{% url 'product_management' %}?category=equip" class="dropdown-item di3">Controllers & Joysticks</a>
+                            <a href="{% url 'product_management' %}?category=collectible,soft_toys,equip" class="dropdown-item di4">All Collectibles</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="logo-font pl-0 font-weight-bold nav-link" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Special Offers
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="specials-link">
+                            <a href="{% url 'product_management' %}?category=new" class="dropdown-item di1">New Arrivals</a>
+                            <a href="{% url 'product_management' %}?category=deals" class="dropdown-item di2">Deals</a>
+                            <a href="{% url 'product_management' %}?category=grouped_product_management" class="dropdown-item di3">Bundles</a>
+                            <a href="{% url 'product_management' %}?category=new,deals,grouped_products" class="dropdown-item di4">All Specials</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </li>
+        </div>
+    </div>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Special Offers
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="{% url 'product_management' %}?category=new" class="dropdown-item di1">New Arrivals</a>
-                <a href="{% url 'product_management' %}?category=deals" class="dropdown-item di2">Deals</a>
-                <a href="{% url 'product_management' %}?category=grouped_product_management" class="dropdown-item di3">Bundles</a>
-                <a href="{% url 'product_management' %}?category=new,deals,grouped_products" class="dropdown-item di4">All Specials</a>
-            </div>
-        </li>
-    </ul>
 </div>
 
-<div class="texture rounded container m-0">
-    <div class="moonstone row">
-        <div class="product-container col-10 offset-1 mt-2">
-            <div class="category-container mb-3">
+<div class="container-fluid m-0">
+    <div class="xanthous row">
+        <div class="col-12 m-1">
+            <div class="category-container">
                 {% for category in current_categories %}
-                <div class="texture mx-1 mb-1">
-                    <div class="current-category">
-                        <a href="{% url 'product_management' %}?category={{ category.name }}" class="dropdown-item white-text di4">{{ category.friendly_name }}</a>
+                <div class="moonstone m-1 mt-3">
+                    <div class="mx-2">
+                        <a href="{% url 'product_management' %}?category={{ category.name }}" class="white-text">{{ category.friendly_name }}</a>
                     </div>
                 </div>
                 {% endfor %}
@@ -96,7 +114,7 @@
     {% for product in products %}
 
         <div class="col-12 col-md-6 col-lg-4 pb-4">
-            <div class="col-10 butterscotch h-100 p-1 pb-2">
+            <div class="col-10 offset-1 butterscotch h-100 p-1 pb-2 px-3">
                 <div>
                     <a class="mx-1 white-text float-left" href="{% url 'product_detail' product.id %}">
                         <h5 class="mb-0">{{ product.name }}</h5> 
