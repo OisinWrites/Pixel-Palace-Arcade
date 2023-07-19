@@ -42,6 +42,7 @@
         checkboxes.forEach((checkbox) => {
             selectedIDs.push(checkbox.value);
         });
+        console.log("Selected order IDs:", selectedIDs); // Add this line to log the selected IDs
         return selectedIDs;
     }
 
@@ -79,7 +80,7 @@
             return;
         }
 
-        await fetch("{% url 'pending_orders' %}", {
+        const response = await fetch("{% url 'pending_orders' %}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -91,4 +92,26 @@
         // Reload the page after processing is complete to update the order list
         window.location.reload();
     });
+
+    // Get all forms on the page
+    const allForms = document.querySelectorAll('form');
+
+    // Attach click event listeners to individual card submit buttons
+    const individualOrderButtons = document.querySelectorAll('.individual-order-submit-button');
+    individualOrderButtons.forEach((button) => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            submitIndividualOrderForm(button.closest('form'));
+        });
+    });
+
+    // Function to submit individual order form
+    function submitIndividualOrderForm(form) {
+        const orderIDInput = form.querySelector('input[name="order_id"]');
+        const orderIDValue = orderIDInput.value;
+        console.log("Fingers crossed")
+        console.log("Order ID to be submitted:", orderIDValue);
+
+        form.submit();
+    }
 </script>

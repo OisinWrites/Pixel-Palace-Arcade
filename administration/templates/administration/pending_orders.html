@@ -104,17 +104,18 @@
                   <div class="col-12 mt-0 decoration-stripe orange  mb-1"></div>
 
                   <span class="text-center mt-0">            
-                      <form method="post">
+                      <form method="post" action="{% url 'pending_orders' %}">
                       {% csrf_token %}
                       <input type="hidden" name="order_id" value="{{ order.id }}">
                       <div class="butterscotch p-1">
-                          <button type="submit" class="btn orange p-1 px-3 white-text">
+                          <button type="submit" class="btn orange p-1 px-3 white-text individual-order-submit-button">
                           <strong>Confirm Shipment</strong>
                           </button>
-                          <input class="m-2 float-right order-selection-box" type="checkbox" name="selected_orders" value="{{ order.id }}">
+                          
                       </div>
                       </form>
                   </span>
+                  <input class="m-2 float-right order-selection-box" type="checkbox" name="selected_orders" value="{{ order.id }}">
 
               </div>
               
@@ -134,7 +135,7 @@
 
     {% endif %}
 
-  {% include 'administration/includes/check-and-submit-script.html' %}
+    {% include 'administration/includes/check-and-submit-script.html' %}
 
 {% endblock %}
 

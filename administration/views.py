@@ -5,27 +5,26 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.db.models import Q
 
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 
 from .forms import MarkOrderCompletedForm, MarkOrderIncompleteForm
+from .forms import MonthYearFilterForm
 from checkout.models import Order
 
 from profiles.models import Avatar, UserProfile
 
 
 def pending_orders(request):
-
     if request.method == 'GET':
         incomplete_orders = Order.objects.filter(completed=False)
-
         form = MarkOrderCompletedForm()
         context = {
             'incomplete_orders': incomplete_orders,
             'form': form
         }
-
         return render(request, 'administration/pending_orders.html', context)
 
     elif request.method == 'POST':
@@ -38,47 +37,81 @@ def pending_orders(request):
                     order = Order.objects.get(id=order_id)
                     order.completed = True
                     order.save()
-
                     """_send_shipping_confirmation_email(order)"""
-
+                    print(f"Order {order_id} marked as completed.")
                 except Order.DoesNotExist:
                     pass
 
         except json.JSONDecodeError:
             pass
 
-    return redirect('pending_orders')
+        # Process individual order form submission
+        order_id = request.POST.get('order_id')
+        if order_id:
+            try:
+                order = Order.objects.get(id=order_id)
+                order.completed = True
+                order.save()
+                """_send_shipping_confirmation_email(order)"""
+                print(f"Order {order_id} marked as completed.")
+
+            except Order.DoesNotExist:
+                pass
+
+        return redirect('pending_orders')
 
 
 def completed_orders(request):
+    complete_orders = Order.objects.filter(completed=True)
 
-    if request.method == 'GET':
-        complete_orders = Order.objects.filter(completed=True)
+    if request.method == 'POST':
+        # Handle the cancel form submission
+        cancel_form = MarkOrderIncompleteForm(request.POST)
+        if cancel_form.is_valid():
+            order_id = cancel_form.cleaned_data.get('order_id')
+            try:
+                order_to_cancel = Order.objects.get(id=order_id)
+                order_to_cancel.completed = False
+                order_to_cancel.save()
+                # Redirect to the same page after canceling the order
+                return redirect('completed_orders')
+            except Order.DoesNotExist:
+                # Handle the case where the order doesn't exist
+                pass
 
-        form = MarkOrderIncompleteForm()
-        context = {
-            'complete_orders': complete_orders,
-        }
+    # Handle the filter form submission
+    filter_form = MonthYearFilterForm(request.GET)
+    if filter_form.is_valid():
+        month = filter_form.cleaned_data.get('month')
+        year = filter_form.cleaned_data.get('year')
+        hour = filter_form.cleaned_data.get('hour')
+        day = filter_form.cleaned_data.get('day')
 
-        return render(request, 'administration/completed_orders.html', context)
+        if month:
+            complete_orders = complete_orders.filter(date__month=month)
+        if year:
+            complete_orders = complete_orders.filter(date__year=year)
+        if hour:
+            complete_orders = complete_orders.filter(date__hour=hour)
+        if day:
+            complete_orders = complete_orders.filter(date__day=day)
 
-    elif request.method == 'POST':
-        form = MarkOrderIncompleteForm(request.POST)
-        if form.is_valid():
-            order_id = form.cleaned_data['order_id']
-            order = Order.objects.get(id=order_id)
-            order.completed = False
-            order.save()
+    # Handle the search query
+    search_query = request.GET.get('search')
+    if search_query:
+        complete_orders = complete_orders.filter(
+            Q(full_name__icontains=search_query) | Q(
+                order_number__icontains=search_query)
+        )
 
-            order = Order.objects.get(id=order_id)
-            print(order.email)
+    cancel_form = MarkOrderIncompleteForm()
+    context = {
+        'cancel_form': cancel_form,
+        'filter_form': filter_form,
+        'complete_orders': complete_orders,
+    }
 
-            """_send_shipping_confirmation_email(order)"""
-
-            messages.success(request, f'Shipment canceled. \
-                    A notification email will be sent to {order.email}.')
-
-            return redirect('completed_orders')
+    return render(request, 'administration/completed_orders.html', context)
 
 
 def _send_shipping_confirmation_email(order):
