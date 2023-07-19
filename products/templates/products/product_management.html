@@ -24,7 +24,7 @@
     </div>
 
 
-    <div class="container xanthous">
+    <div class="container-fluid xanthous">
         <div class="row">
             <div class="col-12">
                 <ul class="list-unstyled pl-0 xanthous col-6 mb-0">
@@ -109,15 +109,15 @@
     </div>
 </div>
 
-<div class="container-fluid xanthous p-3">
+<div class="container-fluid xanthous p-3 big-bottom">
     <div class="row">
     {% for product in products %}
 
-        <div class="col-12 col-md-6 col-lg-4 pb-4">
-            <div class="col-10 offset-1 butterscotch h-100 p-1 pb-2 px-3">
+        <div class="col-12 col-md-6 col-lg-4 pb-2">
+            <div class="col-10 offset-1 butterscotch border h-100 p-1 pb-2 px-3">
                 <div>
                     <a class="mx-1 white-text float-left" href="{% url 'product_detail' product.id %}">
-                        <h5 class="mb-0">{{ product.name }}</h5> 
+                        <p class="mb-0">{{ product.name|slice:':30' }}</p> 
                     </a>
                 </div>
                 <div class="float-right mb-1">

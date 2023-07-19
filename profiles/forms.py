@@ -51,8 +51,15 @@ class AvatarForm(forms.ModelForm):
         label=''
     )
 
-    image = forms.ImageField(label='', required=False,
+    image = forms.ImageField(label='', required=True,
                              widget=CustomClearableFileInput)
+
+    def clean_avatar_name(self):
+        avatar_name = self.cleaned_data.get('avatar_name')
+        # Add your validation logic here
+        if not avatar_name:
+            raise forms.ValidationError("Avatar name is required.")
+        return avatar_name
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)

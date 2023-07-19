@@ -15,23 +15,10 @@ body {
     width: 100%;
     margin: 0 !important;
     overflow-y: auto;
-    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
+    background: #34373D;
     font-family: 'Play', sans-serif;
-    color: #EBEBEB;
+    color: #34373D;
     z-index: -10;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height:100vh;
-    background-color: rgba(191, 161, 60, 0.35);
-    z-index: -9;
 }
 
 .index-background {
@@ -42,7 +29,7 @@ body::before {
 /*-----------------element rules--------*/
 
 a {
-    color:#DA7092;
+    color: inherit;
 }
 
 a:hover {
@@ -111,7 +98,7 @@ h1 {
     height: 5rem;
 }
 
-.header-icons, .footer-links {
+.header-icons {
     display: flex;
     justify-content: flex-end;
     flex-grow: 1;
@@ -166,13 +153,6 @@ h1 {
     width: 100vw;
     height: 100vh;
     z-index: 9998;
-}
-
-.body-menu {
-    height: 100vh;
-    /*background: url("/static/media/paper-texture-plain.jpg") no-repeat center center fixed;*/
-    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
-    background-size: cover;
 }
 
 .body-menu-content {
@@ -335,7 +315,7 @@ h1 {
 }
 
 #user-options-dropdown div ul li a {
-    color:  #EBEBEB;
+    color:  #34373D;
     font-size: 1.5rem;
 }
 
@@ -360,17 +340,32 @@ h1 {
     margin-top: 5rem;
 }
 /*-----------------------------------------Footer-------*/
+
 footer {
     position: fixed;
     bottom: 0;
+    max-height: 3.5rem;
 }
 
 footer div p {
-    position: fixed;
     bottom: 0;
     margin-bottom: 3px;
     white-space: nowrap;
     font-size: .8rem;
+}
+
+.facebook-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 2.5rem;
+    right: 0.8rem;
+    z-index: 9999;
+    position: fixed;
+    font-size: 2rem;
 }
 
 /*------------------------------------------Index-------*/
@@ -413,7 +408,6 @@ footer div p {
 
 .category-banner {
     width: 100vw;
-    color: #EB7640 !important;
 }
 
 .category-container {
@@ -463,7 +457,6 @@ footer div p {
 
 .product-details-container {
     overflow-y: auto;
-    background: #64a3ac46;
 }
 
 .decoration-stripe {
@@ -534,23 +527,29 @@ footer div p {
 
 /*----Index Icon---*/
 .admin-icon {
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    bottom: 2.5rem;
+    z-index: 9999;
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    right: 4rem;
+    z-index: 9999;
+}
+
+.admin-icon div {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 9999;
 }
 
 .admin-icon a i {
-    font-size: 2rem;
-    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613878/static/css/arcade-live-still-background_otrsil.png") no-repeat center center fixed;
-    background-size: cover;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1.4rem;
 }
 
 .admin-access {
@@ -678,34 +677,13 @@ input[type="checkbox"] {
     font-size: 2rem;
 }
 
-/*----------------------------------------Colour Palette and Texture---*/
+/*----------------------------------------Colour Palette---*/
 .texture {
-    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
-    background-size: cover;
     max-width: max-content;
-}
-
-.texture-text {
-    background: url("https://res.cloudinary.com/dwhennrjl/image/upload/v1689613859/static/css/paper-texture-plain_io9ff2.jpg") no-repeat center center fixed;
-    background-size: cover;
-    -webkit-background-clip: text;
-}
-
-.opacity-75 {
-    opacity: 0.90;
-}
-
-.test-div {
-    height: 6rem;
-    width: 100vw;
 }
 
 .moonstone {
     background: #64A2AC;
-}
-
-.moonstone-75 {
-    background: #64A2ACcc;
 }
 
 .satin {
@@ -716,9 +694,6 @@ input[type="checkbox"] {
     background: #F3B844;
 }
 
-.xanthous-75 {
-    background: #F3B844cc;
-}
 
 .butterscotch {
     background: #EF9742; 
@@ -726,10 +701,6 @@ input[type="checkbox"] {
 
 .orange {
     background: #EB7640; 
-}
-
-.orange-75 {
-    background: #EB7640cc; 
 }
 
 .pink {
@@ -740,12 +711,9 @@ input[type="checkbox"] {
     background: #EBEBEB;
 }
 
-.white-75 {
-    background: #EBEBEBcc;
-}
 
 .onyx {
-    background: #34373Dcc;
+    background: #34373D;
 }
 
 .moonstone-text {
@@ -772,7 +740,7 @@ input[type="checkbox"] {
     color: #DA7092; 
 }
 
-.white-text, li a {
+.white-text {
     color: #EBEBEB;
 }
 
@@ -813,8 +781,8 @@ input[type="checkbox"] {
 .fa-circle-arrow-up {
     font-size: 2rem;
     position: fixed;
-    bottom: 1rem;
-    right: 0.5rem;
+    bottom: 6rem;
+    right: 1.2rem;
     cursor: pointer;
 }
 

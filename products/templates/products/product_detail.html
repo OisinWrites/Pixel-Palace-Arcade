@@ -3,102 +3,47 @@
 {% load crispy_forms_tags %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid description-container texture mt-2">
+
+    <div class="max-content rounded m-3">
+        <div class="xanthous-75 rounded">
+            <a href="{% url 'products' %}" class="start-font display-4 moonstone-text section-heading m-0 p-0">
+                <h2 class="orange-text m-2 p-2">Games &<br>Merch</h2>
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid description-container max-content mt-2">
         <div class="row overlay-card overlay-card-details moonstone">
+
             <div>
                 <div class="go-back-button orange-text mt-2">
                     <i class="fa-solid fa-circle-left"></i>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2 mt-5">
-                <div class="image-container my-3">
-                    {% if product.image %}
-                    <a href="{{ product.image.url }}" target="_blank">
-                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </a>
-                    {% else %}
-                    <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                    </a>
-                    {% endif %}
-                </div>
 
-                <div>
-                    {% if reviews %}
-                        <h4> Reviews</h4>
-                        <hr>
-                        {% for review in reviews %}
-                        <small class="col text-right float-right">{{ review.created_at|date:"F d, Y" }}</small>
-                        <br>
-                        <p>
-                            <div class="d-flex">
-                                {% for avatar in avatars %}
-                                  {% if avatar.user == review.user %}
-                                  <div class="col-2">
-                                    <img class="img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.user.username }} Avatar">
-                                  </div>
-                                  <div class="col-10">
-                                    <p class="ml-5">{{ avatar.avatar_name }}</p>
-                                  </div>
-                                  {% endif %}
-                                {% endfor %}
-                            </div>
-                            <strong>{{ review.title }}</strong>
-                            <br>{{ review.body }}<br>
-                            {% if review.user == request.user %}
-                                <a class="text-danger col text-right" href="{% url 'delete_review' review.id %}">
-                                    <small>delete your review</small>
-                                </a>
-                            {% else %}
-                                {% if review.has_avatar %}                            
-                                {% else %}
-                                <small class="text-right">by {{ review.user }}</small>
-                                {% endif %}
-                            {% endif %}
-                            <hr>
-                        </p>
-                        {% endfor %}
-                    {% else %}
-                        {% if user.is_authenticated %}
-                        <p>No reviews yet, would you like to 
-                            <a href="{% url 'create_review' product.id %}">leave one?</a>
-                        </p>
-                        {% else %}
-                        <a  href="{% url 'account_signup' %}">Sign up to leave a review</a>
-                        {% endif %}
-                    {% endif %}
-                </div>
-
-            </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-5">
-                <div class="mb-1 mt-3">
-                    <h3 class="pl-1 mb-0 orange">{{ product.name }}</h3>
+                <div class="mb-0 mt-3">
                     {% if request.user.is_superuser %}
-                    <p class="orange mb-0">
-                        <small class="ml-1">
-                            <a class="white-text" href="{% url 'edit_product' product.id %}">Edit </a>                                                       
-                            <a class="onyx-text" href="{% url 'delete_product' product.id %}">Delete</a>
-                        </small>
-                    </p>
+                    <div class="orange decoration-stripe mb-0">
+                        <div class="ml-1">
+                            <a class="white-text onyx px-2 float-right" href="{% url 'delete_product' product.id %}">Delete</a>
+                            <a class="float-right white px-2" href="{% url 'edit_product' product.id %}">Edit </a>                                                       
+                        </div>
+                    </div>
                     {% endif %}
                     <p class="lead pl-1 mb-0 text-left font-weight-bold butterscotch">€{{ product.price }}</p>
                     {% if product.category %}
                     <p class="small pl-1 mt-0 mb-0 butterscotch">
-                        <a class="white-text" href="{% url 'products' %}?category={{ product.category.name }}">
+                        <a href="{% url 'products' %}?category={{ product.category.name }}">
                             <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                         </a>
                     </p>
                     {% endif %}
                     
-                    <div class="xanthous pl-1">
+                    <div class="xanthous pb-2 mb-0 float-center text-center">
                         {% if product.aggregaterating %}
                     <small class="onyx-text"><i class="fas fa-star mr-1"></i>{{ product.aggregaterating }} / 5</small>
                     {% else %}
@@ -107,27 +52,26 @@
                                                           
                     {% if user.is_authenticated %}
                         {% if rating %}
-                        <div>
-                            <small class="text-muted">                                
-                                <form method="POST" action="{% url 'product_detail' product_id=product.id %}">
-                                    {% csrf_token %}
-                                    <button class="rating-button" type="submit" name="delete_rating">
-                                        {{ request.user.username }}'s score: 
-                                        <i class="fas fa-star mr-1"></i>
-                                        {{ rating.rating }} / 5
-                                    </button>
-                                </form>
-                            </small>
+                        <div class="float-center mb-0 text-center">                                
+                            <form method="POST" action="{% url 'product_detail' product_id=product.id %}">
+                                {% csrf_token %}
+                                <button class="rating-button onyx-text" type="submit" name="delete_rating">
+                                    {{ request.user.username }}'s score: 
+                                    <i class="fas fa-star mr-1"></i>
+                                    {{ rating.rating }} / 5
+                                </button>
+                            </form>
                         </div>
                         {% if user.is_authenticated %}
                             {% if not reviews %}
-                                <a href="{% url 'create_review' product.id %}">Leave a Review</a>
+                                <a href="{% url 'create_review' product.id %}">
+                                    <h5 class="mb-0 text-center"><strong>Leave a Review</strong></h5></a>
                             {% else %}
                                 {% with has_review=false %}
                                     {% for review in reviews %}
                                         {% if review.user == request.user %}
                                             {% with has_review=true %}
-                                                <p>You've reviewed this product</p>
+                                                
                                             {% endwith %}
                                         {% endif %}
                                     {% endfor %}
@@ -147,86 +91,162 @@
                                 <label for="star{{ rating }}"><i class="fas fa-star"></i></label>
                             {% endfor %}
                         </form>
-                        <p class="pink-text mb-0"><small>Please leave a rating before submitting a review</small></p>                                                                  
+                        <p class="pb-0"><small class="pb-0">Please leave a rating before submitting a review</small></p>                                                                  
                         {% endif %}
                     {% endif %}              
                     </div>
 
                 </div>
-                <div class="mb-0 mt-1">
-                    <div>
+                <div class="m-0 onyx">
+                    <div class="m-0 onyx">
                         <button 
-                            class="expand-collapse-button mb-0 orange-text text-uppercase" 
+                            class="expand-collapse-button mb-0 white-text text-uppercase" 
                             onclick="toggleMaxHeight()"
                             id="toggle-description-field-button">
                             <strong>Expand</strong>
                         </button>
                     </div>
-                    <p id="description-field" class="product-details-container mt-3">
+
+                    <p id="description-field" class="p-2 white-text onyx product-details-container mt-3">
                         {{ product.description }} 
                     </p>
-                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row">
-                            {% with product.has_variants as v %}
-                            {% if v %}
-                            <div class="col-12 xanthous">
-                                <p><strong>Console:</strong></p>
-                                <select class="form-control rounded-0 w-50" name="product_variant" id="product_variant">
-                                    <option value="xbox"><div>XBOX One</div></option>
-                                    <option value="ps">Playstation 4</option>
-                                    <option value="ds">Nintendo</option>
-                                    <option value="pc">Desktop</option>
-                                </select>
-                            </div>
-                            {% endif %}
-                            <div class="col-12 xanthous">
-                                <p class="mt-0"><strong>Quantity:</strong></p>
-                                <div class="form-group w-50">
-                                    <div class="input-group input-group-{{ product.id }}">
-                                        <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-black rounded-0 decrement-qty_{{ product.id }}" 
+
+                    <div>
+                        <form action="{% url 'add_to_bag' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row w-100 mx-0">
+                                {% with product.has_variants as v %}
+                                {% if v %}
+                                <div class="col-6 xanthous">
+                                    <p class="mt-1"><strong>Console:</strong></p>
+                                    <select class="form-control rounded-0 w-100" name="product_variant" id="product_variant">
+                                        <option value="xbox"><div>XBOX One</div></option>
+                                        <option value="ps">Playstation 4</option>
+                                        <option value="ds">Nintendo</option>
+                                        <option value="pc">Desktop</option>
+                                    </select>
+                                </div>
+                                {% endif %}
+                                <div class="col-6 xanthous p-0">
+                                    <p class="mt-1 p-0 ml-1"><strong>Quantity:</strong></p>
+                                    <div class="form-group w-100">
+                                        <div class="input-group input-group-{{ product.id }}">
+                                            <div class="input-group-prepend">
+                                                <button class="decrement-qty btn btn-black rounded-0 decrement-qty_{{ product.id }}" 
+                                                    data-item_id="{{ product.id }}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-minus onyx-text"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
+                                                name="quantity" value="1" min="1" max="99"
                                                 data-item_id="{{ product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-minus onyx-text"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
-                                            name="quantity" value="1" min="1" max="99"
-                                            data-item_id="{{ product.id }}">
-                                        <div class="input-group-append">
-                                            <button class="increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
-                                                data-item_id="{{ product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus onyx-text"></i>
-                                                </span>
-                                            </button>
+                                            <div class="input-group-append">
+                                                <button class="increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
+                                                    data-item_id="{{ product.id }}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-plus onyx-text"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col{% if v %}-12 mt-0{% endif %} butterscotch">
-                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-3">
-                                    <span class="icon">
-                                        <i class="fa-solid fa-circle-chevron-left onyx-text"></i>                                    
-                                    </span>
-                                    <span class="play-font onyx-text">Keep Shopping</span>
-                                </a>
+    
+                                <div class="col{% if v %}-12 mt-0{% endif %} butterscotch">
+                                    <a href="{% url 'products' %}" class="btn ml-0 pl-0">
+                                        <span class="play-font onyx-text ml-0 pl-0">
+                                            <i class="fa-solid fa-circle-chevron-left onyx-text ml-0 pl-0"></i>
+                                            Keep Shopping
+                                        </span>
+                                    </a>                                    
+                                    <span class="mr-0 pr-0">
+                                        <input type="submit" class="btn play-font pr-0 mb-0 mr-0" value="Add to Bag">
+                                        <i class="ml-1 fa-solid fa-bag-shopping"></i>
+                                    </span>                                
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                 
-                                <span class="icon">
-                                    <input type="submit" class="btn onyx-text rounded-0 play-font mt-3" value="Add to Bag">                                
-                                </span>                                
+                                {% endwith %}
+                                <div class="decoration-stripe orange"></div>
                             </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            
-                            {% endwith %}
-                            <div class="decoration-stripe orange"></div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2 mt-5">
+
+                <div class="image-container my-3">
+                    {% if product.image %}
+                    <a href="{{ product.image.url }}" target="_blank">
+                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
+                    {% else %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="onyx white-text px-2">
+                    {% if reviews %}
+                        <h4 class="text-center pt-2">Reviews</h4>
+                        <hr>
+                        {% for review in reviews %}
+                            <div class="row">
+                                
+                                    {% if review_has_avatar %}
+                                    <div class="col-4">
+                                        <img class="img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.user.username }} Avatar">
+                                    </div>
+                                    {% else %}
+                                    <div class="col-4">hello</div>
+                                    {% endif %}
+                       
+                                    {% if review_has_avatar %}
+                                    <div class="col-8 text-right float-right">
+                                        <p class="mb-0"><small>{{ review.created_at|date:"F d, Y" }}</small></p>
+                                        <p class="m-0">by {{ avatar.avatar_name }}</p>
+                                    {% else %}
+                                    <div class="col-8 text-right float-right">
+                                        <p class="mb-0"><small>{{ review.created_at|date:"F d, Y" }}</small></p>
+                                        <small class="text-right">by {{ review.user }}</small>
+                                    {% endif %}
+                                 
+                                    
+                                </div>
+                                                           
+                                <div class="col-6">
+                                    <strong>{{ review.title }}</strong>
+                                </div>
+                                {% if review.user == request.user %}
+                                <div class="col-6">
+                                    <a class="text-danger white px-1 float-right" href="{% url 'delete_review' review.id %}">
+                                        <strong>DELETE</strong>
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="col-12">
+                                    <br>{{ review.body }}<br>
+                                    <hr> 
+                                </div>                                   
+                            </div>                    
+                        {% endfor %}
+                    {% else %}
+                        {% if user.is_authenticated %}
+                        <p>No reviews yet, would you like to 
+                            <a href="{% url 'create_review' product.id %}">leave one?</a>
+                        </p>
+                        {% else %}
+                        <a  href="{% url 'account_signup' %}">Sign up to leave a review</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+            </div>
+            
         </div>
     </div>
 {% endblock %}

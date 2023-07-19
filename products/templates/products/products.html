@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="texture rounded m-3">
+<div class="max-content rounded m-3">
     <div class="xanthous-75 rounded">
         <a href="{% url 'products' %}" class="start-font display-4 moonstone-text section-heading m-0 p-0">
             <h2 class="orange-text m-2 p-2">Games &<br>Merch</h2>
@@ -13,13 +13,13 @@
     </div>
 </div>
 
-<div class="texture">
+<div class="max-content">
     <ul class="list-unstyled xanthous d-flex flex-wrap align-items-center justify-content-center category-banner mb-0">
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link" href="{% url 'products' %}" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Games & Merch
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+            <div class="dropdown-menu onyx  border-0" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item di1">By Price</a>
                 <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item di2">By Rating</a>
                 <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item di3">By Category</a>
@@ -31,7 +31,7 @@
             <a class="logo-font font-weight-bold nav-link" href="#" id="classics-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Classic Arcade
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="classics-link">
+            <div class="dropdown-menu onyx  border-0" aria-labelledby="classics-link">
                 <a href="{% url 'products' %}?category=shooters" class="dropdown-item di1">Shoot 'em Ups</a>
                 <a href="{% url 'products' %}?category=platform_style" class="dropdown-item di2">Platformer</a>
                 <a href="{% url 'products' %}?category=puzzle" class="dropdown-item di3">Puzzle</a>
@@ -43,7 +43,7 @@
             <a class="logo-font font-weight-bold nav-link" href="#" id="new-releases-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 New Releases
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="modern-hits-link">
+            <div class="dropdown-menu onyx  border-0" aria-labelledby="modern-hits-link">
                 <a href="{% url 'products' %}?category=star_wars_franchise" class="dropdown-item di1">Star Wars Collection</a>
                 <a href="{% url 'products' %}?category=racing_style" class="dropdown-item di2">Racing</a>
                 <a href="{% url 'products' %}?category=japan_made_games" class="dropdown-item di3">Best from Japan</a>
@@ -55,7 +55,7 @@
             <a class="logo-font font-weight-bold nav-link" href="#" id="collectibles-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Collectibles
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="merchandise-link">
+            <div class="dropdown-menu onyx  border-0" aria-labelledby="merchandise-link">
                 <a href="{% url 'products' %}?category=collectible" class="dropdown-item di1">Collectors Corner</a>
                 <a href="{% url 'products' %}?category=soft_toys" class="dropdown-item di2">Plushies</a>
                 <a href="{% url 'products' %}?category=equip" class="dropdown-item di3">Controllers & Joysticks</a>
@@ -67,7 +67,7 @@
             <a class="logo-font font-weight-bold nav-link" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Special Offers
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
+            <div class="dropdown-menu onyx  onyx border-0" aria-labelledby="specials-link">
                 <a href="{% url 'products' %}?category=new" class="dropdown-item di1">New Arrivals</a>
                 <a href="{% url 'products' %}?category=deals" class="dropdown-item di2">Deals</a>
                 <a href="{% url 'products' %}?category=grouped_products" class="dropdown-item di3">Bundles</a>
@@ -77,13 +77,15 @@
     </ul>
 </div>
 
-<div class="texture rounded container m-0">
+<div class="decoration-stripe onyx"></div>
+
+<div class="max-content rounded container-fluid m-0">
     <div class="moonstone row">
         <div class="product-container col-10 offset-1 mt-2">
             <div class="category-container mb-3">
                 {% for category in current_categories %}
-                <div class="texture mx-1 mb-1">
-                    <div class="current-category">
+                <div class="max-content mx-1 mb-1">
+                    <div class="current-category onyx">
                         <a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item white-text di4">{{ category.friendly_name }}</a>
                     </div>
                 </div>
@@ -92,7 +94,7 @@
             <div class="row">
                 {% for product in products %}
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2">
-                        <div class="card h-100 border-0 overlay-card orange-text m-0">
+                        <div class="card h-100 border-0 overlay-card white-text m-0">
                             {% if product.image %}
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -102,34 +104,34 @@
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             </a>
                             {% endif %}
-                            <div class="card-body d-flex align-items-end pb-0 white">
+                            <div class="card-body d-flex align-items-end pb-0 onyx">
                                 <a href="{% url 'product_detail' product.id %}">
-                                    <p class="mb-0">{{ product.name }}</p>
+                                    <p class="ml-1 mb-0">{{ product.name }}</p>
                                 </a>
                             </div>
-                            <div class="card-footer pt-0 border-0 text-left xanthous">
+                            <div class="card-footer pt-0 border-0 onyx-text text-left xanthous">
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
                                         {% if product.category %}
                                         <p class="small mt-1 mb-0">
-                                            <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                            <a href="{% url 'products' %}?category={{ product.category.name }}">
                                                 <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                                             </a>
                                         </p>
                                         {% endif %}
                                         {% if product.aggregaterating %}
-                                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.aggregaterating }} / 5</small>
+                                            <small><i class="fas fa-star mr-1"></i>{{ product.aggregaterating }} / 5</small>
                                         {% else %}
                                             <i class="fa-regular fa-star"></i>
-                                            <small class="text-muted">No Rating</small>
+                                            <small>No Rating</small>
                                         {% endif %}
                                         {% if request.user.is_superuser %}
                                             <br>
-                                            <small class="ml-3">
-                                                <a href="{% url 'edit_product' product.id %}">Edit</a>
-                                                <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                                            </small>
+                                            <strong class="mx-3">
+                                                <a class=" float-left mt-3" href="{% url 'edit_product' product.id %}">Edit</a>
+                                                <a class="text-danger float-right mt-3" href="{% url 'delete_product' product.id %}">Delete</a>
+                                            </strong>
                                         {% endif %}                                                        
                                     </div>
                                 </div>

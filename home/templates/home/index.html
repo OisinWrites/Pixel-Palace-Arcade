@@ -5,14 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="index-background">
-
-    </div>
-    <video autoplay loop muted id="video-background">
-        <!--<source src="/static/media/arcade-room-live-wallpaper-compressed.mp4" type="video/mp4">-->
-        <source src="https://res.cloudinary.com/dwhennrjl/video/upload/v1689613912/static/css/arcade-room-live-wallpaper-compressed_ulsyav.mp4" type="video/mp4">
-        
-    </video>
+    <div class="index-background"></div>
 
     <div class="title-border">
         <div class="custom-container">
@@ -45,54 +38,6 @@
             </div>
         </div>
     </div>
-
-    <div>
-        <a href="" class="fixed-bottom whitespace-nowrap mb-5 py-3 opacity-75 white-text rounded d-flex">
-            <i class="ml-4 display-4 fa-brands fa-facebook"></i>
-            <h5 class="ml-3 mt-3 whitespace-nowrap">Visit us on our Socials</h5>
-        </a>
-    </div>
-
-    {% if user.is_superuser %}
-        <div class="admin-icon xanthous p-1 rounded-circle">
-            <a href="{% url 'admin_menu' %}"  class="texture-text white-text profile-icon">
-                <i class="fa-solid fa-key"></i>
-            </a>
-        </div>
-        <p class="admin-access xanthous-text text-uppercase">Admin Access</p>
-    {% endif %}
-
-<script type="text/javascript">
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('video-background');
-    const pauseButton = document.getElementById('pause-button');
-
-    // Check if the play or pause state is stored in the localStorage
-    const isVideoPaused = localStorage.getItem('videoPaused');
-    if (isVideoPaused === 'true') {
-        video.pause();
-        pauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-    } else {
-        video.play();
-        pauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    }
-
-    pauseButton.addEventListener('click', () => {
-        if (video.paused) {
-        video.play();
-        pauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        localStorage.setItem('videoPaused', 'false'); // Store the play state in localStorage
-        } else {
-        video.pause();
-        pauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-        localStorage.setItem('videoPaused', 'true'); // Store the pause state in localStorage
-        }
-    });
-    });
-
-
-</script>
 
 <script type="text/javascript">
     // Get the elements
