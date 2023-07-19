@@ -9,9 +9,9 @@
 
     <div class="title-border">
         <div class="custom-container">
-            <div class="texture">
+            <div class="max-content">
                 <div class="pink">
-                    <h1 class="index-logo texture-text onyx-text p-1 m-0 mx-1">
+                    <h1 class="index-logo max-content-text onyx-text p-1 m-0 mx-1">
                         Pixel Palace
                     </h1>
                 </div>
@@ -19,9 +19,9 @@
         </div>
     
         <div class="custom-container">
-            <div class="texture">
+            <div class="max-content">
                 <div class="xanthous">
-                    <h2 class="index-logo start-font texture-text onyx-text p-1 m-0 mx-1">
+                    <h2 class="index-logo start-font max-content-text onyx-text p-1 m-0 mx-1">
                         Arcade
                     </h2>
                 </div>
@@ -29,7 +29,7 @@
         </div>
     
         <div class="custom-container call-to-action">
-            <div class="texture">
+            <div class="max-content">
                 <div class="moonstone">
                     <a href="{% url 'products' %}" class="text-uppercase onyx-text">
                         <strong><p class="flicker my-0 mx-1">Browse the collection</p></strong>
@@ -38,20 +38,5 @@
             </div>
         </div>
     </div>
-
-<script type="text/javascript">
-    // Get the elements
-    const adminIcon = document.querySelector('.admin-icon');
-    const adminAccess = document.querySelector('.admin-access');
-  
-    // Add event listener for hover
-    adminIcon.addEventListener('mouseenter', () => {
-      adminAccess.style.display = 'block';
-    });
-  
-    adminIcon.addEventListener('mouseleave', () => {
-      adminAccess.style.display = 'none';
-    });
-</script>
 
  {% endblock %}
