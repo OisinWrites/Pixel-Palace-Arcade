@@ -13,7 +13,7 @@
     <div class="start-font row section-heading m-0 p-0">
         <div class="col-8 offset-2 float-center"></div>
             <h4 class="xanthous-text m-2 p-2 whitespace-nowrap">
-                Newsletter Members
+                Newsletter Subscribers
             </h4>
         </div>
     </div>
@@ -21,11 +21,10 @@
 
 <div class="row">
     <div class="col-8 offset-2 white-text">
-        <h1>Newsletter Subscribers</h1>
         <ul>
             {% for subscriber in subscribers %}
-                <li>{{ subscriber.name }} - {{ subscriber.email }}</li>
-            {% endfor %}
+            <li>{{ subscriber.user.username }} - {{ subscriber.user.email }}</li>
+        {% endfor %}
         </ul>
     </div>
 </div>

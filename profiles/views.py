@@ -130,7 +130,12 @@ def avatar_form(request):
     return render(request, template, context)
 
 
+@login_required
 def delete_avatar(request):
+    # Handles interference from a malicious actor
+    if request.user != avatar.user:
+        messages.error(
+            request, "Sorry, you can't delete other users' avatars.")
     """Delete a user's avatar"""
     avatar = get_object_or_404(Avatar, user=request.user)
     avatar.delete()

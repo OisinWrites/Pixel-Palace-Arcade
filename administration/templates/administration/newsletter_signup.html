@@ -10,7 +10,7 @@
 
         <div class="start-font row section-heading m-0 p-0">
             <div class="col-8 offset-2 float-center"></div>
-                <h4 class="xanthous-text m-2 p-2 whitespace-nowrap">
+                <h4 class="xanthous-text m-2 p-2 whitespace-wrap">
                     Sign up for our newsletter!
                 </h4>
             </div>
@@ -24,19 +24,13 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <input type="submit" value="Subscribe">
+                <div class="col-6 float-center text-center xanthous rounded py-2">
+                    <input type="submit" value="Subscribe">
+                </div>
+                
             </form>
         </div>
     </div>
-
-    {% if user.is_superuser %}
-        <h1>Newsletter Subscribers</h1>
-        <ul>
-            {% for subscriber in subscribers %}
-                <li>{{ subscriber.name }} - {{ subscriber.email }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
 {% endblock %}
 

@@ -6,8 +6,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.db.models import Q
-from .models import NewsletterSubscriber
-from .forms import NewsletterSignupForm
+from .forms import NewsletterSubscriptionForm
 
 import json
 from django.http import JsonResponse, HttpResponseRedirect
@@ -17,6 +16,7 @@ from .forms import MonthYearFilterForm
 from checkout.models import Order
 
 from profiles.models import Avatar, UserProfile
+from .models import Subscriber
 
 
 def pending_orders(request):
@@ -156,9 +156,16 @@ def admin_menu(request):
     return render(request, 'administration/admin_menu.html', context)
 
 
+@login_required
 def newsletter_signup(request):
+    # Make sure the user is authenticated before proceeding
+    if not request.user.is_authenticated:
+        return redirect('login')  # Replace 'login' with your login URL
+
+    user = request.user
+
     if request.method == 'POST':
-        form = NewsletterSignupForm(request.POST)
+        form = NewsletterSubscriptionForm(request.POST, user=user)
         if form.is_valid():
             form.save()
             messages.success(
@@ -166,18 +173,43 @@ def newsletter_signup(request):
                     you'll love our amazing deals!")
             return redirect('home')
     else:
-        form = NewsletterSignupForm()
+        form = NewsletterSubscriptionForm(user=user)
 
     context = {
         'form': form
-        }
+    }
     return render(request, 'administration/newsletter_signup.html', context)
 
 
 def newsletter_list(request):
-    subscribers = NewsletterSubscriber.objects.all()
+    # Retrieve all user profiles where newsletter_subscribed is True
+    subscribers = Subscriber.objects.filter(
+        newsletter_subscribed=True)
 
     context = {
         'subscribers': subscribers
-        }
+    }
     return render(request, 'administration/newsletter_list.html', context)
+
+
+def newsletter_unsubscribe(request, subscriber_id):
+    subscriber = get_object_or_404(UserProfile, id=subscriber_id)
+
+    if request.user != subscriber.user:
+        # Redirect the user to the homepage if they are
+        # not the subscription owner
+        messages.error(request, "Sorry, you can't cancel \
+            someone else's subscription.")
+        return redirect('home')
+
+    if request.method == 'POST':
+        # Toggle the newsletter_subscribed field to False and save the changes
+        subscriber.newsletter_subscribed = False
+        subscriber.save()
+        return redirect('home')
+
+    context = {
+        'subscriber': subscriber
+    }
+    return render(
+        request, 'administration/newsletter_unsubscribe.html', context)

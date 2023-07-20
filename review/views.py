@@ -6,6 +6,7 @@ from .forms import ReviewForm
 from products.models import Product
 from .models import Rating
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 def create_review(request, product_id):
@@ -78,16 +79,17 @@ def update_review(request, review_id):
     return render(request, 'review/update_review.html', context)
 
 
+@login_required
 def delete_review(request, review_id):
-    """Delete a review"""
-
-    # Handles interference from a malicious actor
-    if not request.user.is_authenticated:
-        messages.error(request, "Sorry, \
-            you can't access other user's profiles.")
-        return redirect('product_detail', id=product_id)
-
     review = get_object_or_404(Review, id=review_id)
+
+    # Check if the current user is the owner of the review
+    if request.user != review.user:
+        # Redirect the user to the homepage if they are not the review's owner
+        messages.error(
+            request, "Sorry, you can't delete other users' reviews.")
+        return redirect('home')
+
     product_id = review.product.id
     review.delete()
     messages.info(request, 'Review deleted!')

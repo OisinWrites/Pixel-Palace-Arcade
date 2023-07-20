@@ -1,5 +1,7 @@
 from django import forms
-from .models import NewsletterSubscriber
+from profiles.models import UserProfile
+from django.contrib.auth.models import User
+from .models import Subscriber
 
 
 class MarkOrderCompletedForm(forms.Form):
@@ -102,7 +104,23 @@ class MonthYearFilterForm(forms.Form):
     day = forms.ChoiceField(choices=DAY_CHOICES, required=False)
 
 
-class NewsletterSignupForm(forms.ModelForm):
-    class Meta:
-        model = NewsletterSubscriber
-        fields = ['name', 'email']
+class NewsletterSubscriptionForm(forms.Form):
+    # We will use this form to toggle the newsletter subscription status
+    newsletter_subscribed = forms.BooleanField(required=False)
+
+    # This method will initialize the form fields with the user's data
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        self.email = self.user.email
+        subscriber = self.user.subscriber.filter(user=self.user).first()
+        initial = {'newsletter_subscribed': subscriber.newsletter_subscribed
+                   if subscriber else False}
+        super(NewsletterSubscriptionForm, self).__init__(
+            initial=initial, *args, **kwargs)
+        self.subscriber_instance = subscriber  # Store the subscriber instance
+
+    # This method will save the subscription status to the database
+    def save(self):
+        newsletter_subscribed = self.cleaned_data['newsletter_subscribed']
+        self.subscriber_instance.newsletter_subscribed = newsletter_subscribed
+        self.subscriber_instance.save()
