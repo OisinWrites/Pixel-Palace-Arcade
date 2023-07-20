@@ -10,7 +10,7 @@
 
         <div class="start-font row section-heading m-0 p-0">
             <div class="col-8 offset-2 float-center"></div>
-                <h4 class="xanthous-text m-2 p-2 whitespace-wrap">
+                <h4 class="xanthous-text m-2 p-2 ">
                     Sign up for our newsletter!
                 </h4>
             </div>
@@ -24,6 +24,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form|crispy }}
+                <div class="white m-1 col-6"><p>Check to confirm, and hit <br>the button below to sign up.</p></div>
                 <div class="col-6 float-center text-center xanthous rounded py-2">
                     <input type="submit" value="Subscribe">
                 </div>

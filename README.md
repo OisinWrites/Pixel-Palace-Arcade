@@ -83,14 +83,20 @@ https://www.clarityincrazy.com/
 | ![desktop response](media/fullscreen_responsive.png) |
 
 ### Logic
-#### Database Schema of Django Models
+#### Entity Relationship Diagram & Database Schema for Django Models
+
+##### ERD
+
+![erd](media/erd.png)
+
+##### Schema
 
 ![schema list one](media/schema_list_one.png)
 
 ![schema list two](media/schema_list_two.png)
 
 
-        Python logic flowcharts
+##### Python logic flowcharts
 
 ![Logic Flowchart](media/logic_flowchart.png)
         
@@ -281,27 +287,7 @@ Custom error 404 page for enhanced user experience, and immersion.
 
 ![stripe implementation verification](media/stripe_confirmation.png)
 
-### Automated tests in development for all views.py logic for apps
-
-Bag
-
-![bag auto tests](media/bag_views_tests.png)
-
-Blog
-
-![blog auto tests](media/blog_views_tests.png)
-
-Checkout
-
-![checkout auto tests](media/checkout_views_tests.png)
-
-Products
-
-![products auto tests](media/products_views_tests.png)
-
-Profiles
-
-![profiles auto tests](media/profiles_views_tests.png)
+### Manual Testing
 
 ### Error Log
 

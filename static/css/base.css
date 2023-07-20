@@ -643,7 +643,8 @@ input[type="checkbox"] {
 
 /*----------------------Admin Menu--------*/
 
-#hal_administrator {
+#hal_administrator, 
+.sorrydave {
     background: url('https://res.cloudinary.com/dwhennrjl/image/upload/v1689613848/static/css/hal-9000-menu-page.jpg') center center fixed;
     background-size: cover;
     z-index: 100;
@@ -696,7 +697,8 @@ input[type="checkbox"] {
     animation: typingAnimation 30s steps(80, end);
 }
 
-#hals_eye {
+#hals_eye,
+.hals_eye {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -705,6 +707,7 @@ input[type="checkbox"] {
     width: 27vh;
     opacity: 0.02;
     animation: oscillateOpacity 2s linear infinite alternate;
+    z-index: 1;
 }
 
 @keyframes oscillateOpacity {
@@ -829,6 +832,14 @@ input[type="checkbox"] {
     z-index: 9999;
     animation: flicker 3650ms infinite;
   }
+
+/*---------------------------------------404-----*/
+
+.return-coin {
+    position: absolute;
+    left: calc(50vw - 95.75px);
+    bottom: 1rem;
+}
 
 /*------------------------------------------return to top arrow--------*/
 

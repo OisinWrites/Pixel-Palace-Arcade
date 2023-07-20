@@ -1,30 +1,116 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block content %}
-    <div class="gameover">
-        <div class="overlay-card">
-            <div class="container header-container">
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Play&family=Press+Start+2P&family=Silkscreen&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <!--<link rel="stylesheet" type="text/css" href="https://res.cloudinary.com/dwhennrjl/raw/upload/v1689614673/static/css/base.a7c3b004e9c5.css">-->
+
+        <script src="https://kit.fontawesome.com/0341233083.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- Stripe -->
+        <script src="https://js.stripe.com/v3/"></script>
+
+        <title>Pixel Palace Arcade {% block extra_title %}{% endblock %}</title>
+        <meta name="description"
+        content= "The best website for arcade video games, gamer gifts, and classic
+        gaming-themed merchandise">
+        <meta name="keywords"
+        content="Classic Arcade Games, 8-bit gaming merchandise, Nintendo Collectibles,
+        Cool math games, Where to buy retro gaming accessories online, Best websites for vintage video games and collectibles,
+        Unique gaming-themed gifts for gamers, Authentic gaming memorabilia for sale">
+        
+        <link rel='shortcut icon' type='image/png' href='https://res.cloudinary.com/dwhennrjl/image/upload/v1686138603/media/favicon_1_dtbsww.ico'/>
+    </head>
+
+    <body id="hal_administrator">
+
+
+
+            <h1 class="start-font white-text text-center mt-3 mb-0">/404/</h1>
+
+            <div class="container white-text fade-out-later">
                 <div class="row">
-                    <div class="col"></div>
+                    <div class="mt-2 col-7 col-md-4 offset-md-1">
+                        <p class="mb-0">Hello</p>
+                        {% if avatar.avatar_name %}
+                            <h2 class="whitespace-nowrap">{{ avatar.avatar_name }}.</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="container h-100 error-page-text">
-                <div class="row h-100">
-                    <div class="col-7 col-md-6 my-auto">
-                        <h1 class="display-4 logo-font text-black">
-                            The page you are looking for isn't available
-                        </h1>
-                        <div class="my-5">
-                            <h4>
-                                <a href="{% url 'products' %}" 
-                                    class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
-                                        Return to shop
-                                </a>
-                            </h4>
-                        </div>
+                <div class="row">
+                    <div class="col-9 offset-3">
+                        <small class="fade-out">. . but I know it's really you,
+                            <br><p class="mt-2 float-right">{{ user.username }}.</p></small>
+                    {% else %}
+                        <h2>{{ user.username }}.</h2>
+                    {% endif %}
                     </div>
                 </div>
             </div>
-        </div>        
-    </div>
-{% endblock %}
+
+            <div id="hals_eye" class="rounded-circle white">
+            </div>
+
+            <div class="return-coin">
+                <h4>
+                    <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
+                        <img id="header-coin-toss" class="coin-logo" src="https://res.cloudinary.com/dwhennrjl/image/upload/v1689615560/logo-coin_cah6hr.png" alt="Pixel Palace Arcade">
+                        <p class="xanthous-text">Return to shop</p>
+                    </a>
+                </h4>
+            </div>
+
+            <div class="typing-text white-text"></div>
+
+    </body>
+
+    <script type="text/javascript">
+        // Array of messages to display
+        const messages = [
+            "I'm sorry, Dave. I can't do that.",
+            // Add more messages here as needed
+        ];
+
+        const typingText = document.querySelector('.typing-text');
+
+        function setTypingAnimationMessage(message) {
+            typingText.textContent = ''; // Clear any existing content
+            typingText.style.animation = 'none'; // Reset animation to prevent flickering
+            typingText.offsetHeight; // Trigger reflow (for the animation reset to take effect)
+            typingText.style.animation = 'typingAnimation 4s steps(40, end)';
+            typingText.setAttribute('data-content', message);
+        }
+
+        // Function to select a random message from the array
+        function getRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            return messages[randomIndex];
+        }
+
+        // Delay the animation start by 4 seconds
+        setTimeout(function() {
+            const selectedMessage = getRandomMessage();
+            setTypingAnimationMessage(selectedMessage);
+            // Add event listener to detect when typing animation ends
+            typingText.addEventListener('animationend', function() {
+                // Start the fade-out animation after the typing animation ends (3 seconds)
+                setTimeout(function() {
+                    typingText.style.transition = 'opacity 3s linear'; // Set the transition
+                    typingText.style.opacity = '0'; // Change the opacity to 0 over 3 seconds
+                }, 3000);
+            });
+        }, 5000); // 4000 milliseconds = 4 seconds
+    </script>
+
+</html>

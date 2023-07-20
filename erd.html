@@ -1,0 +1,79 @@
+"""
+
+        entity relationship diagram for PIXEL PALACE ARCADE
+
+
+        +---------------------+       +-----------------------+     +------------------------+
+        |      allauth_user   |       |     Subscriber        |     |       UserProfile      |
+        +---------------------+       +-----------------------+     +------------------------+
+        | id (PK)             |       | id (PK)               |     | id (PK)                |
+        | ...                 |       | user (FK)             |     | user (FK)              |
+        +---------------------+       | email                 |     | default_phone_number   |
+                                      | newsletter_subscribed |     | default_street_address1|
+                                      +-----------------------+     | default_street_address2|
+                                                                    | default_town_or_city   |
+                                                                    | default_county         |
+                                                                    | default_postcode       |
+                                                                    | default_country (FK)   |
+                                                                    +------------------------+
+                                                                            |
+                                                                            |
+                                                                            |
+                                                                            v
+    +-----------------------+       +-----------------------+       +-----------------------+
+    |         Avatar        |       |        Category       |       |        Product        |
+    +-----------------------+       +-----------------------+       +-----------------------+
+    | id (PK)               |       | id (PK)               |       | id (PK)               |
+    | user (FK)             |       | name                  |       | category (FK)         |
+    | image_url             |       | friendly_name         |       | name                  |
+    | image                 |       +-----------------------+       | description           |
+    | avatar_name           |                                       | has_variants          |
+    +-----------------------+                                       | price                 |
+                                                                    | image_url             |
+                                                                    | image                 |
+                                                                    | aggregaterating       |
+                                                                    | reviewed              |
+                                                                    +-----------------------+
+                                                                            |
+                                                                            |
+                                                                            |
+                                                                            v
+    +-----------------------+       +-----------------------+       +-----------------------+
+    |         Review        |       |         Rating        |       |         Order         |
+    +-----------------------+       +-----------------------+       +-----------------------+
+    | id (PK)               |       | id (PK)               |       | id (PK)               |
+    | product (FK)          |       | user (FK)             |       | order_number          |
+    | user (FK)             |       | product (FK)          |       | user_profile (FK)     |
+    | title                 |       | rating                |       | full_name             |
+    | body                  |       +-----------------------+       | email                 |
+    | created_at            |                                       | phone_number          |
+    | updated_at            |                                       | country (FK)          |
+    | edited                |                                       | postcode              |
+    +-----------------------+                                       | town_or_city          |
+                                                                    | street_address1       |
+                                                                    | street_address2       |
+                                                                    | county                |
+                                                                    | date                  |
+                                                                    | delivery_cost         |
+                                                                    | order_total           |
+                                                                    | grand_total           |
+                                                                    | original_bag          |
+                                                                    | stripe_pid            |
+                                                                    | completed             |
+                                                                    +-----------------------+
+                                                                            |
+                                                                            |
+                                                                            |
+                                                                            v
+                                                                    +-----------------------+
+                                                                    |     OrderLineItem     |
+                                                                    +-----------------------+
+                                                                    | id (PK)               |
+                                                                    | order (FK)            |
+                                                                    | product (FK)          |
+                                                                    | product_variant       |
+                                                                    | quantity              |
+                                                                    | lineitem_total        |
+                                                                    +-----------------------+
+
+"""
