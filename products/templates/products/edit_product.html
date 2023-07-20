@@ -6,18 +6,27 @@
 
 {% block content %}
 
+    <div class="max-content">
+        <h2 class="moonstone-text start-font text-center m-2 p-2">Edit {{ product.name }}</h2>
+    </div>
+
+    <div class="row moonstone mb-5">
+        <div class="text-center text-uppercase col-12 xanthous p-1 mb-1">
+            <a class="btn" href="{% url 'product_management' %}">
+                <strong>cancel</strong>
+            </a>
+            <button class="btn text-uppercase" type="submit">
+                <strong>Update Product</strong>
+            </button>
+        </div>
+    </div>
+
     <div class="go-back-button onyx rounded-circle white-text d-flex align-items-center justify-content-center">
         <i class="fa-solid fa-circle-left"></i>
     </div>
 
-    <div class="float-center mt-5">
-        <h6 class="white-text text-center mb-0 max-content">
-            Edit {{ product.name }}
-        </h6>
-    </div>
-
-        <div class="row">
-            <div class="col-8 offset-2 col-md-6 offset-md-3">
+        <div class="row moonstone pb-5">
+            <div class="col-8 offset-2 col-md-6 offset-md-3 pb-5 mt-3">
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
@@ -27,10 +36,6 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
-                    <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Update Product</button>
-                    </div>
                 </form>
             </div>            
         </div>

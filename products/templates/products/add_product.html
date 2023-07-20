@@ -10,16 +10,13 @@
     </div>
 
         <div class="row moonstone mb-5">
-            <div class="col-12 col-md-6">
-                <div class="text-center text-uppercase col-12 xanthous p-1 mb-1">
-                    <a class="btn" href="{% url 'product_management' %}">
-                        <strong>cancel</strong>
-                    </a>
-                    <button class="btn text-uppercase" type="submit">
-                        <strong>Add Product</strong>
-                    </button>
-                </div>
-                <form method="POST" action="{% url 'add_product' %}" class="col-8 offset-2 form mb-2" enctype="multipart/form-data">
+            <div class="decoration-stripe xanthous mb-3">
+ 
+            </div>
+
+            <div class="col-12 col-lg-6 offset-lg-3 pb-5">
+
+                <form method="POST" action="{% url 'add_product' %}" class="pb-5 col-8 offset-2 form" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != 'image' %}
@@ -28,6 +25,14 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
+                    <div class="text-center text-uppercase col-12 xanthous p-1 mb-1">
+                        <a class="btn" href="{% url 'product_management' %}">
+                            <strong>cancel</strong>
+                        </a>
+                        <button class="btn text-uppercase" type="submit">
+                            <strong>Add Product</strong>
+                        </button>
+                    </div>
                 </form>
             </div>            
         </div>

@@ -85,8 +85,6 @@
             <a href="/profile" class="texture-text butterscotch-text profile-icon">
               <i class="fa-solid fa-person-falling"></i>
 
-              <p id="messages"></p>
-
             </a>
             <!--The User Options dropdown menu-->
             <div class="hidden pink rounded m-0 mb-0 p-0 mt-1 user-options-dropdown" id="user-options-dropdown">
@@ -109,13 +107,15 @@
               <div class="orange-text"><i class="fa-solid fa-coins shopping-bag-icon"></i>
               </div>
 
+              {% if grand_total %}
               <div class="bag-total orange rounded onyx-text shopping-bag-icon">
                 <p class="white py-0 pr-2 pl-3 m-1 rounded">
-                  {% if grand_total %}
+                  
                       €{{ grand_total|floatformat:2 }}
-                  {% endif %}
+              
                 </p>
               </div>
+              {% endif %}
             </a>
           </div>
 
@@ -131,6 +131,25 @@
         {% include 'home/includes/burger-menu.html' %}
       </div>
     </div>
+
+    <!--Messages-->
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+   {% endif %} 
 
 
     <!--The search bar elements-->
@@ -199,7 +218,9 @@
     </footer>
 
     {% block postloadjs %}
-    {% endblock %}
+    <script type="text/javascript">
+      $('.toast').toast('show');
+    </script>
 
     <script type="text/javascript">
       // Get the elements
@@ -345,5 +366,7 @@
 
     {% include 'products/includes/search-modal-functionality.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  {% endblock %}
   </body>
 </html>
