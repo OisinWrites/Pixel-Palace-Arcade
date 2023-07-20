@@ -2,27 +2,22 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="logo-font mb-4">Product Management</h2>
-                <h5 class="text-muted">Edit a Product</h5>
-                <hr>
-            </div>
-        </div>
+
+    <div class="go-back-button onyx rounded-circle white-text d-flex align-items-center justify-content-center">
+        <i class="fa-solid fa-circle-left"></i>
+    </div>
+
+    <div class="float-center mt-5">
+        <h6 class="white-text text-center mb-0 max-content">
+            Edit {{ product.name }}
+        </h6>
+    </div>
 
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-8 offset-2 col-md-6 offset-md-3">
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}

@@ -7,25 +7,34 @@
 
 {% block content %}
 
-    <div class="max-content rounded m-3">
-        <div class="xanthous-75 rounded">
-            <a href="{% url 'products' %}" class="start-font display-4 moonstone-text section-heading m-0 p-0">
-                <h2 class="orange-text m-2 p-2">Games &<br>Merch</h2>
-            </a>
-        </div>
+    <div class="go-back-button onyx rounded-circle white-text d-flex align-items-center justify-content-center">
+        <i class="fa-solid fa-circle-left"></i>
+    </div>
+    
+    <div class="float-center">
+        <h4 class="orange-text text-center mb-0 max-content">
+            {{ product.name }}
+        </h4>
     </div>
 
-    <div class="container-fluid description-container max-content mt-2">
-        <div class="row overlay-card overlay-card-details moonstone">
+    <div class="container-fluid description-container max-content mt-0 mb-3">
+        <div class="row overlay-card overlay-card-details moonstone pt-2">
 
-            <div>
-                <div class="go-back-button orange-text mt-2">
-                    <i class="fa-solid fa-circle-left"></i>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-1">
+
+                <div class="image-container">
+                    {% if product.image %}
+                    <a href="{{ product.image.url }}" target="_blank">
+                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
+                    {% else %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    </a>
+                    {% endif %}
                 </div>
-            </div>
 
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-5">
-                <div class="mb-0 mt-3">
+                <div class="mb-0 mt-2">
                     {% if request.user.is_superuser %}
                     <div class="orange decoration-stripe mb-0">
                         <div class="ml-1">
@@ -68,13 +77,6 @@
                                     <h5 class="mb-0 text-center"><strong>Leave a Review</strong></h5></a>
                             {% else %}
                                 {% with has_review=false %}
-                                    {% for review in reviews %}
-                                        {% if review.user == request.user %}
-                                            {% with has_review=true %}
-                                                
-                                            {% endwith %}
-                                        {% endif %}
-                                    {% endfor %}
                                     {% if not has_review %}
                                         <a href="{% url 'create_review' product.id %}"><p>Leave a Review</p></a>
                                     {% endif %}
@@ -111,7 +113,7 @@
                         {{ product.description }} 
                     </p>
 
-                    <div>
+                    <div class="xanthous">
                         <form action="{% url 'add_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row w-100 mx-0">
@@ -126,6 +128,8 @@
                                         <option value="pc">Desktop</option>
                                     </select>
                                 </div>
+                                {% else %}
+                                <div class="col-6 h-100 xanthous"></div>
                                 {% endif %}
                                 <div class="col-6 xanthous p-0">
                                     <p class="mt-1 p-0 ml-1"><strong>Quantity:</strong></p>
@@ -176,39 +180,28 @@
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2 mt-5">
-
-                <div class="image-container my-3">
-                    {% if product.image %}
-                    <a href="{{ product.image.url }}" target="_blank">
-                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </a>
-                    {% else %}
-                    <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                    </a>
-                    {% endif %}
-                </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2 mt-1">
 
                 <div class="onyx white-text px-2">
                     {% if reviews %}
                         <h4 class="text-center pt-2">Reviews</h4>
                         <hr>
+                        <div class="scroll-y size-limit">
                         {% for review in reviews %}
                             <div class="row">
                                 
-                                    {% if review_has_avatar %}
+                                    {% if review.has_avatar %}
                                     <div class="col-4">
-                                        <img class="img-fluid" src="{{ avatar.image.url }}" alt="{{ avatar.user.username }} Avatar">
+                                        <img class="img-fluid" src="{{ review.avatar.image.url }}" alt="{{ avatar.user.username }} Avatar">
                                     </div>
                                     {% else %}
-                                    <div class="col-4">hello</div>
+                                    <div class="col-4"></div>
                                     {% endif %}
                        
-                                    {% if review_has_avatar %}
+                                    {% if review.has_avatar %}
                                     <div class="col-8 text-right float-right">
                                         <p class="mb-0"><small>{{ review.created_at|date:"F d, Y" }}</small></p>
-                                        <p class="m-0">by {{ avatar.avatar_name }}</p>
+                                        <p class="m-0">by {{ review.avatar.avatar_name }}</p>
                                     {% else %}
                                     <div class="col-8 text-right float-right">
                                         <p class="mb-0"><small>{{ review.created_at|date:"F d, Y" }}</small></p>
@@ -218,11 +211,11 @@
                                     
                                 </div>
                                                            
-                                <div class="col-6">
+                                <div class="col-6 pt-2 pl-3">
                                     <strong>{{ review.title }}</strong>
                                 </div>
                                 {% if review.user == request.user %}
-                                <div class="col-6">
+                                <div class="col-6 text-right float-right pt-3">
                                     <a class="text-danger white px-1 float-right" href="{% url 'delete_review' review.id %}">
                                         <strong>DELETE</strong>
                                     </a>
@@ -235,14 +228,18 @@
                             </div>                    
                         {% endfor %}
                     {% else %}
-                        {% if user.is_authenticated %}
-                        <p>No reviews yet, would you like to 
-                            <a href="{% url 'create_review' product.id %}">leave one?</a>
-                        </p>
-                        {% else %}
-                        <a  href="{% url 'account_signup' %}">Sign up to leave a review</a>
-                        {% endif %}
+                            <div class="text-center">
+                                {% if user.is_authenticated %}
+                                <p>No reviews yet, would you like to 
+                                    <a href="{% url 'create_review' product.id %}">leave one?</a>
+                                </p>
+                                {% else %}
+                                <a  href="{% url 'account_signup' %}">Sign up to leave a review</a>
+                                {% endif %}
+                            </div>
                     {% endif %}
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -253,7 +250,8 @@
 
 {% block postloadjs %}
 <script type="text/javascript">
-    
+    // This script creates a y scroll with option to expand element to
+    // full height, where description is larger than 200 characters.
     function setInitialMaxHeight() {
         var detailsContainer = document.getElementById("description-field");
         detailsContainer.style.maxHeight = "14vh";

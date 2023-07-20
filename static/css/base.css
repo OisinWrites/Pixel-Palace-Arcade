@@ -34,6 +34,7 @@ a {
 
 a:hover {
     text-decoration: none;
+    opacity: 0.8;
     color: inherit;
 }
 
@@ -426,10 +427,14 @@ footer div p {
 
 /*--------------------------------Product Description---*/
 
-.go-back-button{
-    position: absolute;
+.go-back-button {
+    position: fixed;
+    height: 2.4rem;
+    width: 2.4rem;
     font-size: 2rem;
-    margin-left: 1rem;
+    bottom: 2.7rem;
+    left: 1rem;
+    z-index: 200;
 }
 
 .go-back-button:hover, .fa-circle-arrow-up:hover {
@@ -455,8 +460,12 @@ footer div p {
     border-color: #eb764000;
 }
 
-.product-details-container {
+.product-details-container, .scroll-y {
     overflow-y: auto;
+}
+
+.size-limit {
+    max-height: 70vh;
 }
 
 .decoration-stripe {
@@ -778,6 +787,16 @@ input[type="checkbox"] {
   }
 
 /*------------------------------------------return to top arrow--------*/
+
+#return-top {
+    height: 2.4rem;
+    width: 2.4rem;
+    position: fixed;
+    bottom: 5.8rem;
+    right: 1rem;
+    z-index: 200;
+}
+
 .fa-circle-arrow-up {
     font-size: 2rem;
     position: fixed;
