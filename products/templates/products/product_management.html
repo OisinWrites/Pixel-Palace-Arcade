@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
+{% if user.is_superuser %}
     <div class="max-content rounded m-3">
         <div class="xanthous-75 rounded">
             <h2 class="start-font orange-text m-2 p-2">Product<br>Management</h2>
@@ -134,6 +134,12 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <script>
+        // JavaScript code to redirect to the homepage for rouge users
+        window.location.href = "{% url 'home' %}";
+    </script>
+    {% endif %}  
 
 {% endblock %}
 

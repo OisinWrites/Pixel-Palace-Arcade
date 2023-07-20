@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid max-content rounded m-3">
+
+        <div class="start-font row section-heading m-0 p-0">
+            <div class="col-8 offset-2 float-center"></div>
+                <h4 class="xanthous-text m-2 p-2 whitespace-nowrap">
+                    Sign up for our newsletter!
+                </h4>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" value="Subscribe">
+            </form>
+        </div>
+    </div>
+
+    {% if user.is_superuser %}
+        <h1>Newsletter Subscribers</h1>
+        <ul>
+            {% for subscriber in subscribers %}
+                <li>{{ subscriber.name }} - {{ subscriber.email }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}
+
+

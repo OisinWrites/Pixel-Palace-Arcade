@@ -6,6 +6,8 @@
 
 {% block content %}
 
+{% if user.is_superuser %}
+
   <div class="max-content rounded m-3">
     <div class="white-75 d-flex rounded">
       <div class="start-font section-heading m-0 p-0">
@@ -132,6 +134,13 @@
         </div> 
 
     {% endif %}
+
+  {% else %}
+    <script>
+        // JavaScript code to redirect to the homepage for rouge users
+        window.location.href = "{% url 'home' %}";
+    </script>
+  {% endif %}  
 
     {% include 'administration/includes/check-and-submit-script.html' %}
 

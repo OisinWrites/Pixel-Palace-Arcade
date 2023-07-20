@@ -1,4 +1,5 @@
 from django import forms
+from .models import NewsletterSubscriber
 
 
 class MarkOrderCompletedForm(forms.Form):
@@ -99,3 +100,9 @@ class MonthYearFilterForm(forms.Form):
     year = forms.ChoiceField(choices=YEAR_CHOICES, required=False)
     hour = forms.ChoiceField(choices=HOUR_CHOICES, required=False)
     day = forms.ChoiceField(choices=DAY_CHOICES, required=False)
+
+
+class NewsletterSignupForm(forms.ModelForm):
+    class Meta:
+        model = NewsletterSubscriber
+        fields = ['name', 'email']

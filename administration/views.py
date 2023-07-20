@@ -6,6 +6,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.db.models import Q
+from .models import NewsletterSubscriber
+from .forms import NewsletterSignupForm
 
 import json
 from django.http import JsonResponse, HttpResponseRedirect
@@ -152,3 +154,30 @@ def admin_menu(request):
     }
 
     return render(request, 'administration/admin_menu.html', context)
+
+
+def newsletter_signup(request):
+    if request.method == 'POST':
+        form = NewsletterSignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, "Congrats! Thank you for signing up, \
+                    you'll love our amazing deals!")
+            return redirect('home')
+    else:
+        form = NewsletterSignupForm()
+
+    context = {
+        'form': form
+        }
+    return render(request, 'administration/newsletter_signup.html', context)
+
+
+def newsletter_list(request):
+    subscribers = NewsletterSubscriber.objects.all()
+
+    context = {
+        'subscribers': subscribers
+        }
+    return render(request, 'administration/newsletter_list.html', context)

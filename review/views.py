@@ -49,28 +49,24 @@ def create_review(request, product_id):
     return render(request, 'review/create_review.html', context)
 
 
+@login_required
 def update_review(request, review_id):
-    """
-    View function for updating an existing review.
-    Unused as of yet
-    """
-
     review = get_object_or_404(Review, id=review_id)
 
+    # Check if the current user is the owner of the review
+    if request.user != review.user:
+        # Redirect the user to the homepage if they are not the review's owner
+        return redirect('home')
+
     if request.method == 'POST':
-        # If the request method is POST, process the submitted form data
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
-            # If the form is valid, update the review
-            # and save it to the database
             form.save()
             if review.product:
                 return redirect('product_detail', product_id=review.product.id)
             else:
                 return redirect('home')
     else:
-        # If the request method is GET, display the
-        # form with the existing review data
         form = ReviewForm(instance=review)
 
     context = {

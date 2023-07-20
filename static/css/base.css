@@ -79,6 +79,33 @@ h1 {
     width: fit-content;
 }
 
+.fa-mailchimp-index {
+    font-size: 8rem;
+    position: absolute;
+    bottom: 4.4rem;
+    left: -.4rem;
+    transform: rotate(340deg);
+    z-index: 8000;
+}
+
+.newletter-call-to-action p {
+    transform: rotate(312deg);
+    font-size: 1rem;
+    width: 5rem;
+    border-radius: 20%;
+    position: absolute;
+    bottom: 2.7rem;
+    left: 5rem;
+    z-index: 9999;
+}
+/*<div class="text-center white-text newletter-call-to-action">
+<a href="{% url 'newsletter_signup' %}" class=" white-text">
+    <i class="fa-brands fa-mailchimp"></i>
+    <p class="mb-0">Sign up today!</p>
+    <i class="fa-regular fa-thumbs-up"></i>
+</a>
+</div>*/
+
 /*-----------------------------------------Header--------*/
 .header {
     width: 100%;
@@ -799,6 +826,7 @@ input[type="checkbox"] {
   }
   
   .flicker {
+    z-index: 9999;
     animation: flicker 3650ms infinite;
   }
 

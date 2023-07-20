@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
+    {% if user.is_superuser %}
     <div class="max-content">
         <h2 class="moonstone-text start-font text-center m-2 p-2">Edit {{ product.name }}</h2>
     </div>
@@ -40,6 +40,14 @@
             </div>            
         </div>
     </div>
+
+    {% else %}
+    <script>
+        // JavaScript code to redirect to the homepage for rouge users
+        window.location.href = "{% url 'home' %}";
+    </script>
+    {% endif %}  
+
 {% endblock %}
 
 {% block postloadjs %}
