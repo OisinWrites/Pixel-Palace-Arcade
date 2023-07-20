@@ -13,12 +13,10 @@
 {% block content %}
 
     <!--Page Header-->
-    <div class="max-content rounded m-3">
-        <div class="xanthous-75 rounded">
-            <h2 class="logo-font start-font moonstone-text section-heading m-2 p-2 mb-4 d-flex justify-content-center">
-                My Profile
-            </h2>
-        </div>
+    <div class="float-center">
+        <h4 class="orange-text start-font text-center mb-0 max-content">
+                My Profile        
+        </h4>
     </div>
 
     <!--Body Content for Profile Page-->
@@ -54,7 +52,7 @@
                 {% if request.user.is_authenticated %}
                 <div class="col">
                     <h3>{{ user.username }}</h3>
-                    <p class="pointer-on-hover orange-text m-0 p-2 text-nowrap w-100" id="avatar-creation-form-toggle">
+                    <p class="pointer-on-hover m-0 pb-2 text-nowrap w-100" id="avatar-creation-form-toggle">
                         <strong>Create an Avatar for your Profile<i class="ml-2 fa-solid fa-image-portrait fa-beat"></i></strong>
                     </p>
                 </div>
@@ -95,7 +93,7 @@
 
         <!--Review Section-->
         <div class="col-12 big-bottom" id="review-section">
-            <h3 class="orange-text">Your Product Reviews</h3>
+            <h3>Your Product Reviews</h3>
 
             <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -171,7 +169,7 @@
         <!--Delivery Section-->
         <div class="col-12 big-bottom" id="delivery-section">
             <div class="col-12 col-lg-6">
-                <h3 class="orange-text text-nowrap">Delivery Information</h3>
+                <h3 class="text-nowrap">Delivery Information</h3>
                 <form class="mt-3" action="{% url 'update_delivery_info' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
@@ -182,56 +180,61 @@
 
         <!--Order Section-->
         <div class="big-bottom" id="order-section">
-                <h3 class="orange-text">Order History</h3>
+                <h3>Order History</h3>
 
                 <div>
                     <div class="container-fluid">      
-                        <div class="row satin rounded mt-2 p-1">
+                        <div class="row onyx rounded mt-3 pt-3 p-1">
                         
                             {% for order in orders %}
-                                <div class="my-1 col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                                    <div class="butterscotch p-2">
-                                        <div class="orange p-3">                                        
-                                            <div>
-                                                {{ order.date|date:"d/m/y" }}
-                                            </div>                                        
-                                            <div>
-                                                <p class="mt-2 mb-0">Order no. </p>
-                                                <em>
-                                                    {{ order.order_number|slice:":17" }}<br>
-                                                    {{ order.order_number|slice:"17:" }}
-                                                </em>
-                                            </div>                
-                                            <p>
-                                                {% for lineitem in order.lineitems.all %}
-                                                    <p class="text-right d-inline-block">
-                                                        [{{ lineitem.quantity }}]
-                                                        {{ lineitem.product.name }}
-                                                        {% if lineitem.product_variant %}
-                                                            <br>
-                                                            <small>for </small>
-                                                            <strong>
-                                                                {{ lineitem.product_variant|upper }}
-                                                            </strong>
-                                                        {% endif %}
-                                                    </p>
-                                                    <br>
-                                                {% endfor %}
-                                                <p class="mb-1 float-right">
-                                                    €{{ order.grand_total }}
-                                                </p>
-                                                {% if order.completed %}                                                
-                                                <P>
-                                                    Order Shipped!
-                                                    <i class="fa-solid fa-truck-fast"></i>
-                                                </P>
-                                                {% else %}
+                                <div class="my-1 rounded col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="orange rouned p-1">
+                                        <div class="butterscotch rounded p-2">
+                                            <div class="white p-1">
+                                                <div>
+                                                    {{ order.date|date:"d/m/y" }}
+                                                </div>                                        
+                                                <div>
+                                                    <p class="mt-2 mb-0">Order no. </p>
+                                                    <em>
+                                                        {{ order.order_number|slice:":17" }}<br>
+                                                        {{ order.order_number|slice:"17:" }}
+                                                    </em>
+                                                </div>                
                                                 <p>
-                                                    <i class="fa-regular fa-clock"></i>
-                                                    Order Pending
+                                                    {% for lineitem in order.lineitems.all %}
+                                                        <p class="text-right d-inline-block">
+                                                            [{{ lineitem.quantity }}]
+                                                            <p class="">
+                                                                {{ lineitem.product.name|slice:":30" }}
+                                                            </p>
+                                                            
+                                                            {% if lineitem.product_variant %}
+                                                                <br>
+                                                                <small>for </small>
+                                                                <strong>
+                                                                    {{ lineitem.product_variant|upper }}
+                                                                </strong>
+                                                            {% endif %}
+                                                        </p>
+                                                        <br>
+                                                    {% endfor %}
+                                                    <p class="mb-1 float-right">
+                                                        €{{ order.grand_total }}
+                                                    </p>
+                                                    {% if order.completed %}                                                
+                                                    <P>
+                                                        Order Shipped!
+                                                        <i class="fa-solid fa-truck-fast"></i>
+                                                    </P>
+                                                    {% else %}
+                                                    <p>
+                                                        <i class="fa-regular fa-clock"></i>
+                                                        Order Pending
+                                                    </p>
+                                                    {% endif %}
                                                 </p>
-                                                {% endif %}
-                                            </p>
+                                            </div>
                                         </div>
                                     </div> 
                                 </div>

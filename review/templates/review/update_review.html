@@ -14,7 +14,7 @@
 <div class="max-content">
     <a href="{% url 'product_detail' product.id %}" class="start-font display-4 moonstone-text section-heading m-0 p-0">
         <h5 class="orange-text m-2 p-2">
-            Review: <strong class="ml-1"> {{ product.name }}</strong>
+            Update Review: <strong class="ml-1"> {{ product.name }}</strong>
         </h5>
     </a>
 </div>
@@ -25,7 +25,25 @@
     <div class="row overlay-card overlay-card-details moonstone">
         <div class="col-12 col-sm-6 mt-3">
             
-            <div class="col-12 col-lg-8 offset-lg-2">                
+            <div class="col-12 col-lg-8 offset-lg-2">
+                
+                <div class="row onyx white-text">
+                    <div class="col-12 text-right float-right">
+                        <p class="mb-0"><small>{{ review.created_at|date:"F d, Y" }}</small></p>
+                    </div>             
+                    <div class="col-12 pl-3 float-left">
+                        <strong>{{ review.title }}</strong>
+                    </div>
+                    <div class="col-12">
+                        <p class="whitespace-wrap px-1 mb-0">{{ review.body }}</p>  
+                    </div> 
+                    <div class="col-12 text-right float-right pt-3">
+                        <a class="text-danger white px-1 float-right" href="{% url 'delete_review' review.id %}">
+                            <strong>DELETE</strong>
+                        </a>
+                    </div>                                  
+                </div>
+
                 {% if user.is_authenticated %}
                 {% if rating %}
                 <div>

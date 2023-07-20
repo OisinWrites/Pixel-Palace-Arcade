@@ -84,20 +84,20 @@
           <div id="user-options">
             <a href="/profile" class="texture-text butterscotch-text profile-icon">
               <i class="fa-solid fa-person-falling"></i>
-              <!--{% if user.is_authenticated %}
-              <p class="user-name butterscotch-text" id="user-name">Welcome {{ user.username }}!</p>
-              {% endif %}-->
+
+              <p id="messages"></p>
+
             </a>
             <!--The User Options dropdown menu-->
-            <div class="hidden user-options-dropdown" id="user-options-dropdown">
-              <div class="texture rounded">
-                <ul class="pink list-inline list-unstyled text-center" aria-labelledby="dropdownButton">
+            <div class="hidden pink rounded m-0 mb-0 p-0 mt-1 user-options-dropdown" id="user-options-dropdown">
+              <div class="texture white m-1 rounded">
+                <ul class="list-inline list-unstyled text-center rounded" aria-labelledby="dropdownButton">
                   {% if user.is_authenticated %}
-                  <li><a class="dropdown-item di1" href="/profile">Profile</a></li>
-                  <li><a class="dropdown-item di2" href="{% url 'account_logout' %}">Log out</a></li>
+                  <li><a class="dropdown-item di1" href="/profile"><p class="onyx-text">Profile</p></a></li>
+                  <li><a class="dropdown-item di2" href="{% url 'account_logout' %}"><p class="onyx-text">Log out</p></a></li>
                   {% else %}
-                  <li><a class="dropdown-item di1" href="{% url 'account_login' %}">Log in</a></li>
-                  <li><a class="dropdown-item di2" href="{% url 'account_signup' %}">Sign up</a></li>
+                  <li><a class="dropdown-item di1" href="{% url 'account_login' %}"><p class="onyx-text">Log in</p></a></li>
+                  <li><a class="dropdown-item di2" href="{% url 'account_signup' %}"><p class="onyx-text">Sign up</p></a></li>
                   {% endif %}
                 </ul>
               </div>
@@ -108,13 +108,17 @@
             <a href="{% url 'view_bag' %}">
               <div class="orange-text"><i class="fa-solid fa-coins shopping-bag-icon"></i>
               </div>
-              <p class="my-0 bag-total orange-text shopping-bag-icon">
+
+              <div class="bag-total orange rounded onyx-text shopping-bag-icon">
+                <p class="white py-0 pr-2 pl-3 m-1 rounded">
                   {% if grand_total %}
                       €{{ grand_total|floatformat:2 }}
                   {% endif %}
-              </p>
+                </p>
+              </div>
             </a>
           </div>
+
         </div>
     </header>
 
@@ -150,8 +154,10 @@
     </div>
     
     <!--Quick return to top button-->
-    <div class="hidden rounded-circle onyx" id="return-top">
-      <i class="fa-solid fa-circle-arrow-up white-text mx-auto my-auto"></i>	
+    <div class="return-to-top hidden" id="return-top">
+      <div class="rounded-circle onyx d-flex align-items-center justify-content-center p-1">
+        <i class="fa-solid fa-circle-arrow-up white-text mx-auto my-auto"></i>	
+      </div>
     </div>
 
     <!--Admin button to access site administration menu-->
@@ -211,38 +217,54 @@
   </script>
 
   <script>
+    // Function to generate a random hex color from the given array
+    function getRandomColor() {
+      const hexColors = [
+        "#64A2AC",
+        "#BFA13C",
+        "#F3B844",
+        "#EF9742",
+        "#EB7640",
+        "#DA7092",
+      ];
+      const randomIndex = Math.floor(Math.random() * hexColors.length);
+      return hexColors[randomIndex];
+    }
 
-    // return to top button
+    // Get all the CSS variables in the document
+    const cssVariables = document.documentElement.style;
 
-    window.addEventListener('DOMContentLoaded', function() {
-        var topLink = document.getElementById('return-top');
-        
-        topLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }); 
-    });
+    // Set the --random-color CSS variable to the randomly selected color
+    cssVariables.setProperty("--random-color", getRandomColor());
+  </script>
 
-    window.addEventListener('scroll', function() {
-      var myElement = document.getElementById('return-top');
-      var scrollPosition = window.scrollY;
+<script>
+  // return to top button
+  window.addEventListener('DOMContentLoaded', function() {
+    var topLink = document.getElementById('return-top');
 
-      if (scrollPosition > 0) {
-        myElement.classList.remove('hidden');
+    function updateVisibility() {
+      if (window.scrollY > 0) {
+        topLink.classList.remove('hidden');
       } else {
-        myElement.classList.add('hidden');
+        topLink.classList.add('hidden');
       }
+    }
+
+    topLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Check initial scroll position on page load
-    window.addEventListener('DOMContentLoaded', function() {
-      var myElement = document.getElementById('return-top');
-      var scrollPosition = window.scrollY;
+    updateVisibility();
 
-      if (scrollPosition === 0) {
-        myElement.classList.add('hidden');
-      }
-    });
+    // Update visibility on scroll
+    window.addEventListener('scroll', updateVisibility);
+  });
+</script>
+
+<script>
 
     // Site menu overlay functionality, appear
 
@@ -298,7 +320,7 @@
     function startTimeout() {
       timeoutId = setTimeout(function() {
         userOptionsDropdown.classList.add('hidden');
-      }, 1200);
+      }, 5000);
     }
 
     // Getting length of a given username so that it can be positioned center on mobile

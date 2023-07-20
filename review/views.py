@@ -15,6 +15,14 @@ def create_review(request, product_id):
     """
 
     product = get_object_or_404(Product, pk=product_id)
+    existing_review = Review.objects.filter(
+        product=product, user=request.user).first()
+
+    if existing_review:
+        # If the user has already submitted a review,
+        # redirect to the update_review URL
+        return redirect('update_review', review_id=existing_review.id)
+
     rating = Rating.objects.filter(product=product, user=request.user).first()
 
     if request.method == 'POST':
@@ -56,13 +64,22 @@ def update_review(request, review_id):
             # If the form is valid, update the review
             # and save it to the database
             form.save()
-            return redirect('product_detail', id=review.product.id)
+            if review.product:
+                return redirect('product_detail', product_id=review.product.id)
+            else:
+                return redirect('home')
     else:
         # If the request method is GET, display the
         # form with the existing review data
         form = ReviewForm(instance=review)
 
-    return render(request, 'reviews/update_review.html', {'form': form})
+    context = {
+        'form': form,
+        'review': review,
+        'product': review.product,
+    }
+
+    return render(request, 'review/update_review.html', context)
 
 
 def delete_review(request, review_id):

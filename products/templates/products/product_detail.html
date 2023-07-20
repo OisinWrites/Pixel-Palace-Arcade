@@ -10,35 +10,24 @@
     <div class="go-back-button onyx rounded-circle white-text d-flex align-items-center justify-content-center">
         <i class="fa-solid fa-circle-left"></i>
     </div>
-    
-    <div class="float-center">
-        <h4 class="orange-text text-center mb-0 max-content">
-            {{ product.name }}
-        </h4>
-    </div>
 
-    <div class="container-fluid description-container max-content mt-0 mb-3">
+    <div class="decoration-stripe xanthous"></div>
+
+    <div class="container-fluid description-container max-content mt-0 pb-5 mb-4">
         <div class="row overlay-card overlay-card-details moonstone pt-2">
 
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-1">
 
-                <div class="image-container">
-                    {% if product.image %}
-                    <a href="{{ product.image.url }}" target="_blank">
-                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </a>
-                    {% else %}
-                    <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                    </a>
-                    {% endif %}
-                </div>
-
                 <div class="mb-0 mt-2">
                     {% if request.user.is_superuser %}
-                    <div class="orange decoration-stripe mb-0">
+                    <div class="orange mb-0">
+                        <h5 class="text-left p-2 mb-0">
+                            {{ product.name }}
+                        </h5>
                         <div class="ml-1">
-                            <a class="white-text onyx px-2 float-right" href="{% url 'delete_product' product.id %}">Delete</a>
+                            <div class="white-text">
+                                <a class="white-text onyx px-2 float-right" href="{% url 'delete_product' product.id %}">Delete</a>
+                            </div>
                             <a class="float-right white px-2" href="{% url 'edit_product' product.id %}">Edit </a>                                                       
                         </div>
                     </div>
@@ -78,7 +67,7 @@
                             {% else %}
                                 {% with has_review=false %}
                                     {% if not has_review %}
-                                        <a href="{% url 'create_review' product.id %}"><p>Leave a Review</p></a>
+                                        <a href="{% url 'update_review' product.id %}"><p>Change your Review</p></a>
                                     {% endif %}
                                 {% endwith %}
                             {% endif %} 
@@ -93,7 +82,12 @@
                                 <label for="star{{ rating }}"><i class="fas fa-star"></i></label>
                             {% endfor %}
                         </form>
-                        <p class="pb-0"><small class="pb-0">Please leave a rating before submitting a review</small></p>                                                                  
+                        <p class="pb-0 mb-0">
+                            <small class="pb-0">
+                            Please leave a rating <br> 
+                            before submitting a review
+                            </small>
+                        </p>                                                           
                         {% endif %}
                     {% endif %}              
                     </div>
@@ -109,7 +103,7 @@
                         </button>
                     </div>
 
-                    <p id="description-field" class="p-2 white-text onyx product-details-container mt-3">
+                    <p id="description-field" class="p-2 white-text onyx product-details-container pt-3">
                         {{ product.description }} 
                     </p>
 
@@ -158,15 +152,15 @@
                                     </div>
                                 </div>
     
-                                <div class="col{% if v %}-12 mt-0{% endif %} butterscotch">
+                                <div class="col butterscotch">
                                     <a href="{% url 'products' %}" class="btn ml-0 pl-0">
                                         <span class="play-font onyx-text ml-0 pl-0">
                                             <i class="fa-solid fa-circle-chevron-left onyx-text ml-0 pl-0"></i>
                                             Keep Shopping
                                         </span>
                                     </a>                                    
-                                    <span class="mr-0 pr-0">
-                                        <input type="submit" class="btn play-font pr-0 mb-0 mr-0" value="Add to Bag">
+                                    <span class="mr-0 pr-0 float-right">
+                                        <input type="submit" class="btn play-font pr-0 mb-0 mr-1" value="Add to Bag">
                                         <i class="ml-1 fa-solid fa-bag-shopping"></i>
                                     </span>                                
                                 </div>
@@ -182,13 +176,25 @@
 
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 offset-lg-2 mt-1">
 
-                <div class="onyx white-text px-2">
+                <div class="image-container mt-2">
+                    {% if product.image %}
+                    <a href="{{ product.image.url }}" target="_blank">
+                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </a>
+                    {% else %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="butterscotch">
                     {% if reviews %}
                         <h4 class="text-center pt-2">Reviews</h4>
-                        <hr>
-                        <div class="scroll-y size-limit">
+                        <div class="decoration-stripe xanthous"></div>
+                        <div class="scroll-y size-limit px-2">
                         {% for review in reviews %}
-                            <div class="row">
+                            <div class="row onyx white-text">
                                 
                                     {% if review.has_avatar %}
                                     <div class="col-4">
@@ -214,25 +220,28 @@
                                 <div class="col-6 pt-2 pl-3">
                                     <strong>{{ review.title }}</strong>
                                 </div>
+                                <div class="col-12">
+                                    <p class="whitespace-wrap px-1 mb-0">{{ review.body }}</p>  
+                                </div>                               
                                 {% if review.user == request.user %}
-                                <div class="col-6 text-right float-right pt-3">
+                                <div class="col-12 text-right float-right pt-3">
                                     <a class="text-danger white px-1 float-right" href="{% url 'delete_review' review.id %}">
                                         <strong>DELETE</strong>
                                     </a>
                                 </div>
                                 {% endif %}
-                                <div class="col-12">
-                                    <br>{{ review.body }}<br>
-                                    <hr> 
-                                </div>                                   
-                            </div>                    
+                                <div class="decoration-stripe orange"></div>
+                            </div>
+                            
                         {% endfor %}
                     {% else %}
-                            <div class="text-center">
+                            <div class="text-left my-0 p-1">
                                 {% if user.is_authenticated %}
-                                <p>No reviews yet, would you like to 
-                                    <a href="{% url 'create_review' product.id %}">leave one?</a>
-                                </p>
+                                <p class="whitespace-wrap mb-0">No reviews yet.</p>
+                                    <a href="{% url 'create_review' product.id %}">
+                                        <strong>Would you like to leave one?</strong>
+                                    </a>
+                                
                                 {% else %}
                                 <a  href="{% url 'account_signup' %}">Sign up to leave a review</a>
                                 {% endif %}
