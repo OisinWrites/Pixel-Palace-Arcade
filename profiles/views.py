@@ -6,6 +6,7 @@ from .models import UserProfile, Avatar
 from .forms import UserProfileForm, AvatarForm
 from review.models import Review, Rating
 from products.models import Product
+from administration.models import Subscriber
 
 from checkout.models import Order
 
@@ -18,6 +19,12 @@ def profile(request):
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     avatar = Avatar.objects.filter(user=profile.user).first()
+
+    # Retrieve the subscriber instance for the current user
+    try:
+        subscriber = Subscriber.objects.get(user=request.user)
+    except Subscriber.DoesNotExist:
+        subscriber = None
 
     if request.method == 'POST':
         profile = get_object_or_404(UserProfile, user=request.user)
@@ -65,6 +72,7 @@ def profile(request):
         'avatar': avatar,
         'user_id': request.user.id,
         'ratings': ratings,
+        'subscriber': subscriber,
     }
     return render(request, template, context)
 

@@ -213,3 +213,20 @@ def newsletter_unsubscribe(request, subscriber_id):
     }
     return render(
         request, 'administration/newsletter_unsubscribe.html', context)
+
+
+def toggle_subscription(request, subscriber_id):
+    subscriber = get_object_or_404(Subscriber, id=subscriber_id)
+
+    if request.user != subscriber.user:
+        messages.error(request,
+                       "Sorry, you can't cancel someone else's subscription.")
+        return redirect('home')
+
+    if request.method == 'POST':
+        # Toggle the newsletter_subscribed field
+        subscriber.newsletter_subscribed = not subscriber.newsletter_subscribed
+        subscriber.save()
+        return redirect('profile')
+
+    return redirect('profile')

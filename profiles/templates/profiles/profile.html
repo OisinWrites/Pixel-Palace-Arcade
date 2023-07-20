@@ -77,6 +77,19 @@
                 {% endif %}
             {% endif %}                
         </div>
+
+        <!--Newletter Registration Toggle-->
+        {% if subscriber %}
+            <p>{{ subscriber.email }}</p>
+            <p>Subscription status: {% if subscriber.newsletter_subscribed %}Subscribed{% else %}Unsubscribed{% endif %}</p>
+            <form method="post" action="{% url 'toggle_subscription' subscriber.id %}">
+                {% csrf_token %}
+                <button type="submit">Toggle Subscription</button>
+            </form>
+        {% else %}
+            <p>You are not subscribed to our newsletter.</p>
+            <a href="{% url 'newsletter_signup' %}">Sign up for our newsletter</a>
+        {% endif %}
                    
         <!--The Section Options-->
         <div class="white-text row pb-0 text-uppercase mb-3">

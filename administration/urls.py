@@ -9,4 +9,6 @@ urlpatterns = [
      path('menu/', views.admin_menu, name='admin_menu'),
      path('signup/', views.newsletter_signup, name='newsletter_signup'),
      path('list/', views.newsletter_list, name='newsletter_list'),
+     path('newsletter/toggle/<int:subscriber_id>/',
+          views.toggle_subscription, name='toggle_subscription'),
 ]
