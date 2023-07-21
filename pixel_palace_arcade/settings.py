@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME', '')
 CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY', '')
 CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET', '')
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['pixel-palace-arcade.herokuapp.com',
                  '8000-oisinwrites-pixelpalace-r3kc9eox1tk.ws-eu102.gitpod.io']
 
