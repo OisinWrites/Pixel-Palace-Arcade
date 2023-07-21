@@ -20,6 +20,30 @@ from .models import Subscriber
 
 
 def pending_orders(request):
+
+    def _send_shipping_confirmation_email(order):
+        """Send the user a shipping confirmation email"""
+        cust_email = order.email
+        subject = render_to_string(
+            'checkout/confirmation_emails/shipping_email_subject.txt',
+            {'order': order}
+        )
+        body = render_to_string(
+            'checkout/confirmation_emails/shipping_email_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+        )
+
+        # Print the email content to the terminal
+        print("Subject: ", subject)
+        print("Body: ", body)
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
+
     if request.method == 'GET':
         incomplete_orders = Order.objects.filter(completed=False)
         form = MarkOrderCompletedForm()
@@ -41,6 +65,9 @@ def pending_orders(request):
                     order.save()
                     """_send_shipping_confirmation_email(order)"""
                     print(f"Order {order_id} marked as completed.")
+
+                    _send_shipping_confirmation_email(order)
+
                 except Order.DoesNotExist:
                     pass
 
@@ -66,6 +93,29 @@ def pending_orders(request):
 def completed_orders(request):
     complete_orders = Order.objects.filter(completed=True)
 
+    def _send_shipping_cancellation_email(order):
+        """Send the user a shipping confirmation email"""
+        cust_email = order.email
+        subject = render_to_string(
+            'checkout/confirmation_emails/shipping_cancel_subject.txt',
+            {'order': order}
+        )
+        body = render_to_string(
+            'checkout/confirmation_emails/shipping_cancel_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+        )
+
+        # Print the email content to the terminal
+        print("Subject: ", subject)
+        print("Body: ", body)
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
+
     if request.method == 'POST':
         # Handle the cancel form submission
         cancel_form = MarkOrderIncompleteForm(request.POST)
@@ -75,6 +125,9 @@ def completed_orders(request):
                 order_to_cancel = Order.objects.get(id=order_id)
                 order_to_cancel.completed = False
                 order_to_cancel.save()
+
+                _send_shipping_cancellation_email(order)
+
                 # Redirect to the same page after canceling the order
                 return redirect('completed_orders')
             except Order.DoesNotExist:

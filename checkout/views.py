@@ -205,6 +205,29 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
+    def _send_confirmation_email(order):
+        """Send the user a confirmation email"""
+        cust_email = order.email
+        subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            {'order': order}
+        )
+        body = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+        )
+
+        # Print the email content to the terminal
+        print("Subject: ", subject)
+        print("Body: ", body)
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
+
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
@@ -226,7 +249,7 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    """_send_confirmation_email(order)"""
+    _send_confirmation_email(order)
 
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
@@ -244,27 +267,3 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
-
-
-def _send_confirmation_email(order):
-    """Send the user a confirmation email"""
-    cust_email = order.email
-    subject = render_to_string(
-        'checkout/confirmation_emails/confirmation_email_subject.txt',
-        {'order': order}
-    )
-    body = render_to_string(
-        'checkout/confirmation_emails/confirmation_email_body.txt',
-        {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
-    )
-
-    # Print the email content to the terminal
-    print("Subject: ", subject)
-    print("Body: ", body)
-
-    send_mail(
-        subject,
-        body,
-        settings.DEFAULT_FROM_EMAIL,
-        [cust_email]
-    )

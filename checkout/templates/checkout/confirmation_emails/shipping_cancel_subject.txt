@@ -1,0 +1,1 @@
+Pixel Palace Arcade Cancellation for Order Number {{ order.order_number }}
