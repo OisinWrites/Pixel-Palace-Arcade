@@ -55,11 +55,50 @@
 
 ### Design overhaul
 
-Inspiration 
+Inspiration from WIX best sites
 https://www.wix.com/blog/best-website-designs
+
+| Dopplepress |
+|-------------|
+| ![site-1](media/site-inspirtation-1.png) |
+
 https://www.dopplepress.com/
+
+| Yantra |
+|--------|
+| ![site-2](media/site-inspiration-2.png) |
+
 https://www.yantra.com.sg/
+
+| OKDRUGS |
+|--------|
+| ![site-3](media/site-inspiration-3.png) |
+
 https://www.clarityincrazy.com/
+
+
+### Font and Colours
+
+I tried an existing page, the product description page with a few new fonts, trying to find one fitting the retro arcade theme. The fourth here, as plainly evident, is etremely legible in comparison to the others. The second however was kept as a splash element for header fonts.
+
+| Silkscreen | Press Start 2P | Audiowide | Play |
+|------------|----------------|-----------|------|
+| ![silkscreen font](media/font-1.png) | ![start font](media/font-2.png) | ![audiowide font](media/font-3.png) | ![play-font](media/font-4.png) |
+
+Originally I picked out colours from the previous arcade background image, trying to get an apporximation of the palette in the image. But having come across the other image I decided to change it up. The second palette is more fun and retro, it allows for some fun in the gradients, and is utilised a lot throughout the site. However, the site has been overhauled for accessibility, and since this palette has colours that bland into one antoher like a rainbow might, it is not practical for accessibility purposes. A lot higher usage of the white #EBEBEB, and the Onyx picked out from the bottom of the palette has been implemented for higher contrast in requireed areas.
+
+Some experimentation, as can be seen in the 'Sampling' image, with textures was undertaken; setting the background as a high res image of different paper images and using opacity manipulation to give a fuller depth to the site's feel. However for the sake of page load times this has been discarded.
+
+Similarly a live wallpaper for the index with pause and play functionality was abandoned for screen load time improvement after scoring a 54 on https://pagespeed.web.dev/analysis/ ![old-speed-test](media/old-performance.png)
+
+| Cold Palette | Retro Palette |
+|--------------|---------------|
+| ![palette-1](media/palette-1.png) | ![palette-2](media/palette-2.png) |
+
+| Coolers | Sampling |
+|--------------|---------------|
+| ![coolers](media/coolers-and-picker.png) | ![sampling](media/sampling) |
+
 
 ### Wireframes
 
@@ -370,6 +409,18 @@ Finally, the admin access icon, the key, only appear for superusers. It brings t
 
 Epic: Owner Control
 
+The heavily stylised admin page shows HAL-9000 from 2001 A Space Odyssey, who greats the user, using their name, or by their avatar name if they have one. Though he tells them he knows its really them, {% user.username %}. Hal's greeting fades out as typed scripted messages flow from the bottom right, a random selection of short phrases.
+Hal is only ever present elsewhere for the 404 page and exhibits similar behaviour.
+Hal's eye shifts.
+
+The admin page, like the menu dropdown, is separate from the base template. The admin must select one of the three administrative pages through the icons in order to leave the current page.
+
+The admin has access to pending orders, which can be fullfilled, marked as shipped, which notifies the user, or have the shipment cancelled, where the user is also notified.
+The admin can access product management where the site enables full CURD capabilities. And lastly the admin can see a current list of emails and user names for the mailing list.
+
+Below can be seen the admin view for product lists, with similar search and filter functions as before. They can delete or edit any of the products.
+Here, there is a link to add a new product also.
+
 | Admin Management Page | View All Products | Add a Product | Edit a Product |
 |---------------|-----------------|-----------|-----------------|
 | ![admin page](media/admin-management-page.png) | ![view as admin](media/see-all-products-as-admin.png) | ![add](media/add-a-product.png) | ![edit](media/edit-a-products.png) |
@@ -507,13 +558,9 @@ In the Heroku Dashboard, click on the Deploy tab, click on the option to Deploy 
 
     * Icons used throughtout project: https://fontawesome.com/
 
-    * Much of the product is based on the Code Institute walkthrough project.
-
     But I want to give particular acknowledgement to the Boutique Ado project for the following areas of my project submission.
 
     Full Stripe implementation.
 
-    Sort and Search functionality for products.
-
-    The majority of both the bag and checkout apps, which have been implemented in my project and remain largely unaltered.
+    The view and script logic of both the bag and checkout apps, which have been implemented in my project.
 
