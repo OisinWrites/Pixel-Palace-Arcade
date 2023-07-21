@@ -108,7 +108,7 @@
         <div class="col-12 big-bottom" id="review-section">
             <h3>Your Product Reviews</h3>
 
-            <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal fade big-bottom" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body moonstone rounded">
@@ -169,8 +169,11 @@
                             <p class="xanthous-text"><strong>{{ review.title }}</strong></p>
                             <small class="text-nowrap onyx-text">click to see details</small>
                             <div>
-                                <a class="white-text rounded pink float-right pl-1 pr-1" href="{% url 'delete_review' review.id %}">
+                                <a class="white-text ml-1 rounded pink float-right pl-1 pr-1" href="{% url 'delete_review' review.id %}">
                                     delete
+                                </a>
+                                <a class="white-text rounded orange float-right pl-1 pr-1" href="{% url 'update_review' review.id %}">
+                                    edit
                                 </a>
                             </div>
                         </div>
@@ -181,7 +184,7 @@
 
         <!--Delivery Section-->
         <div class="col-12 big-bottom" id="delivery-section">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 big-bottom">
                 <h3 class="text-nowrap">Delivery Information</h3>
                 <form class="mt-3" action="{% url 'update_delivery_info' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
