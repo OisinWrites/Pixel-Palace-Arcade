@@ -82,6 +82,21 @@ https://www.clarityincrazy.com/
 |---------|
 | ![desktop response](media/fullscreen_responsive.png) |
 
+#### Update and improved
+
+    Site is fully responsive for all screens
+
+    - Utilising bootstrap row and colum functionality the site requires far less media query breakpoints in the CSS.
+    - Site is styled from 320px up
+
+| Mobile | Tablet |
+|--------|--------|
+| ![mobile response](media/responsive-mob.png)| ![tablet response](media/responsive-pad.png) |
+
+| Laptop |
+|--------|
+| ![laptop response](media/responsive-desk.png) |
+
 ### Logic
 #### Entity Relationship Diagram & Database Schema for Django Models
 
@@ -287,7 +302,78 @@ Custom error 404 page for enhanced user experience, and immersion.
 
 ![stripe implementation verification](media/stripe_confirmation.png)
 
-### Manual Testing
+### Manual Testing | ![]() |
+
+EPIC: User Registration
+
+- User Registration is handled by Allauth, Django's dedicated user management library.
+- Allauth templates have been customised for this project.
+
+| Sign up | Sign in | Sign-in confirmation | Password reset | Edit Info |
+|--------|----------|---------------------|------------------|---------|
+| ![sign up form](media/sign_up.png) | ![sign in form](media/sign_in_form.png) | ![sign in confirm](media/sign_in_confirmation.png) | ![password reset form](media/password_reset.png) | ![Edit info](media/edit_info.png) |
+
+EPIC: User's view of Products
+
+A user can access the products page from a call to action on the index page, "BROWSE THE COLLECTION", or the navbar icon, or from the burger menu dropdown page.
+
+All products show up automatically, and can be filtered by category, and sorted by category or price.
+
+When filtered, the page shows the selected categories for the filter.
+
+Clicking on the image or the product name will bring the user to the product details page. All info is present. The description field has a script to include expand and collapse functionality for products with descriptions above 200 characters. The element showing the description is given a restrive height styling that can be broken and restored on the expand/collapse toggle.
+
+The search function comes from the navbar icon, which is always present. It works across the entire site, and returns a list for search term matching product names, or even any term it finds in the product description attribute. The returned list includes links to the product details page for each result.
+
+| All Products Page | Filter Products | Filter Results: Categories |
+|-------------------|------------------|-----------------------|
+| ![all products](media/all-products.png) | ![filter products](media/filter-products.png) | ![filter shows categories](media/filter-shows-categories.png) |
+
+| Search | Search Results | Product Information |
+|------------------|---------|---------------|
+| ![ Search bar ](media/search-function.png) | ![search results](media/search-results.png) | ![product info](media/product-details.png) |
+
+Epic: Bag and checkout testing
+
+| Add to bag | Remove from bag | Edit bag |
+|----------|-----------------|------------|
+| ![add](media/add-to-bag.png) | ![remove](media/remove-from-bag.png) | ![edit](media/edit-bag.png) |
+
+
+| Bag Summary | Checkout Summary | Sale Summary |
+|---------------|-----------------|-----------|
+| ![bs](media/view-summary-before-purchase.png) | ![cs](media/see-final-summary.png) | ![ss](media/sale-summary.png) |
+
+| Sale Confirmation | Input Billing/Shipping Info and Save Info |
+|------------------|-------------------------------------------|
+| ![sale confirm](media/confirm-sale.png) | ![info control](media/input-billing-details.png) |
+
+Epic: Navigation
+
+The burger menu is always accessible from the nav bar by clicking on the firsst of the nav bar icons. The burger menu will show sign in/ up/ or out based on the relevant logged in status. Similarly, it won't show checkout or profile until signed in.
+The burger menu is designed as a modal, and is a separate HTML file that sits on top of the given page.
+
+The rest of the navigation buttons, similarly available across the site, access in turn; The All Products Page, The Products Search Bar, The User Profile with dropdown for Sign in/Up/Out, and the Shopping Bag (coins), which displays the current bag total below itself.
+
+Additionally, the spinning gold Pixel Palace Arcade token in the upper left of the screen will bring the user back to the homepage.
+
+The footer has links to the main sections of the site: Home, Products, Profile, and Checkout. Though repetive to the navbar icons, they are written text which improves site accessibility, and they are present on longer y-scrolls through the site, unlike the header. When a y-scroll occurs the back to top arrow will appear, and after user lands back at top of page it will again disappear. Some pages, such as the product details page, and further in than that, the review page, utilise a go back to previous button. This is alongside the back to top, on its left. The go back button, where appropriate is a direct link to a site page, or elsewhere reverts the user's history -1.
+
+Also incuded is the facebook link for the business's social site.
+
+Finally, the admin access icon, the key, only appear for superusers. It brings the admin to the site administration page.
+
+
+| Burger Dropdown | Navigation Bar | Footer Navigation |
+|---------------|-----------------|-----------|
+| ![dropdown](media/burger-dropdown.png) | ![navbar](media/navbar.png) | ![footer](media/footer.png) |
+
+Epic: Owner Control
+
+| Admin Management Page | View All Products | Add a Product | Edit a Product |
+|---------------|-----------------|-----------|-----------------|
+| ![admin page](media/admin-management-page.png) | ![view as admin](media/see-all-products-as-admin.png) | ![add](media/add-a-product.png) | ![edit](media/edit-a-products.png) |
+
 
 ### Error Log
 

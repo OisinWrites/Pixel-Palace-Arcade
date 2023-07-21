@@ -19,19 +19,20 @@
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-1">
 
                 <div class="mb-0 mt-2">
-                    {% if request.user.is_superuser %}
                     <div class="orange mb-0">
                         <h5 class="text-left p-2 mb-0">
                             {{ product.name }}
                         </h5>
+                        {% if request.user.is_superuser %}
                         <div class="ml-1">
                             <div class="white-text">
                                 <a class="white-text onyx px-2 float-right" href="{% url 'delete_product' product.id %}">Delete</a>
                             </div>
                             <a class="float-right white px-2" href="{% url 'edit_product' product.id %}">Edit </a>                                                       
                         </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
+                    
                     <p class="lead pl-1 mb-0 text-left font-weight-bold butterscotch">€{{ product.price }}</p>
                     {% if product.category %}
                     <p class="small pl-1 mt-0 mb-0 butterscotch">
